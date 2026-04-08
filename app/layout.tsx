@@ -4,6 +4,9 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Hao Hao',
   description: 'A personal website by Hao Hao',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
