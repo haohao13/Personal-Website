@@ -35,7 +35,8 @@ const galleryImages = [
 ] as const;
 
 export default function PersonalWebsiteStarter() {
-  const [views, setViews] = useState<number | null>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [views, setViews] = useState<string>('...');
     const [cursor, setCursor] = useState<CursorPoint>(initialPoint);
   const [trail, setTrail] = useState<CursorPoint>(initialPoint);
   const [isReady, setIsReady] = useState(false);
@@ -43,6 +44,18 @@ export default function PersonalWebsiteStarter() {
   const trailFrameRef = useRef<number | null>(null);
 
     useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleMove = (event: MouseEvent) => {
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
@@ -120,11 +133,14 @@ export default function PersonalWebsiteStarter() {
   const cardGlowPosition = `${cursor.x}px ${cursor.y}px`;
 
   useEffect(() => {
-    // Use CountAPI (simple global counter)
-    fetch('https://api.countapi.xyz/hit/haoabouts.com/visits')
+    // CountAPI counter shown on the page.
+    fetch('https://api.countapi.xyz/hit/haoabouts.com/visits', { cache: 'no-store' })
       .then((res) => res.json())
-      .then((data) => setViews(data.value))
-      .catch(() => setViews(null));
+      .then((data) => {
+        const value = typeof data?.value === 'number' ? data.value.toLocaleString() : '—';
+        setViews(value);
+      })
+      .catch(() => setViews('—'));
   }, []);
 
   return (
@@ -133,15 +149,14 @@ export default function PersonalWebsiteStarter() {
       <img
         src="https://raw.githubusercontent.com/haohao13/Personal-Website/main/Photos/hh-logo.png"
         alt="Hao Hao logo"
-        className="fixed left-6 top-6 z-20 h-10 w-10 object-contain opacity-90 transition duration-300 hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(255,180,220,0.6)]"
+        style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
+        className="absolute left-6 top-6 z-20 h-10 w-10 object-contain transition duration-300 hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(255,180,220,0.6)]"
       />
 
-            {/* Top-right real visitor counter */}
-      {views !== null && (
-        <div className="fixed right-6 top-6 z-20 text-sm text-neutral-500 backdrop-blur-sm bg-white/60 px-3 py-1 rounded-full border border-neutral-200">
-          👀 {views.toLocaleString()}
-        </div>
-      )}
+            {/* Top-right visitor counter */}
+      <div className="fixed right-6 top-6 z-20 rounded-full border border-neutral-200 bg-white/70 px-3 py-1 text-sm text-neutral-600 backdrop-blur-sm shadow-sm">
+        👀 {views}
+      </div>
 
       <main className="relative min-h-screen overflow-hidden bg-[#f4f1ea] text-neutral-900">
         {isReady && (
