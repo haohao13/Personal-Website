@@ -35,13 +35,14 @@ const galleryImages = [
 ] as const;
 
 export default function PersonalWebsiteStarter() {
-  const [cursor, setCursor] = useState<CursorPoint>(initialPoint);
+  const [views, setViews] = useState<number | null>(null);
+    const [cursor, setCursor] = useState<CursorPoint>(initialPoint);
   const [trail, setTrail] = useState<CursorPoint>(initialPoint);
   const [isReady, setIsReady] = useState(false);
   const rafRef = useRef<number | null>(null);
   const trailFrameRef = useRef<number | null>(null);
 
-  useEffect(() => {
+    useEffect(() => {
     const handleMove = (event: MouseEvent) => {
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
@@ -118,6 +119,14 @@ export default function PersonalWebsiteStarter() {
 
   const cardGlowPosition = `${cursor.x}px ${cursor.y}px`;
 
+  useEffect(() => {
+    // Use CountAPI (simple global counter)
+    fetch('https://api.countapi.xyz/hit/haoabouts.com/visits')
+      .then((res) => res.json())
+      .then((data) => setViews(data.value))
+      .catch(() => setViews(null));
+  }, []);
+
   return (
     <>
       {/* Logo (top-left) */}
@@ -126,6 +135,13 @@ export default function PersonalWebsiteStarter() {
         alt="Hao Hao logo"
         className="fixed left-6 top-6 z-20 h-10 w-10 object-contain opacity-90 transition duration-300 hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(255,180,220,0.6)]"
       />
+
+            {/* Top-right real visitor counter */}
+      {views !== null && (
+        <div className="fixed right-6 top-6 z-20 text-sm text-neutral-500 backdrop-blur-sm bg-white/60 px-3 py-1 rounded-full border border-neutral-200">
+          👀 {views.toLocaleString()}
+        </div>
+      )}
 
       <main className="relative min-h-screen overflow-hidden bg-[#f4f1ea] text-neutral-900">
         {isReady && (
@@ -239,7 +255,41 @@ export default function PersonalWebsiteStarter() {
             </p>
           </div>
         </section>
-      </main>
+        
+      {/* Footer */}
+      <footer className="relative z-10 mx-auto max-w-6xl px-6 pb-16 pt-10 text-sm text-neutral-500">
+        <div className="border-t border-neutral-200 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          
+          <p>© {new Date().getFullYear()} Hao Hao</p>
+
+          <div className="flex flex-wrap gap-5">
+            <a
+              href="https://github.com/haohao13"
+              target="_blank"
+              className="transition hover:text-neutral-800"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/haohao1996"
+              target="_blank"
+              className="transition hover:text-neutral-800"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://www.xiaohongshu.com/user/profile/116217107"
+              target="_blank"
+              className="transition hover:text-neutral-800"
+            >
+              Xiaohongshu
+            </a>
+          </div>
+
+        </div>
+      </footer>
+
+    </main>
     </>
   );
 }
