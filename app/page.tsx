@@ -208,7 +208,7 @@ export default function PersonalWebsiteStarter() {
 
         <section className="relative z-10 mx-auto max-w-6xl px-6 py-16">
           <div className="mb-12">
-            <h2 className="text-3xl font-semibold md:text-4xl">Things I’m into</h2>
+            <h2 className="text-3xl font-semibold md:text-4xl">Things I&apos;m into</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -251,7 +251,7 @@ export default function PersonalWebsiteStarter() {
           <div className="max-w-2xl">
             <h2 className="mb-6 text-3xl font-semibold md:text-4xl">About</h2>
             <p className="leading-8 text-neutral-600">
-              Somewhere between flying planes, surfing waves, making ceramics, arranging flowers, and getting lost in ideas, I’ve realized I’m not chasing one thing — I’m building a life that feels alive.
+              Somewhere between flying planes, surfing waves, making ceramics, arranging flowers, and getting lost in ideas, I&apos;ve realized I&apos;m not chasing one thing — I&apos;m building a life that feels alive.
             </p>
           </div>
         </section>
@@ -266,6 +266,7 @@ export default function PersonalWebsiteStarter() {
             <a
               href="https://github.com/haohao13"
               target="_blank"
+              rel="noreferrer"
               className="transition hover:text-neutral-800"
             >
               GitHub
@@ -273,6 +274,7 @@ export default function PersonalWebsiteStarter() {
             <a
               href="https://www.linkedin.com/in/haohao1996"
               target="_blank"
+              rel="noreferrer"
               className="transition hover:text-neutral-800"
             >
               LinkedIn
@@ -280,6 +282,7 @@ export default function PersonalWebsiteStarter() {
             <a
               href="https://www.xiaohongshu.com/user/profile/116217107"
               target="_blank"
+              rel="noreferrer"
               className="transition hover:text-neutral-800"
             >
               Xiaohongshu
