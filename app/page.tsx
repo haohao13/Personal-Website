@@ -133,12 +133,12 @@ export default function PersonalWebsiteStarter() {
   const cardGlowPosition = `${cursor.x}px ${cursor.y}px`;
 
   useEffect(() => {
-    // CountAPI counter shown on the page.
-    fetch('https://api.countapi.xyz/hit/haoabouts.com/visits', { cache: 'no-store' })
+    // Use local API backed by Upstash Redis and format number
+    fetch('/api/views', { method: 'POST' })
       .then((res) => res.json())
       .then((data) => {
-        const value = typeof data?.value === 'number' ? data.value.toLocaleString() : '—';
-        setViews(value);
+        const n = typeof data?.value === 'number' ? data.value : Number(data?.value ?? 0)
+        setViews(n ? n.toLocaleString() : '—')
       })
       .catch(() => setViews('—'));
   }, []);
