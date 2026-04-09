@@ -224,7 +224,7 @@ export default function PersonalWebsiteStarter() {
 
         <section className="relative z-10 mx-auto max-w-6xl px-6 py-16">
           <div className="mb-12">
-            <h2 className="text-3xl font-semibold md:text-4xl">Now Obsessing</h2>
+            <h2 className="text-3xl font-semibold md:text-4xl">What's collected me, so far.</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -267,7 +267,13 @@ export default function PersonalWebsiteStarter() {
           <div className="max-w-2xl">
             <h2 className="mb-6 text-3xl font-semibold md:text-4xl">About</h2>
             <p className="leading-8 text-neutral-600">
-              Pilot at dawn, surfer at noon, clay-smudged maker by night — a messy mixtape of experiments, half-baked ideas, and happy accidents.
+              I took up ceramics to make something that might outlast me.<br />
+              Drums, to remember I'm made of pulse and heat.<br />
+              Photography, to hold the instant something moved me.<br />
+              Swimming, to dissolve into something more complete.<br />
+              Surfing, to find the sky inside a wave.<br />
+              Flying, to see what only the unbound can brave.<br />
+              Different doors, I've found, can open the same nave.
             </p>
           </div>
         </section>
