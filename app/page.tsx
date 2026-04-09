@@ -99,28 +99,28 @@ export default function PersonalWebsiteStarter() {
   const interestGroups = useMemo<InterestGroup[]>(
     () => [
       {
-        title: 'Adventure & Certifications',
+        title: 'Aspiring Seagull',
         emoji: '✈️',
         accent: 'from-rose-100/70 via-amber-100/60 to-sky-100/60',
         glow: 'rgba(255, 170, 210, 0.14)',
         items: ['🛩️ Private Pilot License (PPL)', '🚤 Boater Card', '🤿 Open Water Diver'],
       },
       {
-        title: 'Sports',
+        title: 'Enthusiastic Dabbler',
         emoji: '🏃',
         accent: 'from-sky-100/70 via-emerald-100/60 to-rose-100/60',
         glow: 'rgba(150, 205, 255, 0.14)',
         items: ['🏊 Swimming', '🏄‍♀️ Surfing', '🩰 Ballet', '🥊 Boxing'],
       },
       {
-        title: 'Creative Practices',
+        title: 'Serial Beginner',
         emoji: '👩‍🎨',
         accent: 'from-amber-100/70 via-rose-100/60 to-violet-100/60',
         glow: 'rgba(255, 200, 140, 0.14)',
         items: ['📸 Photography', '💐 Flower Arranging', '🎨 Painting', '🏺 Ceramics', '🥁 Drums'],
       },
       {
-        title: 'Inner World',
+        title: 'Chronic Overthinker',
         emoji: '📚',
         accent: 'from-violet-100/70 via-indigo-100/60 to-sky-100/60',
         glow: 'rgba(180, 160, 255, 0.12)',
@@ -202,7 +202,7 @@ export default function PersonalWebsiteStarter() {
               Everything collects me.
             </p>
 
-            <p className="max-w-xl text-lg leading-8 text-neutral-600">
+            <p className="max-w-2xl text-lg leading-8 text-neutral-600">
               Not a portfolio — a mixtape of curiosities, experiments, and tiny rebellions I keep on repeat.
             </p>
           </div>
