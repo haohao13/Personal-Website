@@ -198,11 +198,12 @@ export default function PersonalWebsiteStarter() {
             </h1>
 
             <p className="max-w-2xl text-xl italic leading-relaxed text-neutral-500 md:text-2xl">
-              where curiosity meets beauty and soul meets structure
+              I collect nothing.
+              Everything collects me.
             </p>
 
             <p className="max-w-xl text-lg leading-8 text-neutral-600">
-              Not a portfolio — just a collection of things I keep returning to.
+              Not a portfolio — a mixtape of curiosities, experiments, and tiny rebellions I keep on repeat.
             </p>
           </div>
         </section>
@@ -223,7 +224,7 @@ export default function PersonalWebsiteStarter() {
 
         <section className="relative z-10 mx-auto max-w-6xl px-6 py-16">
           <div className="mb-12">
-            <h2 className="text-3xl font-semibold md:text-4xl">Things I&apos;m into</h2>
+            <h2 className="text-3xl font-semibold md:text-4xl">Now Obsessing</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -266,7 +267,7 @@ export default function PersonalWebsiteStarter() {
           <div className="max-w-2xl">
             <h2 className="mb-6 text-3xl font-semibold md:text-4xl">About</h2>
             <p className="leading-8 text-neutral-600">
-              Somewhere between flying planes, surfing waves, making ceramics, arranging flowers, and getting lost in ideas, I&apos;ve realized I&apos;m not chasing one thing — I&apos;m building a life that feels alive.
+              Pilot at dawn, surfer at noon, clay-smudged maker by night — a messy mixtape of experiments, half-baked ideas, and happy accidents.
             </p>
           </div>
         </section>
