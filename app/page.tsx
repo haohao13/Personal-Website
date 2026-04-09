@@ -202,7 +202,7 @@ export default function PersonalWebsiteStarter() {
               Everything collects me.
             </p>
 
-            <p className="max-w-2xl text-lg leading-8 text-neutral-600">
+            <p className="max-w-4xl text-lg leading-8 text-neutral-600">
               Not a portfolio — a mixtape of curiosities, experiments, and tiny rebellions I keep on repeat.
             </p>
           </div>
