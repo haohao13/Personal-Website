@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { SomehaoEntryCard } from '@/components/somehao-entry-card';
+import { TravelEntryCard } from '@/components/travel-entry-card';
 
 type CursorPoint = {
   x: number;
@@ -225,6 +226,10 @@ export default function PersonalWebsiteStarter() {
 
         <section className="relative z-10 mx-auto max-w-6xl px-6 py-12">
           <SomehaoEntryCard lang="en" />
+        </section>
+
+        <section className="relative z-10 mx-auto max-w-6xl px-6 py-12">
+          <TravelEntryCard lang="en" />
         </section>
 
         <section className="relative z-10 mx-auto max-w-6xl px-6 py-16">
