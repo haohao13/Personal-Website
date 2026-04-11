@@ -238,6 +238,118 @@ export const GEO_DATA: Continent[] = [
           },
         ],
       },
+      {
+        name: "Spain",
+        lat: 40.4637,
+        lng: -3.7492,
+        zoom: 5,
+        regions: [
+          {
+            name: "Catalonia",
+            lat: 41.5978,
+            lng: 1.8711,
+            zoom: 8,
+            cities: [
+              { name: "Barcelona", lat: 41.3851, lng: 2.1734, zoom: 12 },
+            ],
+          },
+          {
+            name: "Andalusia",
+            lat: 37.3891,
+            lng: -4.5598,
+            zoom: 8,
+            cities: [
+              { name: "Granada", lat: 37.1769, lng: -3.5979, zoom: 12 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Germany",
+        lat: 51.1657,
+        lng: 10.4515,
+        zoom: 5,
+        regions: [
+          {
+            name: "Berlin",
+            lat: 52.5200,
+            lng: 13.4050,
+            zoom: 11,
+            cities: [
+              { name: "Mitte", lat: 52.5200, lng: 13.4050, zoom: 13 },
+            ],
+          },
+          {
+            name: "Bavaria",
+            lat: 48.7758,
+            lng: 11.4312,
+            zoom: 8,
+            cities: [
+              { name: "Munich", lat: 48.1351, lng: 11.5820, zoom: 12 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "United Kingdom",
+        lat: 55.3781,
+        lng: -3.4360,
+        zoom: 5,
+        regions: [
+          {
+            name: "England",
+            lat: 52.3555,
+            lng: -1.1743,
+            zoom: 7,
+            cities: [
+              { name: "London", lat: 51.5074, lng: -0.1278, zoom: 12 },
+            ],
+          },
+          {
+            name: "Scotland",
+            lat: 56.4907,
+            lng: -4.2026,
+            zoom: 7,
+            cities: [
+              { name: "Edinburgh", lat: 55.9533, lng: -3.1883, zoom: 12 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Netherlands",
+        lat: 52.1326,
+        lng: 5.2913,
+        zoom: 6,
+        regions: [
+          {
+            name: "Amsterdam",
+            lat: 52.3676,
+            lng: 4.9041,
+            zoom: 12,
+            cities: [
+              { name: "Dam Square", lat: 52.3728, lng: 4.8936, zoom: 14 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Greece",
+        lat: 39.0742,
+        lng: 21.8243,
+        zoom: 5,
+        regions: [
+          {
+            name: "Attica",
+            lat: 37.9838,
+            lng: 23.7275,
+            zoom: 9,
+            cities: [
+              { name: "Athens", lat: 37.9838, lng: 23.7275, zoom: 12 },
+            ],
+          },
+        ],
+      },
     ],
   },
   {

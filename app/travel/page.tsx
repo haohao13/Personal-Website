@@ -126,9 +126,9 @@ export default function TravelPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#f4f1ea]">
+    <div className="relative w-screen h-screen overflow-hidden bg-[#f4f1ea]">
       {/* Map - Bottom Layer */}
-      <div className="fixed inset-0 z-0 rounded-2xl overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <MapComponent
           center={randomDestination ? { lat: randomDestination.lat, lng: randomDestination.lng, zoom: randomDestination.zoom } : { lat: 20, lng: 0, zoom: 2 }}
           locations={randomDestination ? [randomDestination] : []}
@@ -136,7 +136,7 @@ export default function TravelPage() {
       </div>
 
       {/* Content - Top Layer */}
-      <div className="relative z-10 min-h-screen">
+      <div className="absolute inset-0 z-10 overflow-y-auto">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <div className="mb-12 bg-white/80 backdrop-blur rounded-2xl p-8">
             <h1 className="text-5xl font-semibold tracking-tight md:text-6xl">Hao About Travel</h1>
