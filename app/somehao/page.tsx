@@ -10,6 +10,7 @@ import {
   BatteryLow,
   Wand2,
   ChevronRight,
+  Home,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -180,7 +181,7 @@ export default function SomehaoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,237,213,0.55),_transparent_35%),linear-gradient(to_bottom,_#fafaf9,_#ffffff_38%,_#fff7ed)] px-4 py-8 text-zinc-900">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,237,213,0.55),_transparent_35%),linear-gradient(to_bottom,_#fafaf9,_#ffffff_38%,_#fff7ed)] px-4 py-16 text-zinc-900">
       <div className="mx-auto max-w-md space-y-4">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -255,7 +256,7 @@ export default function SomehaoPage() {
             initial={{ opacity: 0, y: 14, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.985 }}
-            transition={{ duration: 0.22 }}
+            transition={{ duration: 0.12 }}
           >
             <Card className="overflow-hidden rounded-[32px] border-0 bg-zinc-950 text-white shadow-[0_20px_60px_rgba(24,24,27,0.28)]">
               <CardContent className="p-6">
@@ -296,6 +297,14 @@ export default function SomehaoPage() {
             {done ? t.done : t.did}
           </Button>
         </div>
+
+        <a
+          href="/"
+          className="mt-6 inline-flex items-center justify-center w-full h-11 rounded-2xl border border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-50 transition text-sm font-medium"
+        >
+          <Home className="mr-2 h-4 w-4" />
+          {lang === "en" ? "Back Home" : "回到主页"}
+        </a>
       </div>
     </div>
   );
