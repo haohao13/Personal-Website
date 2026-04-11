@@ -99,7 +99,7 @@ const TASKS = {
     },
     {
       en: "Do something that feels 'not like you.'",
-      zh: "做一件"有点不像你"的事。",
+      zh: "做一件'有点不像你'的事。",
       tag: "identity",
     },
   ],
