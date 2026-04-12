@@ -182,7 +182,7 @@ export default function SomehaoPage() {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,237,213,0.55),_transparent_35%),linear-gradient(to_bottom,_#fafaf9,_#ffffff_38%,_#fff7ed)] px-4 py-16 text-zinc-900">
-      <div className="mx-auto max-w-md space-y-4">
+      <div className="mx-auto max-w-md space-y-6">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -215,7 +215,7 @@ export default function SomehaoPage() {
         </motion.div>
 
         <Card className="overflow-hidden rounded-[28px] border-zinc-200/80 bg-white/85 shadow-[0_12px_40px_rgba(0,0,0,0.06)] backdrop-blur">
-          <CardContent className="p-5">
+          <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.18em] text-zinc-400">{t.modeLabel}</p>
