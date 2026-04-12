@@ -385,6 +385,58 @@ export const GEO_DATA: Continent[] = [
           },
         ],
       },
+      {
+        name: "Canada",
+        lat: 56.1304,
+        lng: -106.3468,
+        zoom: 4,
+        regions: [
+          {
+            name: "Ontario",
+            lat: 51.2538,
+            lng: -85.3232,
+            zoom: 6,
+            cities: [
+              { name: "Toronto", lat: 43.6532, lng: -79.3832, zoom: 12 },
+            ],
+          },
+          {
+            name: "British Columbia",
+            lat: 53.7267,
+            lng: -127.6476,
+            zoom: 6,
+            cities: [
+              { name: "Vancouver", lat: 49.2827, lng: -123.1207, zoom: 12 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Mexico",
+        lat: 23.6345,
+        lng: -102.5528,
+        zoom: 5,
+        regions: [
+          {
+            name: "Mexico City",
+            lat: 19.4326,
+            lng: -99.1332,
+            zoom: 11,
+            cities: [
+              { name: "Centro Histórico", lat: 19.4326, lng: -99.1332, zoom: 14 },
+            ],
+          },
+          {
+            name: "Yucatán",
+            lat: 20.7099,
+            lng: -89.0943,
+            zoom: 9,
+            cities: [
+              { name: "Mérida", lat: 20.9674, lng: -89.5926, zoom: 12 },
+            ],
+          },
+        ],
+      },
     ],
   },
   {
@@ -406,6 +458,74 @@ export const GEO_DATA: Continent[] = [
             zoom: 10,
             cities: [
               { name: "Copacabana", lat: -22.9829, lng: -43.1871, zoom: 13 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Argentina",
+        lat: -38.4161,
+        lng: -63.6167,
+        zoom: 4,
+        regions: [
+          {
+            name: "Buenos Aires",
+            lat: -34.6118,
+            lng: -58.3965,
+            zoom: 11,
+            cities: [
+              { name: "La Boca", lat: -34.6345, lng: -58.3631, zoom: 14 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Chile",
+        lat: -35.6751,
+        lng: -71.5430,
+        zoom: 4,
+        regions: [
+          {
+            name: "Santiago",
+            lat: -33.4489,
+            lng: -70.6693,
+            zoom: 11,
+            cities: [
+              { name: "Bellavista", lat: -33.4314, lng: -70.6323, zoom: 14 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Colombia",
+        lat: 4.5709,
+        lng: -74.2973,
+        zoom: 5,
+        regions: [
+          {
+            name: "Bogotá",
+            lat: 4.7110,
+            lng: -74.0721,
+            zoom: 12,
+            cities: [
+              { name: "La Candelaria", lat: 4.5964, lng: -74.0721, zoom: 14 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Peru",
+        lat: -9.1900,
+        lng: -75.0152,
+        zoom: 5,
+        regions: [
+          {
+            name: "Cusco",
+            lat: -13.5319,
+            lng: -71.9675,
+            zoom: 11,
+            cities: [
+              { name: "Sacsayhuamán", lat: -13.5097, lng: -71.9797, zoom: 14 },
             ],
           },
         ],
@@ -435,6 +555,74 @@ export const GEO_DATA: Continent[] = [
           },
         ],
       },
+      {
+        name: "Morocco",
+        lat: 31.7917,
+        lng: -7.0926,
+        zoom: 5,
+        regions: [
+          {
+            name: "Marrakech",
+            lat: 31.6295,
+            lng: -7.9811,
+            zoom: 11,
+            cities: [
+              { name: "Jemaa el-Fnaa", lat: 31.6258, lng: -7.9894, zoom: 14 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "South Africa",
+        lat: -30.5595,
+        lng: 22.9375,
+        zoom: 5,
+        regions: [
+          {
+            name: "Cape Town",
+            lat: -33.9249,
+            lng: 18.4241,
+            zoom: 11,
+            cities: [
+              { name: "Table Mountain", lat: -33.9628, lng: 18.4098, zoom: 14 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Kenya",
+        lat: -0.0236,
+        lng: 37.9062,
+        zoom: 5,
+        regions: [
+          {
+            name: "Nairobi",
+            lat: -1.2921,
+            lng: 36.8219,
+            zoom: 11,
+            cities: [
+              { name: "Westlands", lat: -1.2630, lng: 36.8065, zoom: 14 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Ghana",
+        lat: 7.9465,
+        lng: -1.0232,
+        zoom: 6,
+        regions: [
+          {
+            name: "Accra",
+            lat: 5.6037,
+            lng: -0.1870,
+            zoom: 11,
+            cities: [
+              { name: "Osu", lat: 5.5580, lng: -0.1830, zoom: 14 },
+            ],
+          },
+        ],
+      },
     ],
   },
   {
@@ -456,6 +644,40 @@ export const GEO_DATA: Continent[] = [
             zoom: 7,
             cities: [
               { name: "Sydney", lat: -33.8688, lng: 151.2093, zoom: 12 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "New Zealand",
+        lat: -40.9006,
+        lng: 174.8860,
+        zoom: 5,
+        regions: [
+          {
+            name: "Auckland",
+            lat: -36.8485,
+            lng: 174.7633,
+            zoom: 11,
+            cities: [
+              { name: "Sky Tower", lat: -36.8485, lng: 174.7633, zoom: 14 },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Fiji",
+        lat: -17.7134,
+        lng: 178.0650,
+        zoom: 7,
+        regions: [
+          {
+            name: "Suva",
+            lat: -18.1416,
+            lng: 178.4419,
+            zoom: 12,
+            cities: [
+              { name: "Suva CBD", lat: -18.1416, lng: 178.4419, zoom: 14 },
             ],
           },
         ],
