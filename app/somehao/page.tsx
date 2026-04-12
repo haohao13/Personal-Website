@@ -106,13 +106,13 @@ const TASKS = {
   ],
 };
 
-function getRandomTask(mode: string) {
-  const list = TASKS[mode as keyof typeof TASKS];
+function getRandomTask(mode: keyof typeof TASKS) {
+  const list = TASKS[mode];
   return list[Math.floor(Math.random() * list.length)];
 }
 
-function SomehaoEntryCard({ href = "/somehao", lang = "en" }) {
-  const t = TEXT[lang as keyof typeof TEXT];
+function SomehaoEntryCard({ href = "/somehao", lang = "en" }: { href?: string; lang?: "en" | "zh" }) {
+  const t = TEXT[lang];
 
   return (
     <a
@@ -147,14 +147,14 @@ function SomehaoEntryCard({ href = "/somehao", lang = "en" }) {
 export { SomehaoEntryCard };
 
 export default function SomehaoPage() {
-  const [mode, setMode] = useState("medium");
-  const [lang, setLang] = useState("en");
+  const [mode, setMode] = useState<keyof typeof TASKS>("medium");
+  const [lang, setLang] = useState<"en" | "zh">("en");
   const [task, setTask] = useState(() => getRandomTask("medium"));
   const [done, setDone] = useState(false);
   const [count, setCount] = useState(0);
 
-  const t = TEXT[lang as keyof typeof TEXT];
-  const currentMode = useMemo(() => t.modes[mode as keyof typeof t.modes], [t, mode]);
+  const t = TEXT[lang];
+  const currentMode = useMemo(() => t.modes[mode], [t, mode]);
 
   const modeIcons = {
     mild: BatteryLow,
@@ -167,7 +167,7 @@ export default function SomehaoPage() {
     setDone(false);
   };
 
-  const changeMode = (nextMode: string) => {
+  const changeMode = (nextMode: keyof typeof TASKS) => {
     setMode(nextMode);
     setTask(getRandomTask(nextMode));
     setDone(false);
@@ -229,12 +229,13 @@ export default function SomehaoPage() {
 
             <div className="mt-3 grid grid-cols-3 gap-2">
               {Object.keys(TASKS).map((m) => {
-                const Icon = modeIcons[m as keyof typeof modeIcons];
+                const key = m as keyof typeof modeIcons;
+                const Icon = modeIcons[key];
                 const active = mode === m;
                 return (
                   <button
                     key={m}
-                    onClick={() => changeMode(m)}
+                    onClick={() => changeMode(m as keyof typeof TASKS)}
                     className={`rounded-2xl border px-3 py-3 text-left transition ${
                       active
                         ? "border-zinc-900 bg-zinc-900 text-white shadow-sm"
@@ -272,7 +273,7 @@ export default function SomehaoPage() {
                 <div className="mt-4">
                   <p className="text-xs uppercase tracking-[0.18em] text-white/40">{t.taskLabel}</p>
                   <p className="mt-3 text-2xl font-semibold leading-9 tracking-tight text-white">
-                    {task[lang as keyof typeof task]}
+                    {task[lang]}
                   </p>
                 </div>
               </CardContent>
