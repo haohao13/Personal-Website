@@ -227,7 +227,7 @@ export default function SomehaoPage() {
               </Badge>
             </div>
 
-            <div className="mt-5 grid grid-cols-3 gap-2">
+            <div className="mt-3 grid grid-cols-3 gap-2">
               {Object.keys(TASKS).map((m) => {
                 const Icon = modeIcons[m as keyof typeof modeIcons];
                 const active = mode === m;
@@ -269,7 +269,7 @@ export default function SomehaoPage() {
                   </div>
                 </div>
 
-                <div className="mt-10">
+                <div className="mt-4">
                   <p className="text-xs uppercase tracking-[0.18em] text-white/40">{t.taskLabel}</p>
                   <p className="mt-3 text-2xl font-semibold leading-9 tracking-tight text-white">
                     {task[lang as keyof typeof task]}
