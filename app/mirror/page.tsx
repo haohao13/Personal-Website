@@ -432,38 +432,26 @@ export default function MirrorPage() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#0c1018_0%,#06070a_52%,#050608_100%)] opacity-95" />
 
         <section className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-8 md:px-10 md:py-10">
-          <header className="mb-8 flex flex-col gap-6 md:mb-10 md:flex-row md:items-start md:justify-between">
-            <div className="max-w-2xl">
-              <div className="mb-3 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/60 backdrop-blur">
-                mirror
+          <header className="mb-8 flex flex-col gap-8 md:mb-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-3xl">
+                <div className="mb-3 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/60 backdrop-blur">
+                  mirror
+                </div>
+                <h1 className="text-4xl font-semibold tracking-[-0.06em] text-white md:text-6xl">
+                  Better questions. Better chemistry.
+                </h1>
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-white/58 md:text-base">
+                  For dates that skip the dead air, friends who want to go deeper, lovers who want to feel closer, and nights when you want to be honest with yourself.
+                </p>
               </div>
-              <h1 className="text-4xl font-semibold tracking-[-0.06em] text-white md:text-6xl">
-                Better questions. Better chemistry.
-              </h1>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-white/58 md:text-base">
-                For dates that skip the dead air, friends who want to go deeper, lovers who want to feel closer, and nights when you want to be honest with yourself.
-              </p>
-            </div>
 
-            <div className="flex flex-wrap gap-2 md:max-w-[520px] md:justify-end">
-              {(Object.keys(MODE_META) as Mode[]).map((itemMode) => {
-                const active = mode === itemMode;
-
-                return (
-                  <button
-                    key={itemMode}
-                    onClick={() => switchMode(itemMode)}
-                    className={[
-                      "rounded-full border px-4 py-2.5 text-sm transition-all duration-200",
-                      active
-                        ? "border-white/90 bg-white text-[#0a0a0c] shadow-[0_8px_30px_rgba(255,255,255,0.18)]"
-                        : "border-white/10 bg-white/5 text-white/68 hover:border-white/20 hover:bg-white/8 hover:text-white"
-                    ].join(" ")}
-                  >
-                    {MODE_META[itemMode].label}
-                  </button>
-                );
-              })}
+              <a
+                href="/"
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+              >
+                Back to main page
+              </a>
             </div>
           </header>
 
@@ -478,7 +466,28 @@ export default function MirrorPage() {
 
               <div className="relative flex h-full min-h-[560px] flex-col justify-between">
                 <div>
-                  <div className="mb-6 flex flex-wrap items-center gap-3">
+                  <div className="mb-6 flex flex-wrap gap-2">
+                {(Object.keys(MODE_META) as Mode[]).map((itemMode) => {
+                  const active = mode === itemMode;
+
+                  return (
+                    <button
+                      key={itemMode}
+                      onClick={() => switchMode(itemMode)}
+                      className={[
+                        "rounded-full border px-4 py-2 text-sm transition-all duration-200",
+                        active
+                          ? "border-white/90 bg-white text-[#0a0a0c] shadow-[0_8px_30px_rgba(255,255,255,0.18)]"
+                          : "border-white/10 bg-white/5 text-white/68 hover:border-white/20 hover:bg-white/8 hover:text-white"
+                      ].join(" ")}
+                    >
+                      {MODE_META[itemMode].label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mb-6 flex flex-wrap items-center gap-3">
                     <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-white/58">
                       {meta.badge}
                     </span>
