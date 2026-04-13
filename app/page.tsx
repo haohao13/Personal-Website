@@ -232,6 +232,26 @@ export default function PersonalWebsiteStarter() {
           <TravelEntryCard lang="en" />
         </section>
 
+        <section className="relative z-10 mx-auto max-w-6xl px-6 py-12">
+          <a
+            href="/mirror"
+            className="group block overflow-hidden rounded-[28px] border border-zinc-200/80 bg-white/90 p-8 shadow-[0_14px_50px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(0,0,0,0.1)]"
+          >
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-2xl">
+                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">Mirror</p>
+                <h2 className="mt-3 text-3xl font-semibold text-zinc-950 md:text-4xl">Mirror</h2>
+                <p className="mt-3 text-base leading-7 text-zinc-600">
+                  A question deck for better conversations, softer touch points, and a quick way back to the main page.
+                </p>
+              </div>
+              <div className="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-medium text-zinc-900 transition group-hover:bg-zinc-100">
+                Go to Mirror
+              </div>
+            </div>
+          </a>
+        </section>
+
         <section className="relative z-10 mx-auto max-w-6xl px-6 py-16">
           <div className="mb-12">
             <h2 className="text-3xl font-semibold md:text-4xl">What's collected me, so far.</h2>
