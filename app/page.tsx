@@ -226,15 +226,15 @@ export default function PersonalWebsiteStarter() {
         </section>
 
         <section className="relative z-10 mx-auto max-w-6xl px-6 py-12">
-          <SomehaoEntryCard lang="en" />
-        </section>
+          <div className="mb-12">
+            <h2 className="text-3xl font-semibold md:text-4xl">Hao about...</h2>
+          </div>
 
-        <section className="relative z-10 mx-auto max-w-6xl px-6 py-12">
-          <TravelEntryCard lang="en" />
-        </section>
-
-        <section className="relative z-10 mx-auto max-w-6xl px-6 py-12">
-          <MirrorEntryCard lang="en" />
+          <div className="grid gap-6">
+            <SomehaoEntryCard lang="en" />
+            <TravelEntryCard lang="en" />
+            <MirrorEntryCard lang="en" />
+          </div>
         </section>
 
         <section className="relative z-10 mx-auto max-w-6xl px-6 py-16">
