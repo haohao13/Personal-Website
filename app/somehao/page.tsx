@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -152,10 +152,7 @@ export default function SomehaoPage() {
   const [task, setTask] = useState(() => TASKS.medium[0]);
   const [done, setDone] = useState(false);
   const [count, setCount] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
-
   useEffect(() => {
-    setIsMounted(true);
     setTask(getRandomTask(mode));
   }, [mode]);
 
@@ -187,131 +184,152 @@ export default function SomehaoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,237,213,0.55),_transparent_35%),linear-gradient(to_bottom,_#fafaf9,_#ffffff_38%,_#fff7ed)] px-4 py-16 text-zinc-900">
-      <div className="mx-auto max-w-md space-y-6">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="flex items-center justify-between"
-        >
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-3 py-1 text-xs text-zinc-500 backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5" />
-              Somehao
-            </div>
-            <p className="mt-3 text-sm leading-6 text-zinc-500">{t.subtitle}</p>
-            <h1 className="mt-1 text-4xl font-semibold tracking-tight text-zinc-950">Somehao</h1>
-          </div>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,237,213,0.55),_transparent_35%),linear-gradient(to_bottom,_#fafaf9,_#ffffff_38%,_#fff7ed)] px-4 py-16 text-zinc-900 lg:px-12">
+      <div className="mx-auto max-w-md lg:max-w-6xl">
+        <div className="lg:grid lg:grid-cols-[2fr_3fr] lg:gap-16 lg:items-start">
 
-          <div className="flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 p-1 backdrop-blur">
-            <button
-              className={`rounded-full px-3 py-1.5 text-sm transition ${lang === "en" ? "bg-zinc-900 text-white shadow-sm" : "text-zinc-600"}`}
-              onClick={() => setLang("en")}
+          {/* Left column: Header + Mode selector */}
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35 }}
             >
-              EN
-            </button>
-            <button
-              className={`rounded-full px-3 py-1.5 text-sm transition ${lang === "zh" ? "bg-zinc-900 text-white shadow-sm" : "text-zinc-600"}`}
-              onClick={() => setLang("zh")}
-            >
-              中
-            </button>
-          </div>
-        </motion.div>
-
-        <Card className="overflow-hidden rounded-[28px] border-zinc-200/80 bg-white/85 shadow-[0_12px_40px_rgba(0,0,0,0.06)] backdrop-blur">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-zinc-400">{t.modeLabel}</p>
-                <h2 className="mt-2 text-xl font-semibold text-zinc-950">{currentMode.label}</h2>
-                <p className="mt-1 text-sm leading-6 text-zinc-500">{currentMode.desc}</p>
-              </div>
-              <Badge className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-zinc-700 shadow-none">
-                {t.countLabel} {count}
-              </Badge>
-            </div>
-
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              {Object.keys(TASKS).map((m) => {
-                const key = m as keyof typeof modeIcons;
-                const Icon = modeIcons[key];
-                const active = mode === m;
-                return (
-                  <button
-                    key={m}
-                    onClick={() => changeMode(m as keyof typeof TASKS)}
-                    className={`rounded-2xl border px-3 py-3 text-left transition ${
-                      active
-                        ? "border-zinc-900 bg-zinc-900 text-white shadow-sm"
-                        : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50"
-                    }`}
-                  >
-                    <Icon className="mb-2 h-4 w-4" />
-                    <div className="text-sm font-medium">{t.modes[m as keyof typeof t.modes].label}</div>
-                  </button>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`${lang}-${mode}-${task.en}`}
-            initial={{ opacity: 0, y: 14, scale: 0.985 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.985 }}
-            transition={{ duration: 0.12 }}
-          >
-            <Card className="overflow-hidden rounded-[32px] border-0 bg-zinc-950 text-white shadow-[0_20px_60px_rgba(24,24,27,0.28)]">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <Badge className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-white hover:bg-white/10">
-                    {t.tags[task.tag as keyof typeof t.tags]}
-                  </Badge>
-                  <div className="rounded-full bg-white/10 p-2 text-white/80">
-                    <Sparkles className="h-4 w-4" />
+              <div className="flex items-start justify-between lg:flex-col lg:items-start lg:gap-6">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-3 py-1 text-xs text-zinc-500 backdrop-blur">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    Somehao
                   </div>
+                  <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-950 lg:text-5xl">Somehao</h1>
+                  <p className="mt-3 text-sm leading-6 text-zinc-500 lg:text-base lg:leading-7 lg:max-w-xs">{t.subtitle}</p>
                 </div>
 
-                <div className="mt-4">
-                  <p className="text-xs uppercase tracking-[0.18em] text-white/40">{t.taskLabel}</p>
-                  <p className="mt-3 text-2xl font-semibold leading-9 tracking-tight text-white">
-                    {task[lang]}
-                  </p>
+                <div className="flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 p-1 backdrop-blur">
+                  <button
+                    className={`rounded-full px-3 py-1.5 text-sm transition ${lang === "en" ? "bg-zinc-900 text-white shadow-sm" : "text-zinc-600"}`}
+                    onClick={() => setLang("en")}
+                  >
+                    EN
+                  </button>
+                  <button
+                    className={`rounded-full px-3 py-1.5 text-sm transition ${lang === "zh" ? "bg-zinc-900 text-white shadow-sm" : "text-zinc-600"}`}
+                    onClick={() => setLang("zh")}
+                  >
+                    中
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+
+            <Card className="overflow-hidden rounded-[28px] border-zinc-200/80 bg-white/85 shadow-[0_12px_40px_rgba(0,0,0,0.06)] backdrop-blur">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.18em] text-zinc-400">{t.modeLabel}</p>
+                    <h2 className="mt-2 text-xl font-semibold text-zinc-950">{currentMode.label}</h2>
+                    <p className="mt-1 text-sm leading-6 text-zinc-500">{currentMode.desc}</p>
+                  </div>
+                  <Badge className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-zinc-700 shadow-none">
+                    {t.countLabel} {count}
+                  </Badge>
+                </div>
+
+                <div className="mt-3 grid grid-cols-3 gap-2">
+                  {Object.keys(TASKS).map((m) => {
+                    const key = m as keyof typeof modeIcons;
+                    const Icon = modeIcons[key];
+                    const active = mode === m;
+                    return (
+                      <button
+                        key={m}
+                        onClick={() => changeMode(m as keyof typeof TASKS)}
+                        className={`rounded-2xl border px-3 py-3 text-left transition ${
+                          active
+                            ? "border-zinc-900 bg-zinc-900 text-white shadow-sm"
+                            : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50"
+                        }`}
+                      >
+                        <Icon className="mb-2 h-4 w-4" />
+                        <div className="text-sm font-medium">{t.modes[m as keyof typeof t.modes].label}</div>
+                      </button>
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
-        </AnimatePresence>
 
-        <div className="grid grid-cols-2 gap-3 pt-1">
-          <Button
-            onClick={generateTask}
-            className="h-12 rounded-2xl bg-zinc-900 text-white shadow-sm hover:bg-zinc-800"
-          >
-            <Shuffle className="mr-2 h-4 w-4" />
-            {t.try}
-          </Button>
-          <Button
-            onClick={completeTask}
-            variant={done ? "secondary" : "outline"}
-            className={`h-12 rounded-2xl border-zinc-200 ${done ? "bg-emerald-50 text-emerald-700 hover:bg-emerald-50" : "bg-white hover:bg-zinc-50"}`}
-          >
-            <CheckCircle2 className="mr-2 h-4 w-4" />
-            {done ? t.done : t.did}
-          </Button>
+            {/* Back home — desktop only */}
+            <a
+              href="/"
+              className="hidden lg:inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-zinc-600 transition"
+            >
+              <Home className="h-4 w-4" />
+              {lang === "en" ? "Back Home" : "回到主页"}
+            </a>
+          </div>
+
+          {/* Right column: Task card + actions */}
+          <div className="mt-6 space-y-4 lg:mt-0 lg:sticky lg:top-16">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${lang}-${mode}-${task.en}`}
+                initial={{ opacity: 0, y: 14, scale: 0.985 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.985 }}
+                transition={{ duration: 0.12 }}
+              >
+                <Card className="overflow-hidden rounded-[32px] border-0 bg-zinc-950 text-white shadow-[0_20px_60px_rgba(24,24,27,0.28)]">
+                  <CardContent className="p-6 lg:p-10">
+                    <div className="flex items-center justify-between gap-3">
+                      <Badge className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-white hover:bg-white/10">
+                        {t.tags[task.tag as keyof typeof t.tags]}
+                      </Badge>
+                      <div className="rounded-full bg-white/10 p-2 text-white/80">
+                        <Sparkles className="h-4 w-4" />
+                      </div>
+                    </div>
+
+                    <div className="mt-6 lg:mt-10">
+                      <p className="text-xs uppercase tracking-[0.18em] text-white/40">{t.taskLabel}</p>
+                      <p className="mt-4 text-2xl font-semibold leading-9 tracking-tight text-white lg:text-3xl lg:leading-[1.4]">
+                        {task[lang]}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="grid grid-cols-2 gap-3 pt-1">
+              <Button
+                onClick={generateTask}
+                className="h-12 rounded-2xl bg-zinc-900 text-white shadow-sm hover:bg-zinc-800"
+              >
+                <Shuffle className="mr-2 h-4 w-4" />
+                {t.try}
+              </Button>
+              <Button
+                onClick={completeTask}
+                variant={done ? "secondary" : "outline"}
+                className={`h-12 rounded-2xl border-zinc-200 ${done ? "bg-emerald-50 text-emerald-700 hover:bg-emerald-50" : "bg-white hover:bg-zinc-50"}`}
+              >
+                <CheckCircle2 className="mr-2 h-4 w-4" />
+                {done ? t.done : t.did}
+              </Button>
+            </div>
+
+            {/* Back home — mobile only */}
+            <a
+              href="/"
+              className="lg:hidden inline-flex items-center justify-center w-full h-11 rounded-2xl border border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-50 transition text-sm font-medium"
+            >
+              <Home className="mr-2 h-4 w-4" />
+              {lang === "en" ? "Back Home" : "回到主页"}
+            </a>
+          </div>
+
         </div>
-
-        <a
-          href="/"
-          className="mt-6 inline-flex items-center justify-center w-full h-11 rounded-2xl border border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-50 transition text-sm font-medium"
-        >
-          <Home className="mr-2 h-4 w-4" />
-          {lang === "en" ? "Back Home" : "回到主页"}
-        </a>
       </div>
     </div>
   );
