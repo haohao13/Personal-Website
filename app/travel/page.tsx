@@ -4,12 +4,21 @@ import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { GEO_DATA, getFilteredOptions, getRandomLocation, type GeoLocation, type HierarchyLevel } from '@/data/geo-data';
-import { Sparkles, Home } from 'lucide-react';
+import { Sparkles, Home, MapPin, ChevronRight } from 'lucide-react';
 
 const MapComponent = dynamic(() => import('@/components/map-component'), {
   ssr: false,
-  loading: () => <div className="h-96 bg-gray-200 rounded-2xl animate-pulse" />,
+  loading: () => <div className="h-[420px] bg-neutral-100 rounded-2xl animate-pulse" />,
 });
+
+const LEVELS: HierarchyLevel[] = ['continent', 'country', 'region', 'city'];
+
+const LEVEL_LABELS: Record<HierarchyLevel, string> = {
+  continent: 'Continent',
+  country: 'Country',
+  region: 'Province / State',
+  city: 'City',
+};
 
 export default function TravelPage() {
   const [targetLevel, setTargetLevel] = useState<HierarchyLevel>('country');
@@ -21,67 +30,53 @@ export default function TravelPage() {
   });
   const [randomDestination, setRandomDestination] = useState<GeoLocation | null>(null);
 
-  const levels: HierarchyLevel[] = ['continent', 'country', 'region', 'city'];
-  const levelIndex = levels.indexOf(targetLevel);
-  const relevantLevels = levels.slice(0, levelIndex + 1);
+  const levelIndex = LEVELS.indexOf(targetLevel);
+  const relevantLevels = LEVELS.slice(0, levelIndex + 1);
 
-  // Get filtered options
-  const filteredOptions = useMemo(
-    () => getFilteredOptions(GEO_DATA, targetLevel, {
-      continent: selectedFilters.continent.length > 0 ? selectedFilters.continent[0] : '',
-      country: selectedFilters.country.length > 0 ? selectedFilters.country[0] : '',
-      region: selectedFilters.region.length > 0 ? selectedFilters.region[0] : '',
-    }),
+  // Narrowed-down options for each filter column
+  const availableOptions = useMemo(
+    () =>
+      getFilteredOptions(GEO_DATA, targetLevel, {
+        continent: selectedFilters.continent,
+        country: selectedFilters.country,
+        region: selectedFilters.region,
+      }),
     [targetLevel, selectedFilters]
   );
 
-  // Get available options for each relevant level
-  const availableOptions = useMemo(() => {
-    const options: Record<HierarchyLevel, GeoLocation[]> = {
-      continent: [],
-      country: [],
-      region: [],
-      city: [],
-    };
-
-    relevantLevels.forEach((level) => {
-      options[level] = filteredOptions[level];
-    });
-
-    return options;
-  }, [filteredOptions, relevantLevels]);
-
-  // Get all locations matching current selections (for randomization)
+  // Collect locations matching the current filter state at the target level
   const getAvailableLocations = (): GeoLocation[] => {
     const result: GeoLocation[] = [];
+    const { continent: contSel, country: countSel, region: regSel } = selectedFilters;
 
     for (const cont of GEO_DATA) {
-      // Check if continent is selected (if any continents selected, must match)
-      if (selectedFilters.continent.length > 0 && !selectedFilters.continent.includes(cont.name)) continue;
+      if (contSel.length > 0 && !contSel.includes(cont.name)) continue;
 
       for (const coun of cont.countries) {
-        // Check if country is selected (if any countries selected, must match)
-        if (selectedFilters.country.length > 0 && !selectedFilters.country.includes(coun.name)) continue;
+        if (countSel.length > 0 && !countSel.includes(coun.name)) continue;
 
-        if (levelIndex === 1) {
-          // Target is country
+        if (levelIndex === 0) {
+          // target = continent — already pushed below, skip duplicates
+        } else if (levelIndex === 1) {
           result.push({ ...coun, level: 'country', continent: cont.name });
         } else if (coun.regions) {
           for (const reg of coun.regions) {
-            // Check if region is selected (if any regions selected, must match)
-            if (selectedFilters.region.length > 0 && !selectedFilters.region.includes(reg.name)) continue;
+            if (regSel.length > 0 && !regSel.includes(reg.name)) continue;
 
             if (levelIndex === 2) {
-              // Target is region
               result.push({ ...reg, level: 'region', continent: cont.name, country: coun.name });
             } else if (reg.cities && levelIndex === 3) {
-              // Target is city
               for (const cit of reg.cities) {
                 result.push({ ...cit, level: 'city', continent: cont.name, country: coun.name, region: reg.name });
               }
             }
           }
         }
+      }
+
+      // continent-level target
+      if (levelIndex === 0) {
+        result.push({ ...cont, level: 'continent' });
       }
     }
 
@@ -91,9 +86,7 @@ export default function TravelPage() {
   const handleGenerateRandom = () => {
     const available = getAvailableLocations();
     const random = getRandomLocation(available);
-    if (random) {
-      setRandomDestination(random);
-    }
+    if (random) setRandomDestination(random);
   };
 
   const handleFilterToggle = (level: HierarchyLevel, value: string) => {
@@ -105,12 +98,16 @@ export default function TravelPage() {
 
       const newFilters = { ...prev, [level]: updated };
 
-      // Reset dependent filters when parent changes
+      // Reset downstream filters
       if (level === 'continent') {
         newFilters.country = [];
         newFilters.region = [];
+        newFilters.city = [];
       } else if (level === 'country') {
         newFilters.region = [];
+        newFilters.city = [];
+      } else if (level === 'region') {
+        newFilters.city = [];
       }
 
       return newFilters;
@@ -118,171 +115,170 @@ export default function TravelPage() {
     setRandomDestination(null);
   };
 
-  const getDisplayName = (level: HierarchyLevel): string => {
-    const names: Record<HierarchyLevel, string> = {
-      continent: 'Continent',
-      country: 'Country',
-      region: 'Region',
-      city: 'City',
-    };
-    return names[level];
+  const handleTargetLevelChange = (level: HierarchyLevel) => {
+    setTargetLevel(level);
+    setSelectedFilters({ continent: [], country: [], region: [], city: [] });
+    setRandomDestination(null);
   };
 
-  const getCurrentSelectionText = (): string => {
-    const parts: string[] = [];
-    if (selectedFilters.continent.length > 0) {
-      parts.push(`${selectedFilters.continent.length} continent${selectedFilters.continent.length > 1 ? 's' : ''}`);
-    }
-    if (selectedFilters.country.length > 0) {
-      parts.push(`${selectedFilters.country.length} countr${selectedFilters.country.length > 1 ? 'ies' : 'y'}`);
-    }
-    if (selectedFilters.region.length > 0) {
-      parts.push(`${selectedFilters.region.length} region${selectedFilters.region.length > 1 ? 's' : ''}`);
-    }
-    return parts.join(', ') || 'All locations';
-  };
+  const breadcrumb = randomDestination
+    ? [
+        randomDestination.continent,
+        randomDestination.country,
+        randomDestination.region,
+        randomDestination.level === 'city' ? randomDestination.name : undefined,
+      ].filter(Boolean)
+    : [];
 
   return (
     <div className="min-h-screen bg-[#f4f1ea]">
-      {/* Header with Home Button */}
-      <div className="bg-white/80 backdrop-blur border-b border-neutral-200">
-        <div className="mx-auto max-w-6xl px-6 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold">Hao About Travel</h1>
-            <Link
-              href="/"
-              className="flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition"
-            >
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-          </div>
+      {/* Header */}
+      <div className="bg-white/80 backdrop-blur-md border-b border-neutral-200/70 sticky top-0 z-10">
+        <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
+          <h1 className="text-xl font-semibold tracking-tight text-neutral-800">
+            Hao About Travel
+          </h1>
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-neutral-600 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors"
+          >
+            <Home className="h-3.5 w-3.5" />
+            Home
+          </Link>
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-8">
-        <div className="mb-8">
-          <p className="text-lg text-neutral-600">
-            Pick your exploration level, then select multiple filters to discover a random destination.
-          </p>
-        </div>
+      <div className="mx-auto max-w-5xl px-6 py-10 space-y-8">
 
-        {/* Step 1: Select Target Level */}
-        <div className="mb-8 bg-white/80 backdrop-blur rounded-2xl p-6">
-          <label className="block text-sm font-medium text-neutral-700 mb-4">
-            What level do you want to explore?
-          </label>
-          <div className="flex flex-wrap gap-3">
-            {['continent', 'country', 'region', 'city'].map((level) => (
+        {/* Target level selector */}
+        <div>
+          <p className="text-sm font-medium text-neutral-500 mb-3 uppercase tracking-wider">
+            I want to discover a random
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {LEVELS.map((level) => (
               <button
                 key={level}
-                onClick={() => {
-                  setTargetLevel(level as HierarchyLevel);
-                  setSelectedFilters({ continent: [], country: [], region: [], city: [] });
-                  setRandomDestination(null);
-                }}
-                className={`px-4 py-2 rounded-lg font-medium transition ${
+                onClick={() => handleTargetLevelChange(level)}
+                className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   targetLevel === level
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+                    ? 'bg-neutral-900 text-white shadow-sm'
+                    : 'bg-white text-neutral-600 border border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50'
                 }`}
               >
-                {level.charAt(0).toUpperCase() + level.slice(1)}
+                {LEVEL_LABELS[level]}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Step 2: Multi-select Filters */}
-        <div className="mb-8 bg-white/80 backdrop-blur rounded-2xl p-6">
-          <label className="block text-sm font-medium text-neutral-700 mb-4">
-            Refine your selection (multi-select):
-          </label>
-          <div className="flex flex-wrap gap-4">
-            {relevantLevels.map((level) => (
-              <div key={level} className="flex-1 min-w-48">
-                <label className="text-xs font-medium text-neutral-600 mb-2 block">
-                  {getDisplayName(level)}
-                </label>
-                <div className="max-h-40 overflow-y-auto border border-neutral-200 rounded-lg p-2 bg-white">
-                  {availableOptions[level].map((option) => {
-                    const isSelected = selectedFilters[level].includes(option.name);
-                    return (
-                      <button
-                        key={option.name}
-                        onClick={() => handleFilterToggle(level, option.name)}
-                        className={`w-full text-left px-3 py-1 mb-1 rounded text-sm transition ${
-                          isSelected
-                            ? 'bg-blue-100 text-blue-800 border border-blue-300'
-                            : 'hover:bg-neutral-50 text-neutral-700'
-                        }`}
-                      >
-                        {option.name}
-                      </button>
-                    );
-                  })}
+        {/* Filters */}
+        <div>
+          <p className="text-sm font-medium text-neutral-500 mb-3 uppercase tracking-wider">
+            Narrow it down (leave empty to include all)
+          </p>
+          <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${relevantLevels.length}, minmax(0, 1fr))` }}>
+            {relevantLevels.map((level, i) => {
+              const options = availableOptions[level];
+              const selected = selectedFilters[level];
+              const isDisabled = i > 0 && availableOptions[LEVELS[i - 1]].length === 0;
+
+              return (
+                <div key={level} className="bg-white rounded-2xl border border-neutral-200 overflow-hidden">
+                  <div className="px-4 py-3 border-b border-neutral-100 flex items-center justify-between">
+                    <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">
+                      {LEVEL_LABELS[level]}
+                    </span>
+                    {selected.length > 0 && (
+                      <span className="text-xs bg-neutral-900 text-white rounded-full px-2 py-0.5">
+                        {selected.length}
+                      </span>
+                    )}
+                  </div>
+                  <div className="max-h-44 overflow-y-auto p-2">
+                    {options.length === 0 ? (
+                      <p className="text-xs text-neutral-400 px-3 py-2">No options available</p>
+                    ) : (
+                      options.map((option) => {
+                        const isSelected = selected.includes(option.name);
+                        return (
+                          <button
+                            key={option.name}
+                            onClick={() => !isDisabled && handleFilterToggle(level, option.name)}
+                            className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-colors flex items-center gap-2 ${
+                              isSelected
+                                ? 'bg-neutral-900 text-white'
+                                : 'text-neutral-700 hover:bg-neutral-50'
+                            }`}
+                          >
+                            <span className={`w-3.5 h-3.5 rounded-sm border flex-shrink-0 flex items-center justify-center transition-colors ${
+                              isSelected ? 'bg-white border-white' : 'border-neutral-300'
+                            }`}>
+                              {isSelected && (
+                                <svg viewBox="0 0 10 8" className="w-2.5 h-2" fill="none">
+                                  <path d="M1 4l3 3 5-6" stroke="#171717" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              )}
+                            </span>
+                            {option.name}
+                          </button>
+                        );
+                      })
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
-        {/* Current Selection Display */}
-        <div className="mb-8 bg-white/80 backdrop-blur rounded-2xl p-6">
-          <p className="text-sm text-neutral-700">
-            <span className="font-medium">Current selection:</span> {getCurrentSelectionText()}
-          </p>
-        </div>
-
-        {/* Generate Button */}
-        <div className="mb-8 flex justify-center">
+        {/* Generate button */}
+        <div className="flex justify-center pt-2">
           <button
             onClick={handleGenerateRandom}
-            className="flex items-center gap-2 px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl transition transform hover:scale-105 active:scale-95"
+            className="group flex items-center gap-3 px-8 py-4 bg-neutral-900 hover:bg-neutral-800 active:scale-95 text-white font-semibold rounded-2xl transition-all shadow-lg hover:shadow-xl"
           >
-            <Sparkles className="h-5 w-5" />
+            <Sparkles className="h-5 w-5 group-hover:rotate-12 transition-transform" />
             Generate Random Destination
           </button>
         </div>
 
-        {/* Destination Result */}
+        {/* Result */}
         {randomDestination && (
-          <div className="mb-8 bg-white/80 backdrop-blur rounded-2xl p-8 border-2 border-blue-500">
-            <h2 className="text-3xl font-bold text-neutral-800 mb-4">
-              {randomDestination.name}
-            </h2>
-            <div className="grid grid-cols-2 gap-4 text-sm text-neutral-700 mb-6">
-              <div>
-                <p className="font-medium text-neutral-600">Coordinates</p>
-                <p>{randomDestination.lat.toFixed(4)}°N, {randomDestination.lng.toFixed(4)}°E</p>
+          <div className="bg-white rounded-3xl border border-neutral-200 overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
+            <div className="px-8 py-7 border-b border-neutral-100">
+              {/* Breadcrumb path */}
+              {breadcrumb.length > 0 && (
+                <div className="flex items-center gap-1.5 text-xs text-neutral-400 mb-3 flex-wrap">
+                  {breadcrumb.map((part, i) => (
+                    <React.Fragment key={i}>
+                      {i > 0 && <ChevronRight className="h-3 w-3 flex-shrink-0" />}
+                      <span>{part}</span>
+                    </React.Fragment>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPin className="h-5 w-5 text-neutral-600" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-neutral-900 leading-tight">
+                    {randomDestination.name}
+                  </h2>
+                  <p className="text-sm text-neutral-400 mt-1">
+                    {randomDestination.lat.toFixed(4)}°, {randomDestination.lng.toFixed(4)}°
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="font-medium text-neutral-600">Zoom Level</p>
-                <p>×{randomDestination.zoom}</p>
-              </div>
-              {randomDestination.continent && (
-                <div>
-                  <p className="font-medium text-neutral-600">Continent</p>
-                  <p>{randomDestination.continent}</p>
-                </div>
-              )}
-              {randomDestination.country && (
-                <div>
-                  <p className="font-medium text-neutral-600">Country</p>
-                  <p>{randomDestination.country}</p>
-                </div>
-              )}
-              {randomDestination.region && (
-                <div>
-                  <p className="font-medium text-neutral-600">Region</p>
-                  <p>{randomDestination.region}</p>
-                </div>
-              )}
             </div>
 
-            {/* Map below destination */}
-            <div className="rounded-2xl overflow-hidden shadow-lg border border-neutral-200">
-              <MapComponent center={{ lat: randomDestination.lat, lng: randomDestination.lng, zoom: randomDestination.zoom }} locations={[randomDestination]} />
+            <div className="relative">
+              <MapComponent
+                center={{ lat: randomDestination.lat, lng: randomDestination.lng, zoom: randomDestination.zoom }}
+                locations={[randomDestination]}
+              />
             </div>
           </div>
         )}

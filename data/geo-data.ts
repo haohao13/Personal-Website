@@ -52,16 +52,12 @@ export function flattenGeoData(geoData: Continent[]): GeoLocation[] {
   return result;
 }
 
-// Get filtered options for each level based on current selections
+// Get filtered options for each level based on current multi-selections
 export function getFilteredOptions(
   geoData: Continent[],
   targetLevel: HierarchyLevel,
-  selections: { continent?: string; country?: string; region?: string }
+  selections: { continent?: string[]; country?: string[]; region?: string[] }
 ): Record<HierarchyLevel, GeoLocation[]> {
-  const levels = ['continent', 'country', 'region', 'city'] as HierarchyLevel[];
-  const levelIndex = levels.indexOf(targetLevel);
-  const relevantLevels = levels.slice(0, levelIndex + 1);
-
   const result: Record<HierarchyLevel, GeoLocation[]> = {
     continent: [],
     country: [],
@@ -69,47 +65,33 @@ export function getFilteredOptions(
     city: [],
   };
 
-  // Get all continents
+  const continentSel = selections.continent ?? [];
+  const countrySel = selections.country ?? [];
+  const regionSel = selections.region ?? [];
+
+  // All continents always available
   result.continent = geoData.map((c) => ({ ...c, level: 'continent' as const }));
 
-  // Filter countries based on selected continent
   for (const continent of geoData) {
-    if (!selections.continent || continent.name === selections.continent) {
-      for (const country of continent.countries) {
-        result.country.push({ ...country, level: 'country' as const, continent: continent.name });
-      }
-    }
-  }
+    const contMatch = continentSel.length === 0 || continentSel.includes(continent.name);
+    if (!contMatch) continue;
 
-  // Filter regions based on selected country
-  for (const continent of geoData) {
-    if (!selections.continent || continent.name === selections.continent) {
-      for (const country of continent.countries) {
-        if (!selections.country || country.name === selections.country) {
-          if (country.regions) {
-            for (const region of country.regions) {
-              result.region.push({ ...region, level: 'region' as const, continent: continent.name, country: country.name });
-            }
-          }
-        }
-      }
-    }
-  }
+    for (const country of continent.countries) {
+      result.country.push({ ...country, level: 'country' as const, continent: continent.name });
 
-  // Filter cities based on selected region
-  for (const continent of geoData) {
-    if (!selections.continent || continent.name === selections.continent) {
-      for (const country of continent.countries) {
-        if (!selections.country || country.name === selections.country) {
-          if (country.regions) {
-            for (const region of country.regions) {
-              if (!selections.region || region.name === selections.region) {
-                if (region.cities) {
-                  for (const city of region.cities) {
-                    result.city.push({ ...city, level: 'city' as const, continent: continent.name, country: country.name, region: region.name });
-                  }
-                }
-              }
+      const countryMatch = countrySel.length === 0 || countrySel.includes(country.name);
+      if (!countryMatch) continue;
+
+      if (country.regions) {
+        for (const region of country.regions) {
+          result.region.push({ ...region, level: 'region' as const, continent: continent.name, country: country.name });
+
+          const regionMatch = regionSel.length === 0 || regionSel.includes(region.name);
+          if (!regionMatch) continue;
+
+          if (region.cities) {
+            for (const city of region.cities) {
+              result.city.push({ ...city, level: 'city' as const, continent: continent.name, country: country.name, region: region.name });
             }
           }
         }
