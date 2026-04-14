@@ -456,6 +456,28 @@ export default function MirrorPage() {
           </header>
 
           <div className="grid flex-1 grid-cols-1 gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            {/* Mode selection buttons above the card */}
+            <div className="mb-6 flex flex-wrap gap-3 lg:col-span-2">
+              {(Object.keys(MODE_META) as Mode[]).map((itemMode) => {
+                const active = mode === itemMode;
+
+                return (
+                  <button
+                    key={itemMode}
+                    onClick={() => switchMode(itemMode)}
+                    className={[
+                      "rounded-full border px-4 py-2 text-sm transition-all duration-200",
+                      active
+                        ? "border-white/90 bg-white text-[#0a0a0c] shadow-[0_8px_30px_rgba(255,255,255,0.18)]"
+                        : "border-white/10 bg-white/5 text-white/68 hover:border-white/20 hover:bg-white/8 hover:text-white"
+                    ].join(" ")}
+                  >
+                    {MODE_META[itemMode].label}
+                  </button>
+                );
+              })}
+            </div>
+
             <div
               ref={cardRef}
               className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.05] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:p-8 lg:p-10"
@@ -466,28 +488,7 @@ export default function MirrorPage() {
 
               <div className="relative flex h-full min-h-[560px] flex-col justify-between">
                 <div>
-                  <div className="mb-6 flex flex-wrap gap-2">
-                {(Object.keys(MODE_META) as Mode[]).map((itemMode) => {
-                  const active = mode === itemMode;
-
-                  return (
-                    <button
-                      key={itemMode}
-                      onClick={() => switchMode(itemMode)}
-                      className={[
-                        "rounded-full border px-4 py-2 text-sm transition-all duration-200",
-                        active
-                          ? "border-white/90 bg-white text-[#0a0a0c] shadow-[0_8px_30px_rgba(255,255,255,0.18)]"
-                          : "border-white/10 bg-white/5 text-white/68 hover:border-white/20 hover:bg-white/8 hover:text-white"
-                      ].join(" ")}
-                    >
-                      {MODE_META[itemMode].label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="mb-6 flex flex-wrap items-center gap-3">
+                  <div className="mb-6 flex flex-wrap items-center gap-3">
                     <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-white/58">
                       {meta.badge}
                     </span>
