@@ -4,7 +4,7 @@ import { MessageCircle, ChevronRight } from "lucide-react";
 
 function MirrorEntryCard({ href = "/mirror", lang = "en" }) {
   const isEn = lang === "en";
-  const title = isEn ? "mirror" : "镜子";
+  const title = isEn ? "better conversations" : "更好的对话";
   const desc = isEn
     ? "A question deck for better conversations, softer touch points, and a quick way back to the main page."
     : "一个问题卡片组，用于更好的对话、更柔和的接触点，以及快速返回主页的方式。";
