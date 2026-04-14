@@ -252,11 +252,11 @@ function shuffle<T>(input: T[]): T[] {
 
 function createInitialDeck(): Record<Mode, string[]> {
   return {
-    firstDate: shuffle(QUESTIONS.firstDate),
-    closeFriends: shuffle(QUESTIONS.closeFriends),
-    lovers: shuffle(QUESTIONS.lovers),
-    strangers: shuffle(QUESTIONS.strangers),
-    soloJournal: shuffle(QUESTIONS.soloJournal)
+    firstDate: [...QUESTIONS.firstDate],
+    closeFriends: [...QUESTIONS.closeFriends],
+    lovers: [...QUESTIONS.lovers],
+    strangers: [...QUESTIONS.strangers],
+    soloJournal: [...QUESTIONS.soloJournal]
   };
 }
 
@@ -302,6 +302,14 @@ export default function MirrorPage() {
     if (process.env.NODE_ENV !== "production") {
       validateConfig();
     }
+
+    setDeck({
+      firstDate: shuffle(QUESTIONS.firstDate),
+      closeFriends: shuffle(QUESTIONS.closeFriends),
+      lovers: shuffle(QUESTIONS.lovers),
+      strangers: shuffle(QUESTIONS.strangers),
+      soloJournal: shuffle(QUESTIONS.soloJournal)
+    });
   }, []);
 
   useEffect(() => {

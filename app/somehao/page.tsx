@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -149,9 +149,15 @@ export { SomehaoEntryCard };
 export default function SomehaoPage() {
   const [mode, setMode] = useState<keyof typeof TASKS>("medium");
   const [lang, setLang] = useState<"en" | "zh">("en");
-  const [task, setTask] = useState(() => getRandomTask("medium"));
+  const [task, setTask] = useState(() => TASKS.medium[0]);
   const [done, setDone] = useState(false);
   const [count, setCount] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    setTask(getRandomTask(mode));
+  }, [mode]);
 
   const t = TEXT[lang];
   const currentMode = useMemo(() => t.modes[mode], [t, mode]);
