@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { SomehaoEntryCard } from '@/components/somehao-entry-card';
 import { TravelEntryCard } from '@/components/travel-entry-card';
 import { MirrorEntryCard } from '@/components/mirror-entry-card';
+import { WomenEntryCard } from '@/components/women-entry-card';
 
 type CursorPoint = {
   x: number;
@@ -234,6 +235,7 @@ export default function PersonalWebsiteStarter() {
             <SomehaoEntryCard lang="en" />
             <TravelEntryCard lang="en" />
             <MirrorEntryCard lang="en" />
+            <WomenEntryCard lang="en" />
           </div>
         </section>
 
