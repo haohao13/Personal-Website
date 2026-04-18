@@ -261,13 +261,6 @@ export default function SomehaoPage() {
                 })}
               </div>
 
-              <a
-                href="/"
-                className="mt-6 inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-zinc-600 transition"
-              >
-                <Home className="h-4 w-4" />
-                {lang === "en" ? "Back Home" : "回到主页"}
-              </a>
             </CardContent>
           </Card>
 
@@ -323,6 +316,14 @@ export default function SomehaoPage() {
           </div>
 
         </div>
+
+        <a
+          href="/"
+          className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-zinc-600 transition pb-2"
+        >
+          <Home className="h-4 w-4" />
+          {lang === "en" ? "Back Home" : "回到主页"}
+        </a>
       </div>
     </div>
   );
