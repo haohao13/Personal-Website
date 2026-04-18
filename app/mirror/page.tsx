@@ -441,22 +441,22 @@ export default function MirrorPage() {
 
         <section className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-8 md:px-10 md:py-10">
           <header className="mb-8 flex flex-col gap-8 md:mb-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-3xl">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <div className="min-w-0">
                 <div className="mb-3 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/60 backdrop-blur">
                   mirror
                 </div>
                 <h1 className="text-4xl font-semibold tracking-[-0.06em] text-white md:text-6xl">
                   Better questions. Better chemistry.
                 </h1>
-                <p className="mt-4 max-w-2xl text-sm leading-6 text-white/58 md:text-base">
+                <p className="mt-4 text-sm leading-6 text-white/58 md:text-base">
                   For dates that skip the dead air, friends who want to go deeper, lovers who want to feel closer, and nights when you want to be honest with yourself.
                 </p>
               </div>
 
               <a
                 href="/"
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+                className="shrink-0 inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10"
               >
                 Back to main page
               </a>
