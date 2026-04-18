@@ -15,7 +15,7 @@ function TravelEntryCard({ href = "/travel", lang = "en" }) {
       className="group block overflow-hidden rounded-[28px] border border-emerald-200/80 bg-gradient-to-br from-emerald-50/90 to-teal-50/90 p-6 shadow-[0_10px_40px_rgba(0,0,0,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
     >
       <div className="flex items-start justify-between gap-4">
-        <div className="max-w-sm">
+        <div className="min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs text-emerald-600">
             <MapPin className="h-3.5 w-3.5" />
             Travel
@@ -26,7 +26,7 @@ function TravelEntryCard({ href = "/travel", lang = "en" }) {
           <p className="mt-3 text-sm leading-6 text-zinc-600">{desc}</p>
         </div>
 
-        <div className="rounded-2xl border border-emerald-300 bg-emerald-100 p-3 text-emerald-600 transition duration-300 group-hover:scale-105 group-hover:rotate-3">
+        <div className="shrink-0 rounded-2xl border border-emerald-300 bg-emerald-100 p-3 text-emerald-600 transition duration-300 group-hover:scale-105 group-hover:rotate-3">
           <MapPin className="h-5 w-5" />
         </div>
       </div>
