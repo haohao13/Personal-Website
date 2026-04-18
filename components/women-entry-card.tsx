@@ -12,7 +12,7 @@ function WomenEntryCard({ href = "/women", lang = "en" }) {
   return (
     <a
       href={href}
-      className="group block overflow-hidden rounded-[28px] border border-zinc-200/80 bg-white/90 p-6 shadow-[0_10px_40px_rgba(0,0,0,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
+      className="group block overflow-hidden rounded-[28px] border border-violet-200/80 bg-gradient-to-br from-violet-50/90 to-rose-50/90 p-6 shadow-[0_10px_40px_rgba(0,0,0,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
