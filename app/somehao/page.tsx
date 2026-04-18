@@ -152,7 +152,10 @@ export default function SomehaoPage() {
   const [task, setTask] = useState(() => TASKS.medium[0]);
   const [done, setDone] = useState(false);
   const [count, setCount] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
+    setIsMounted(true);
     setTask(getRandomTask(mode));
   }, [mode]);
 
@@ -202,7 +205,7 @@ export default function SomehaoPage() {
                     Somehao
                   </div>
                   <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-950 lg:text-5xl">Somehao</h1>
-                  <p className="mt-3 text-sm leading-6 text-zinc-500 lg:text-base lg:leading-7 lg:max-w-xs">{t.subtitle}</p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-500 lg:text-base lg:leading-7">{t.subtitle}</p>
                 </div>
 
                 <div className="flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 p-1 backdrop-blur">
@@ -223,7 +226,7 @@ export default function SomehaoPage() {
             </motion.div>
 
             <Card className="overflow-hidden rounded-[28px] border-zinc-200/80 bg-white/85 shadow-[0_12px_40px_rgba(0,0,0,0.06)] backdrop-blur">
-              <CardContent className="p-6">
+              <CardContent className="p-6 pt-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs uppercase tracking-[0.18em] text-zinc-400">{t.modeLabel}</p>
@@ -235,7 +238,7 @@ export default function SomehaoPage() {
                   </Badge>
                 </div>
 
-                <div className="mt-3 grid grid-cols-3 gap-2">
+                <div className="mt-5 grid grid-cols-3 gap-2">
                   {Object.keys(TASKS).map((m) => {
                     const key = m as keyof typeof modeIcons;
                     const Icon = modeIcons[key];
@@ -280,7 +283,7 @@ export default function SomehaoPage() {
                 transition={{ duration: 0.12 }}
               >
                 <Card className="overflow-hidden rounded-[32px] border-0 bg-zinc-950 text-white shadow-[0_20px_60px_rgba(24,24,27,0.28)]">
-                  <CardContent className="p-6 lg:p-10">
+                  <CardContent className="p-6 pt-6 lg:p-10 lg:pt-10">
                     <div className="flex items-center justify-between gap-3">
                       <Badge className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-white hover:bg-white/10">
                         {t.tags[task.tag as keyof typeof t.tags]}
