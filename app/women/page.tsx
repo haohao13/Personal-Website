@@ -206,15 +206,15 @@ export default function WomenPage(){
       <div className="max-w-7xl mx-auto p-6 space-y-6">
 
         <GlassCard className="p-6">
-          <div className="flex justify-between items-end">
-            <div>
+          <div className="flex justify-between items-start gap-8">
+            <div className="min-w-0">
               <div className="text-xs text-violet-400 mb-2">hao about women</div>
               <h1 className="text-4xl font-semibold">A woman born on this day</h1>
-              <p className="mt-3 text-violet-300 max-w-xl text-sm leading-relaxed">
+              <p className="mt-3 text-violet-300 text-sm leading-relaxed">
                 Every day, thousands of women are born. A few of them reshape history — quietly or loudly. This page is a small attempt to notice them.
               </p>
             </div>
-            <a href="/" className="text-sm text-violet-300">Back</a>
+            <a href="/" className="shrink-0 text-sm text-violet-300 mt-1">Back</a>
           </div>
         </GlassCard>
 
