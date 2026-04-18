@@ -122,7 +122,7 @@ function PortraitImage({src,alt}:{src:string;alt:string}){
 }
 
 async function fetchWomenFromAPI(month:number,day:number):Promise<WomanEntry[]> {
-  const res = await fetch(`/api/women?month=${month}&day=${day}`,{cache:"force-cache"});
+  const res = await fetch(`/api/women?month=${month}&day=${day}`);
   if(!res.ok) throw new Error("fetch failed");
   const data = await res.json();
   return Array.isArray(data?.entries)?data.entries:[];
