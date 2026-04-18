@@ -12,7 +12,7 @@ function TravelEntryCard({ href = "/travel", lang = "en" }) {
   return (
     <a
       href={href}
-      className="group block overflow-hidden rounded-[28px] border border-emerald-200/80 bg-gradient-to-br from-emerald-50/90 to-teal-50/90 p-6 shadow-[0_10px_40px_rgba(0,0,0,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
+      className="group block overflow-hidden rounded-[28px] border border-emerald-100 bg-gradient-to-br from-emerald-50/50 to-teal-50/50 p-6 shadow-[0_10px_40px_rgba(0,0,0,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
