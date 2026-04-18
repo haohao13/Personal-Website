@@ -23,7 +23,7 @@ function SomehaoEntryCard({ href = "/somehao", lang = "en" }) {
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs text-zinc-500">
+          <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs text-orange-600">
             <Sparkles className="h-3.5 w-3.5" />
             Somehao
           </div>
