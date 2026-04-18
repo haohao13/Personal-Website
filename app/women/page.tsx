@@ -57,6 +57,16 @@ const getFeaturedEntry = (m: number, d: number) => {
 const formatSelectedLabel = (mi: number, d: number) => `${MONTHS[mi]} ${d}`;
 const truncateText = (t: string, n: number) => (t.length <= n ? t : `${t.slice(0, n).trimEnd()}…`);
 
+function formatDateRange(entry: WomanEntry): string {
+  const bm = entry.birthDate.match(/\d{3,4}/);
+  const birthYear = bm ? bm[0] : "?";
+  const birth = `${birthYear}.${entry.month}.${entry.day}`;
+  if (!entry.deathDate) return birth;
+  const dm = entry.deathDate.match(/\d{3,4}/);
+  const deathYear = dm ? dm[0] : entry.deathDate;
+  return `${birth} – ${deathYear}`;
+}
+
 function runDataTests() {
   const ids = new Set<string>();
   for (const e of WOMEN_DATA) {
@@ -90,7 +100,15 @@ const Pill: React.FC<React.PropsWithChildren> = ({children}) => (
 );
 
 function PortraitImage({src,alt}:{src:string;alt:string}){
-  return <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-cover" />;
+  const [imgError,setImgError]=useState(false);
+  if(!src||imgError){
+    return (
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-violet-900/50 to-purple-950/80 flex items-center justify-center">
+        <Venus className="w-16 h-16 text-violet-400/30"/>
+      </div>
+    );
+  }
+  return <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-cover object-top" onError={()=>setImgError(true)}/>;
 }
 
 async function fetchWomenFromAPI(month:number,day:number):Promise<WomanEntry[]> {
@@ -227,10 +245,11 @@ export default function WomenPage(){
 
                 <h2 className="text-2xl font-semibold">{selectedEntry.name}</h2>
 
-                <div className="flex gap-2 flex-wrap">
-                  <Pill>{selectedEntry.birthDate}</Pill>
-                  <Pill>{deathLabel}</Pill>
-                  {selectedEntry.field ? <Pill>{selectedEntry.field}</Pill> : null}
+                <div className="space-y-1.5">
+                  <p className="text-sm text-violet-300">{formatDateRange(selectedEntry)}</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {selectedEntry.field ? <Pill>{selectedEntry.field}</Pill> : null}
+                  </div>
                 </div>
 
                 <p className="text-violet-300 leading-relaxed">{selectedEntry.bio}</p>
