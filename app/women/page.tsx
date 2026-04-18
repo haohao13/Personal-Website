@@ -57,14 +57,24 @@ const getFeaturedEntry = (m: number, d: number) => {
 const formatSelectedLabel = (mi: number, d: number) => `${MONTHS[mi]} ${d}`;
 const truncateText = (t: string, n: number) => (t.length <= n ? t : `${t.slice(0, n).trimEnd()}…`);
 
+const MONTH_NUMS: Record<string,number> = {
+  january:1,february:2,march:3,april:4,may:5,june:6,
+  july:7,august:8,september:9,october:10,november:11,december:12
+};
 function formatDateRange(entry: WomanEntry): string {
   const bm = entry.birthDate.match(/\d{3,4}/);
   const birthYear = bm ? bm[0] : "?";
   const birth = `${birthYear}.${entry.month}.${entry.day}`;
   if (!entry.deathDate) return birth;
+  // Try "Month D, YYYY"
+  const full = entry.deathDate.match(/^([A-Za-z]+)\s+(\d+),\s*(\d{4})$/);
+  if (full) {
+    const mo = MONTH_NUMS[full[1].toLowerCase()];
+    if (mo) return `${birth} – ${full[3]}.${mo}.${full[2]}`;
+  }
+  // Fall back: extract year
   const dm = entry.deathDate.match(/\d{3,4}/);
-  const deathYear = dm ? dm[0] : entry.deathDate;
-  return `${birth} – ${deathYear}`;
+  return `${birth} – ${dm ? dm[0] : entry.deathDate}`;
 }
 
 function runDataTests() {
@@ -108,7 +118,7 @@ function PortraitImage({src,alt}:{src:string;alt:string}){
       </div>
     );
   }
-  return <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-cover object-top" onError={()=>setImgError(true)}/>;
+  return <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-contain" style={{background:"#0d0a1a"}} onError={()=>setImgError(true)}/>;
 }
 
 async function fetchWomenFromAPI(month:number,day:number):Promise<WomanEntry[]> {
