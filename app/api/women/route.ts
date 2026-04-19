@@ -30,15 +30,7 @@ export async function GET(req: Request) {
     .sort((a, b) => a.diff - b.diff);
 
   if (nearby.length > 0) {
-    const birthDay = nearby[0].e.day;
-    const birthMonth = nearby[0].e.month;
-    const direction = (new Date(2000, birthMonth - 1, birthDay) > new Date(2000, month - 1, day))
-      ? "after"
-      : "before";
-    const label = direction === "after"
-      ? `Born ${Math.round(nearby[0].diff)} day${nearby[0].diff > 1 ? "s" : ""} from now`
-      : `Born ${Math.round(nearby[0].diff)} day${nearby[0].diff > 1 ? "s" : ""} ago`;
-    return NextResponse.json({ entries: [nearby[0].e], matchLabel: "Born around this time", matchLevel: 1 });
+    return NextResponse.json({ entries: nearby.map(x => x.e), matchLabel: "Born around this time", matchLevel: 1 });
   }
 
   // ── Level 2: figures with no specific birth month/day ──
@@ -54,8 +46,7 @@ export async function GET(req: Request) {
     const currentMonthName = MONTH_NAMES[month - 1];
     const sameMonthPool = noDatePool.filter(e => e.birthDate.includes(currentMonthName));
     const pool = sameMonthPool.length > 0 ? sameMonthPool : noDatePool;
-    const seed = (month * 31 + day) % pool.length;
-    return NextResponse.json({ entries: [pool[seed]], matchLabel: "Featured from history", matchLevel: 2 });
+    return NextResponse.json({ entries: pool, matchLabel: "Featured from history", matchLevel: 2 });
   }
 
   // Absolute fallback (should not be reached in practice)

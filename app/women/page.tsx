@@ -156,6 +156,7 @@ export default function WomenPage(){
   const [displayMonth,setDisplayMonth]=useState(today.getMonth());
   const [selectedDay,setSelectedDay]=useState(today.getDate());
   const [apiEntries,setApiEntries]=useState<WomanEntry[]>([]);
+  const [poolIndex,setPoolIndex]=useState(0);
   const [matchLabel,setMatchLabel]=useState<string>("");
   const [isLoading,setIsLoading]=useState(false);
   const [loadError,setLoadError]=useState<string|null>(null);
@@ -174,7 +175,7 @@ export default function WomenPage(){
       setIsLoading(true); setLoadError(null);
       try{
         const {entries:e, matchLabel:ml}=await fetchWomenFromAPI(displayMonth+1,selectedDay);
-        if(!cancelled){ setApiEntries(e); setMatchLabel(ml); }
+        if(!cancelled){ setApiEntries(e); setMatchLabel(ml); setPoolIndex(0); }
       }catch(err){
         if(!cancelled){setApiEntries([]);setLoadError("load error");}
       }finally{if(!cancelled) setIsLoading(false);} 
@@ -193,9 +194,16 @@ export default function WomenPage(){
   },[displayYear,displayMonth]);
 
   const selectedEntry=useMemo(()=>{
-    if(apiEntries.length>0)return apiEntries[0];
+    if(apiEntries.length>0)return apiEntries[poolIndex]??apiEntries[0];
     return getFeaturedEntry(displayMonth+1,selectedDay);
-  },[apiEntries,displayMonth,selectedDay]);
+  },[apiEntries,displayMonth,selectedDay,poolIndex]);
+
+  function shuffleEntry(){
+    if(apiEntries.length<=1)return;
+    let next:number;
+    do{next=Math.floor(Math.random()*apiEntries.length);}while(next===poolIndex);
+    setPoolIndex(next);
+  }
 
   const dateLabel=formatSelectedLabel(displayMonth,selectedDay);
   const deathLabel=selectedEntry?.deathDate??"Still living";
@@ -260,18 +268,29 @@ export default function WomenPage(){
                 <h2 className="text-2xl font-semibold">{selectedEntry.name}</h2>
 
                 <div className="space-y-1.5">
-                  <div className="flex gap-2 flex-wrap items-center">
-                    {matchLabel ? (
-                      <span className={cn(
-                        "rounded-full px-3 py-0.5 text-[11px] font-medium border",
-                        matchLabel==="Born on this day"
-                          ? "bg-violet-500/20 border-violet-500/30 text-violet-300"
-                          : matchLabel==="Born around this time"
-                          ? "bg-blue-500/20 border-blue-500/30 text-blue-300"
-                          : "bg-white/10 border-white/15 text-white/60"
-                      )}>{matchLabel}</span>
-                    ) : null}
-                    {selectedEntry.field ? <Pill>{selectedEntry.field}</Pill> : null}
+                  <div className="flex gap-2 flex-wrap items-center justify-between">
+                    <div className="flex gap-2 flex-wrap items-center">
+                      {matchLabel ? (
+                        <span className={cn(
+                          "rounded-full px-3 py-0.5 text-[11px] font-medium border",
+                          matchLabel==="Born on this day"
+                            ? "bg-violet-500/20 border-violet-500/30 text-violet-300"
+                            : matchLabel==="Born around this time"
+                            ? "bg-blue-500/20 border-blue-500/30 text-blue-300"
+                            : "bg-white/10 border-white/15 text-white/60"
+                        )}>{matchLabel}</span>
+                      ) : null}
+                      {selectedEntry.field ? <Pill>{selectedEntry.field}</Pill> : null}
+                    </div>
+                    {apiEntries.length>1 && (
+                      <button
+                        onClick={shuffleEntry}
+                        title={`Shuffle (${poolIndex+1}/${apiEntries.length})`}
+                        className="text-sm border border-white/10 rounded-full px-2.5 py-0.5 hover:bg-white/10 text-violet-300 hover:text-white transition-colors"
+                      >
+                        🎲 {poolIndex+1}/{apiEntries.length}
+                      </button>
+                    )}
                   </div>
                   <p className="text-sm text-violet-300">{formatDateRange(selectedEntry)}</p>
                 </div>
