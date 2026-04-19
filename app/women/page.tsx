@@ -371,8 +371,8 @@ export default function WomenPage(){
             <div className="flex justify-between mb-1">
               <button onClick={()=>{setDisplayMonth(m=> m===0?11:m-1); if(displayMonth===0) setDisplayYear(y=>y-1);}}><ChevronLeft/></button>
               <div className="text-center">
-                <div className="text-white font-medium">{MONTHS[displayMonth]}</div>
-                <div className="text-xs text-violet-400">{displayYear}</div>
+                <div className="text-violet-400 text-lg font-semibold">{displayYear}</div>
+                <div className="text-white text-sm">{MONTHS[displayMonth]}</div>
               </div>
               <button onClick={()=>{setDisplayMonth(m=> m===11?0:m+1); if(displayMonth===11) setDisplayYear(y=>y+1);}}><ChevronRight/></button>
             </div>
