@@ -368,12 +368,10 @@ export default function WomenPage(){
           </GlassCard>
 
           <GlassCard className="p-6">
-            <div className="flex justify-between mb-1">
+            <div className="text-center text-violet-400 text-lg font-semibold mb-1">{displayYear}</div>
+            <div className="flex justify-between items-center mb-4">
               <button onClick={()=>{setDisplayMonth(m=> m===0?11:m-1); if(displayMonth===0) setDisplayYear(y=>y-1);}}><ChevronLeft/></button>
-              <div className="text-center">
-                <div className="text-violet-400 text-lg font-semibold">{displayYear}</div>
-                <div className="text-white text-sm">{MONTHS[displayMonth]}</div>
-              </div>
+              <div className="text-white font-medium">{MONTHS[displayMonth]}</div>
               <button onClick={()=>{setDisplayMonth(m=> m===11?0:m+1); if(displayMonth===11) setDisplayYear(y=>y+1);}}><ChevronRight/></button>
             </div>
 
