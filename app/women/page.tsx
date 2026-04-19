@@ -121,11 +121,14 @@ function PortraitImage({src,alt}:{src:string;alt:string}){
   return <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-contain" style={{background:"#0d0a1a"}} onError={()=>setImgError(true)}/>;
 }
 
-async function fetchWomenFromAPI(month:number,day:number):Promise<WomanEntry[]> {
+async function fetchWomenFromAPI(month:number,day:number):Promise<{entries:WomanEntry[];matchLabel:string}> {
   const res = await fetch(`/api/women?month=${month}&day=${day}`);
   if(!res.ok) throw new Error("fetch failed");
   const data = await res.json();
-  return Array.isArray(data?.entries)?data.entries:[];
+  return {
+    entries: Array.isArray(data?.entries)?data.entries:[],
+    matchLabel: data?.matchLabel ?? "Featured from history",
+  };
 }
 
 function SharePreview({title,dateLabel,birthDate,deathDate,bio}:{
@@ -153,6 +156,7 @@ export default function WomenPage(){
   const [displayMonth,setDisplayMonth]=useState(today.getMonth());
   const [selectedDay,setSelectedDay]=useState(today.getDate());
   const [apiEntries,setApiEntries]=useState<WomanEntry[]>([]);
+  const [matchLabel,setMatchLabel]=useState<string>("");
   const [isLoading,setIsLoading]=useState(false);
   const [loadError,setLoadError]=useState<string|null>(null);
   const [copied,setCopied]=useState(false);
@@ -169,8 +173,8 @@ export default function WomenPage(){
     (async()=>{
       setIsLoading(true); setLoadError(null);
       try{
-        const e=await fetchWomenFromAPI(displayMonth+1,selectedDay);
-        if(!cancelled) setApiEntries(e);
+        const {entries:e, matchLabel:ml}=await fetchWomenFromAPI(displayMonth+1,selectedDay);
+        if(!cancelled){ setApiEntries(e); setMatchLabel(ml); }
       }catch(err){
         if(!cancelled){setApiEntries([]);setLoadError("load error");}
       }finally{if(!cancelled) setIsLoading(false);} 
@@ -256,10 +260,20 @@ export default function WomenPage(){
                 <h2 className="text-2xl font-semibold">{selectedEntry.name}</h2>
 
                 <div className="space-y-1.5">
-                  <p className="text-sm text-violet-300">{formatDateRange(selectedEntry)}</p>
-                  <div className="flex gap-2 flex-wrap">
+                  <div className="flex gap-2 flex-wrap items-center">
+                    {matchLabel ? (
+                      <span className={cn(
+                        "rounded-full px-3 py-0.5 text-[11px] font-medium border",
+                        matchLabel==="Born on this day"
+                          ? "bg-violet-500/20 border-violet-500/30 text-violet-300"
+                          : matchLabel==="Born around this time"
+                          ? "bg-blue-500/20 border-blue-500/30 text-blue-300"
+                          : "bg-white/10 border-white/15 text-white/60"
+                      )}>{matchLabel}</span>
+                    ) : null}
                     {selectedEntry.field ? <Pill>{selectedEntry.field}</Pill> : null}
                   </div>
+                  <p className="text-sm text-violet-300">{formatDateRange(selectedEntry)}</p>
                 </div>
 
                 <p className="text-violet-300 leading-relaxed">{selectedEntry.bio}</p>

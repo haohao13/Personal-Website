@@ -1,0 +1,3874 @@
+{
+  "meta": {
+    "version": 1,
+    "generated_from": "combined seed dataset discussed in chat",
+    "coverage_days": 366,
+    "people_count": 56,
+    "fallback_levels": {
+      "0": "exact_birth_match",
+      "1": "nearby_birth_match_within_3_days",
+      "2": "editorial_featured_fallback"
+    }
+  },
+  "people": {
+    "wu-zetian": {
+      "id": "wu-zetian",
+      "name": "武则天",
+      "birth_date": "0624-02-17",
+      "country": "China",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 10
+    },
+    "cixi": {
+      "id": "cixi",
+      "name": "慈禧太后",
+      "birth_date": "1835-11-29",
+      "country": "China",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 9
+    },
+    "lv-zhi": {
+      "id": "lv-zhi",
+      "name": "吕雉",
+      "birth_date": "-0241",
+      "country": "China",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 8
+    },
+    "xiaozhuang": {
+      "id": "xiaozhuang",
+      "name": "孝庄文皇后",
+      "birth_date": "1613-03-28",
+      "country": "China",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 8
+    },
+    "li-qingzhao": {
+      "id": "li-qingzhao",
+      "name": "李清照",
+      "birth_date": "1084-03-13",
+      "country": "China",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 9
+    },
+    "ban-zhao": {
+      "id": "ban-zhao",
+      "name": "班昭",
+      "birth_date": "0045",
+      "country": "China",
+      "category": [
+        "literature",
+        "scholar"
+      ],
+      "featured_score": 7
+    },
+    "cai-wenji": {
+      "id": "cai-wenji",
+      "name": "蔡文姬",
+      "birth_date": "0177",
+      "country": "China",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 7
+    },
+    "shangguan-waner": {
+      "id": "shangguan-waner",
+      "name": "上官婉儿",
+      "birth_date": "0664",
+      "country": "China",
+      "category": [
+        "literature",
+        "politics"
+      ],
+      "featured_score": 7
+    },
+    "hua-mulan": {
+      "id": "hua-mulan",
+      "name": "花木兰",
+      "birth_date": null,
+      "country": "China",
+      "category": [
+        "legend",
+        "military"
+      ],
+      "featured_score": 8
+    },
+    "liang-hongyu": {
+      "id": "liang-hongyu",
+      "name": "梁红玉",
+      "birth_date": "1102",
+      "country": "China",
+      "category": [
+        "military"
+      ],
+      "featured_score": 7
+    },
+    "qin-liangyu": {
+      "id": "qin-liangyu",
+      "name": "秦良玉",
+      "birth_date": "1574",
+      "country": "China",
+      "category": [
+        "military"
+      ],
+      "featured_score": 8
+    },
+    "mu-guiying": {
+      "id": "mu-guiying",
+      "name": "穆桂英",
+      "birth_date": null,
+      "country": "China",
+      "category": [
+        "legend",
+        "military"
+      ],
+      "featured_score": 7
+    },
+    "soong-ching-ling": {
+      "id": "soong-ching-ling",
+      "name": "宋庆龄",
+      "birth_date": "1893-01-27",
+      "country": "China",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 9
+    },
+    "he-xiangning": {
+      "id": "he-xiangning",
+      "name": "何香凝",
+      "birth_date": "1878-06-27",
+      "country": "China",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 7
+    },
+    "lin-huiyin": {
+      "id": "lin-huiyin",
+      "name": "林徽因",
+      "birth_date": "1904-06-10",
+      "country": "China",
+      "category": [
+        "architecture",
+        "literature"
+      ],
+      "featured_score": 9
+    },
+    "qiu-jin": {
+      "id": "qiu-jin",
+      "name": "秋瑾",
+      "birth_date": "1875-11-08",
+      "country": "China",
+      "category": [
+        "revolution"
+      ],
+      "featured_score": 8
+    },
+    "deng-yingchao": {
+      "id": "deng-yingchao",
+      "name": "邓颖超",
+      "birth_date": "1904-02-04",
+      "country": "China",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 8
+    },
+    "eileen-chang": {
+      "id": "eileen-chang",
+      "name": "张爱玲",
+      "birth_date": "1920-09-30",
+      "country": "China",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 9
+    },
+    "tu-youyou": {
+      "id": "tu-youyou",
+      "name": "屠呦呦",
+      "birth_date": "1930-12-30",
+      "country": "China",
+      "category": [
+        "science"
+      ],
+      "featured_score": 10
+    },
+    "yang-jiang": {
+      "id": "yang-jiang",
+      "name": "杨绛",
+      "birth_date": "1911-07-17",
+      "country": "China",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 8
+    },
+    "chien-shiung-wu": {
+      "id": "chien-shiung-wu",
+      "name": "吴健雄",
+      "birth_date": "1912-05-31",
+      "country": "China",
+      "category": [
+        "science"
+      ],
+      "featured_score": 10
+    },
+    "bing-xin": {
+      "id": "bing-xin",
+      "name": "冰心",
+      "birth_date": "1900-10-05",
+      "country": "China",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 8
+    },
+    "sanmao": {
+      "id": "sanmao",
+      "name": "三毛",
+      "birth_date": "1943-03-26",
+      "country": "China",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 8
+    },
+    "xiao-hong": {
+      "id": "xiao-hong",
+      "name": "萧红",
+      "birth_date": "1911-06-01",
+      "country": "China",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 8
+    },
+    "ding-ling": {
+      "id": "ding-ling",
+      "name": "丁玲",
+      "birth_date": "1904-10-12",
+      "country": "China",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 7
+    },
+    "marie-curie": {
+      "id": "marie-curie",
+      "name": "Marie Curie",
+      "birth_date": "1867-11-07",
+      "country": "Poland/France",
+      "category": [
+        "science"
+      ],
+      "featured_score": 10
+    },
+    "ada-lovelace": {
+      "id": "ada-lovelace",
+      "name": "Ada Lovelace",
+      "birth_date": "1815-12-10",
+      "country": "United Kingdom",
+      "category": [
+        "science",
+        "technology"
+      ],
+      "featured_score": 10
+    },
+    "rosalind-franklin": {
+      "id": "rosalind-franklin",
+      "name": "Rosalind Franklin",
+      "birth_date": "1920-07-25",
+      "country": "United Kingdom",
+      "category": [
+        "science"
+      ],
+      "featured_score": 9
+    },
+    "jane-goodall": {
+      "id": "jane-goodall",
+      "name": "Jane Goodall",
+      "birth_date": "1934-04-03",
+      "country": "United Kingdom",
+      "category": [
+        "science"
+      ],
+      "featured_score": 9
+    },
+    "malala": {
+      "id": "malala",
+      "name": "Malala Yousafzai",
+      "birth_date": "1997-07-12",
+      "country": "Pakistan",
+      "category": [
+        "activism"
+      ],
+      "featured_score": 9
+    },
+    "frida-kahlo": {
+      "id": "frida-kahlo",
+      "name": "Frida Kahlo",
+      "birth_date": "1907-07-06",
+      "country": "Mexico",
+      "category": [
+        "art"
+      ],
+      "featured_score": 9
+    },
+    "virginia-woolf": {
+      "id": "virginia-woolf",
+      "name": "Virginia Woolf",
+      "birth_date": "1882-01-25",
+      "country": "United Kingdom",
+      "category": [
+        "literature"
+      ],
+      "featured_score": 9
+    },
+    "simone-de-beauvoir": {
+      "id": "simone-de-beauvoir",
+      "name": "Simone de Beauvoir",
+      "birth_date": "1908-01-09",
+      "country": "France",
+      "category": [
+        "philosophy"
+      ],
+      "featured_score": 8
+    },
+    "margaret-thatcher": {
+      "id": "margaret-thatcher",
+      "name": "Margaret Thatcher",
+      "birth_date": "1925-10-13",
+      "country": "United Kingdom",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 8
+    },
+    "angela-merkel": {
+      "id": "angela-merkel",
+      "name": "Angela Merkel",
+      "birth_date": "1954-07-17",
+      "country": "Germany",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 9
+    },
+    "kamala-harris": {
+      "id": "kamala-harris",
+      "name": "Kamala Harris",
+      "birth_date": "1964-10-20",
+      "country": "United States",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 8
+    },
+    "rbg": {
+      "id": "rbg",
+      "name": "Ruth Bader Ginsburg",
+      "birth_date": "1933-03-15",
+      "country": "United States",
+      "category": [
+        "law"
+      ],
+      "featured_score": 9
+    },
+    "oprah": {
+      "id": "oprah",
+      "name": "Oprah Winfrey",
+      "birth_date": "1954-01-29",
+      "country": "United States",
+      "category": [
+        "media",
+        "business"
+      ],
+      "featured_score": 9
+    },
+    "beyonce": {
+      "id": "beyonce",
+      "name": "Beyoncé",
+      "birth_date": "1981-09-04",
+      "country": "United States",
+      "category": [
+        "music"
+      ],
+      "featured_score": 9
+    },
+    "taylor-swift": {
+      "id": "taylor-swift",
+      "name": "Taylor Swift",
+      "birth_date": "1989-12-13",
+      "country": "United States",
+      "category": [
+        "music"
+      ],
+      "featured_score": 9
+    },
+    "serena-williams": {
+      "id": "serena-williams",
+      "name": "Serena Williams",
+      "birth_date": "1981-09-26",
+      "country": "United States",
+      "category": [
+        "sports"
+      ],
+      "featured_score": 9
+    },
+    "simone-biles": {
+      "id": "simone-biles",
+      "name": "Simone Biles",
+      "birth_date": "1997-03-14",
+      "country": "United States",
+      "category": [
+        "sports"
+      ],
+      "featured_score": 9
+    },
+    "coco-chanel": {
+      "id": "coco-chanel",
+      "name": "Coco Chanel",
+      "birth_date": "1883-08-19",
+      "country": "France",
+      "category": [
+        "fashion"
+      ],
+      "featured_score": 8
+    },
+    "princess-diana": {
+      "id": "princess-diana",
+      "name": "Princess Diana",
+      "birth_date": "1961-07-01",
+      "country": "United Kingdom",
+      "category": [
+        "public_figure"
+      ],
+      "featured_score": 9
+    },
+    "indira-gandhi": {
+      "id": "indira-gandhi",
+      "name": "Indira Gandhi",
+      "birth_date": "1917-11-19",
+      "country": "India",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 8
+    },
+    "aung-san-suu-kyi": {
+      "id": "aung-san-suu-kyi",
+      "name": "Aung San Suu Kyi",
+      "birth_date": "1945-06-19",
+      "country": "Myanmar",
+      "category": [
+        "politics"
+      ],
+      "featured_score": 7
+    },
+    "greta-thunberg": {
+      "id": "greta-thunberg",
+      "name": "Greta Thunberg",
+      "birth_date": "2003-01-03",
+      "country": "Sweden",
+      "category": [
+        "activism"
+      ],
+      "featured_score": 8
+    },
+    "amelia-earhart": {
+      "id": "amelia-earhart",
+      "name": "Amelia Earhart",
+      "birth_date": "1897-07-24",
+      "country": "United States",
+      "category": [
+        "aviation"
+      ],
+      "featured_score": 9
+    },
+    "florence-nightingale": {
+      "id": "florence-nightingale",
+      "name": "Florence Nightingale",
+      "birth_date": "1820-05-12",
+      "country": "United Kingdom",
+      "category": [
+        "medicine"
+      ],
+      "featured_score": 9
+    },
+    "mother-teresa": {
+      "id": "mother-teresa",
+      "name": "Mother Teresa",
+      "birth_date": "1910-08-26",
+      "country": "Albania/India",
+      "category": [
+        "humanitarian"
+      ],
+      "featured_score": 8
+    },
+    "hedy-lamarr": {
+      "id": "hedy-lamarr",
+      "name": "Hedy Lamarr",
+      "birth_date": "1914-11-09",
+      "country": "Austria/USA",
+      "category": [
+        "technology",
+        "film"
+      ],
+      "featured_score": 8
+    },
+    "sheryl-sandberg": {
+      "id": "sheryl-sandberg",
+      "name": "Sheryl Sandberg",
+      "birth_date": "1969-08-28",
+      "country": "United States",
+      "category": [
+        "business"
+      ],
+      "featured_score": 7
+    },
+    "melinda-french-gates": {
+      "id": "melinda-french-gates",
+      "name": "Melinda French Gates",
+      "birth_date": "1964-08-15",
+      "country": "United States",
+      "category": [
+        "philanthropy"
+      ],
+      "featured_score": 8
+    },
+    "queen-elizabeth-ii": {
+      "id": "queen-elizabeth-ii",
+      "name": "Queen Elizabeth II",
+      "birth_date": "1926-04-21",
+      "country": "United Kingdom",
+      "category": [
+        "royalty"
+      ],
+      "featured_score": 9
+    },
+    "cleopatra": {
+      "id": "cleopatra",
+      "name": "Cleopatra",
+      "birth_date": "-0069",
+      "country": "Egypt",
+      "category": [
+        "history",
+        "politics"
+      ],
+      "featured_score": 9
+    },
+    "joan-of-arc": {
+      "id": "joan-of-arc",
+      "name": "Joan of Arc",
+      "birth_date": "1412",
+      "country": "France",
+      "category": [
+        "history",
+        "military"
+      ],
+      "featured_score": 9
+    }
+  },
+  "daily_index": {
+    "01-01": {
+      "primary": "greta-thunberg",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-02": {
+      "primary": "greta-thunberg",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-03": {
+      "primary": "greta-thunberg",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "01-04": {
+      "primary": "greta-thunberg",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-05": {
+      "primary": "greta-thunberg",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-06": {
+      "primary": "simone-de-beauvoir",
+      "secondary": [
+        "greta-thunberg"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-07": {
+      "primary": "simone-de-beauvoir",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-08": {
+      "primary": "simone-de-beauvoir",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-09": {
+      "primary": "simone-de-beauvoir",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "01-10": {
+      "primary": "simone-de-beauvoir",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-11": {
+      "primary": "simone-de-beauvoir",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-12": {
+      "primary": "simone-de-beauvoir",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-13": {
+      "primary": "joan-of-arc",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-14": {
+      "primary": "malala",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-15": {
+      "primary": "oprah",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-16": {
+      "primary": "princess-diana",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-17": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-18": {
+      "primary": "rosalind-franklin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-19": {
+      "primary": "rbg",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-20": {
+      "primary": "serena-williams",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-21": {
+      "primary": "simone-biles",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "01-22": {
+      "primary": "virginia-woolf",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-23": {
+      "primary": "virginia-woolf",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-24": {
+      "primary": "soong-ching-ling",
+      "secondary": [
+        "virginia-woolf"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-25": {
+      "primary": "virginia-woolf",
+      "secondary": [
+        "soong-ching-ling"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "01-26": {
+      "primary": "soong-ching-ling",
+      "secondary": [
+        "virginia-woolf",
+        "oprah"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-27": {
+      "primary": "soong-ching-ling",
+      "secondary": [
+        "oprah",
+        "virginia-woolf"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "01-28": {
+      "primary": "oprah",
+      "secondary": [
+        "soong-ching-ling",
+        "virginia-woolf"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-29": {
+      "primary": "oprah",
+      "secondary": [
+        "soong-ching-ling"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "01-30": {
+      "primary": "soong-ching-ling",
+      "secondary": [
+        "oprah"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "01-31": {
+      "primary": "oprah",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-01": {
+      "primary": "deng-yingchao",
+      "secondary": [
+        "oprah"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-02": {
+      "primary": "deng-yingchao",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-03": {
+      "primary": "deng-yingchao",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-04": {
+      "primary": "deng-yingchao",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "02-05": {
+      "primary": "deng-yingchao",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-06": {
+      "primary": "deng-yingchao",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-07": {
+      "primary": "deng-yingchao",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-08": {
+      "primary": "bing-xin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-09": {
+      "primary": "lv-zhi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-10": {
+      "primary": "xiaozhuang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-11": {
+      "primary": "yang-jiang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-12": {
+      "primary": "qiu-jin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-13": {
+      "primary": "qin-liangyu",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-14": {
+      "primary": "wu-zetian",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-15": {
+      "primary": "wu-zetian",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-16": {
+      "primary": "wu-zetian",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-17": {
+      "primary": "wu-zetian",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "02-18": {
+      "primary": "wu-zetian",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-19": {
+      "primary": "wu-zetian",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-20": {
+      "primary": "wu-zetian",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "02-21": {
+      "primary": "he-xiangning",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-22": {
+      "primary": "liang-hongyu",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-23": {
+      "primary": "ban-zhao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-24": {
+      "primary": "mu-guiying",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-25": {
+      "primary": "cai-wenji",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-26": {
+      "primary": "ada-lovelace",
+      "secondary": [
+        "marie-curie",
+        "chien-shiung-wu",
+        "tu-youyou"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-27": {
+      "primary": "marie-curie",
+      "secondary": [
+        "ada-lovelace",
+        "chien-shiung-wu",
+        "tu-youyou"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-28": {
+      "primary": "chien-shiung-wu",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "tu-youyou"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "02-29": {
+      "primary": "tu-youyou",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-01": {
+      "primary": "wu-zetian",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-02": {
+      "primary": "amelia-earhart",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-03": {
+      "primary": "angela-merkel",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-04": {
+      "primary": "beyonce",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-05": {
+      "primary": "cleopatra",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-06": {
+      "primary": "florence-nightingale",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-07": {
+      "primary": "frida-kahlo",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-08": {
+      "primary": "jane-goodall",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-09": {
+      "primary": "joan-of-arc",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-10": {
+      "primary": "li-qingzhao",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-11": {
+      "primary": "simone-biles",
+      "secondary": [
+        "li-qingzhao"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-12": {
+      "primary": "li-qingzhao",
+      "secondary": [
+        "simone-biles",
+        "rbg"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-13": {
+      "primary": "li-qingzhao",
+      "secondary": [
+        "simone-biles",
+        "rbg"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "03-14": {
+      "primary": "simone-biles",
+      "secondary": [
+        "rbg",
+        "li-qingzhao"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "03-15": {
+      "primary": "rbg",
+      "secondary": [
+        "simone-biles",
+        "li-qingzhao"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "03-16": {
+      "primary": "simone-biles",
+      "secondary": [
+        "rbg",
+        "li-qingzhao"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-17": {
+      "primary": "rbg",
+      "secondary": [
+        "simone-biles"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-18": {
+      "primary": "rbg",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-19": {
+      "primary": "virginia-woolf",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-20": {
+      "primary": "soong-ching-ling",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-21": {
+      "primary": "eileen-chang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-22": {
+      "primary": "cixi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "03-23": {
+      "primary": "sanmao",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-24": {
+      "primary": "sanmao",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-25": {
+      "primary": "xiaozhuang",
+      "secondary": [
+        "sanmao"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-26": {
+      "primary": "sanmao",
+      "secondary": [
+        "xiaozhuang"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "03-27": {
+      "primary": "xiaozhuang",
+      "secondary": [
+        "sanmao"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-28": {
+      "primary": "xiaozhuang",
+      "secondary": [
+        "sanmao"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "03-29": {
+      "primary": "sanmao",
+      "secondary": [
+        "xiaozhuang"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-30": {
+      "primary": "xiaozhuang",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "03-31": {
+      "primary": "jane-goodall",
+      "secondary": [
+        "xiaozhuang"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-01": {
+      "primary": "jane-goodall",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-02": {
+      "primary": "jane-goodall",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-03": {
+      "primary": "jane-goodall",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "04-04": {
+      "primary": "jane-goodall",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-05": {
+      "primary": "jane-goodall",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-06": {
+      "primary": "jane-goodall",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-07": {
+      "primary": "yang-jiang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-08": {
+      "primary": "qiu-jin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-09": {
+      "primary": "qin-liangyu",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-10": {
+      "primary": "hua-mulan",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-11": {
+      "primary": "xiao-hong",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-12": {
+      "primary": "deng-yingchao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-13": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-14": {
+      "primary": "sheryl-sandberg",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-15": {
+      "primary": "ding-ling",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-16": {
+      "primary": "shangguan-waner",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-17": {
+      "primary": "he-xiangning",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-18": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-19": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-20": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-21": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "04-22": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-23": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-24": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "04-25": {
+      "primary": "tu-youyou",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-26": {
+      "primary": "wu-zetian",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-27": {
+      "primary": "amelia-earhart",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-28": {
+      "primary": "angela-merkel",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-29": {
+      "primary": "beyonce",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "04-30": {
+      "primary": "cleopatra",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-01": {
+      "primary": "florence-nightingale",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-02": {
+      "primary": "frida-kahlo",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-03": {
+      "primary": "jane-goodall",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-04": {
+      "primary": "joan-of-arc",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-05": {
+      "primary": "malala",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-06": {
+      "primary": "oprah",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-07": {
+      "primary": "princess-diana",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-08": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-09": {
+      "primary": "florence-nightingale",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-10": {
+      "primary": "florence-nightingale",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-11": {
+      "primary": "florence-nightingale",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-12": {
+      "primary": "florence-nightingale",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "05-13": {
+      "primary": "florence-nightingale",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-14": {
+      "primary": "florence-nightingale",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-15": {
+      "primary": "florence-nightingale",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-16": {
+      "primary": "eileen-chang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-17": {
+      "primary": "cixi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-18": {
+      "primary": "li-qingzhao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-19": {
+      "primary": "lin-huiyin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-20": {
+      "primary": "coco-chanel",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-21": {
+      "primary": "greta-thunberg",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-22": {
+      "primary": "hedy-lamarr",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-23": {
+      "primary": "indira-gandhi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-24": {
+      "primary": "kamala-harris",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-25": {
+      "primary": "margaret-thatcher",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-26": {
+      "primary": "melinda-french-gates",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-27": {
+      "primary": "mother-teresa",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "05-28": {
+      "primary": "chien-shiung-wu",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-29": {
+      "primary": "xiao-hong",
+      "secondary": [
+        "chien-shiung-wu"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-30": {
+      "primary": "chien-shiung-wu",
+      "secondary": [
+        "xiao-hong"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "05-31": {
+      "primary": "chien-shiung-wu",
+      "secondary": [
+        "xiao-hong"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "06-01": {
+      "primary": "xiao-hong",
+      "secondary": [
+        "chien-shiung-wu"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "06-02": {
+      "primary": "chien-shiung-wu",
+      "secondary": [
+        "xiao-hong"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-03": {
+      "primary": "xiao-hong",
+      "secondary": [
+        "chien-shiung-wu"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-04": {
+      "primary": "xiao-hong",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-05": {
+      "primary": "hua-mulan",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "06-06": {
+      "primary": "deng-yingchao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "06-07": {
+      "primary": "lin-huiyin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-08": {
+      "primary": "lin-huiyin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-09": {
+      "primary": "lin-huiyin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-10": {
+      "primary": "lin-huiyin",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "06-11": {
+      "primary": "lin-huiyin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-12": {
+      "primary": "lin-huiyin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-13": {
+      "primary": "lin-huiyin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-14": {
+      "primary": "ban-zhao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "06-15": {
+      "primary": "mu-guiying",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "06-16": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-17": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-18": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-19": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "06-20": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-21": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-22": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-23": {
+      "primary": "angela-merkel",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "06-24": {
+      "primary": "he-xiangning",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-25": {
+      "primary": "he-xiangning",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-26": {
+      "primary": "he-xiangning",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-27": {
+      "primary": "he-xiangning",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "06-28": {
+      "primary": "princess-diana",
+      "secondary": [
+        "he-xiangning"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-29": {
+      "primary": "he-xiangning",
+      "secondary": [
+        "princess-diana"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "06-30": {
+      "primary": "princess-diana",
+      "secondary": [
+        "he-xiangning"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-01": {
+      "primary": "princess-diana",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "07-02": {
+      "primary": "princess-diana",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-03": {
+      "primary": "frida-kahlo",
+      "secondary": [
+        "princess-diana"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-04": {
+      "primary": "princess-diana",
+      "secondary": [
+        "frida-kahlo"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-05": {
+      "primary": "frida-kahlo",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-06": {
+      "primary": "frida-kahlo",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "07-07": {
+      "primary": "frida-kahlo",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-08": {
+      "primary": "frida-kahlo",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-09": {
+      "primary": "malala",
+      "secondary": [
+        "frida-kahlo"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-10": {
+      "primary": "malala",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-11": {
+      "primary": "malala",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-12": {
+      "primary": "malala",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "07-13": {
+      "primary": "malala",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-14": {
+      "primary": "angela-merkel",
+      "secondary": [
+        "malala",
+        "yang-jiang"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-15": {
+      "primary": "yang-jiang",
+      "secondary": [
+        "angela-merkel",
+        "malala"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-16": {
+      "primary": "angela-merkel",
+      "secondary": [
+        "yang-jiang"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-17": {
+      "primary": "angela-merkel",
+      "secondary": [
+        "yang-jiang"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "07-18": {
+      "primary": "yang-jiang",
+      "secondary": [
+        "angela-merkel"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-19": {
+      "primary": "angela-merkel",
+      "secondary": [
+        "yang-jiang"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-20": {
+      "primary": "yang-jiang",
+      "secondary": [
+        "angela-merkel"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-21": {
+      "primary": "amelia-earhart",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-22": {
+      "primary": "rosalind-franklin",
+      "secondary": [
+        "amelia-earhart"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-23": {
+      "primary": "amelia-earhart",
+      "secondary": [
+        "rosalind-franklin"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-24": {
+      "primary": "amelia-earhart",
+      "secondary": [
+        "rosalind-franklin"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "07-25": {
+      "primary": "rosalind-franklin",
+      "secondary": [
+        "amelia-earhart"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "07-26": {
+      "primary": "amelia-earhart",
+      "secondary": [
+        "rosalind-franklin"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-27": {
+      "primary": "rosalind-franklin",
+      "secondary": [
+        "amelia-earhart"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-28": {
+      "primary": "rosalind-franklin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "07-29": {
+      "primary": "qiu-jin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "07-30": {
+      "primary": "qin-liangyu",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "07-31": {
+      "primary": "hua-mulan",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-01": {
+      "primary": "xiao-hong",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-02": {
+      "primary": "deng-yingchao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-03": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-04": {
+      "primary": "sheryl-sandberg",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-05": {
+      "primary": "ding-ling",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-06": {
+      "primary": "shangguan-waner",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-07": {
+      "primary": "he-xiangning",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-08": {
+      "primary": "liang-hongyu",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-09": {
+      "primary": "ban-zhao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-10": {
+      "primary": "mu-guiying",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-11": {
+      "primary": "cai-wenji",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "08-12": {
+      "primary": "melinda-french-gates",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-13": {
+      "primary": "melinda-french-gates",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-14": {
+      "primary": "melinda-french-gates",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-15": {
+      "primary": "melinda-french-gates",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "08-16": {
+      "primary": "coco-chanel",
+      "secondary": [
+        "melinda-french-gates"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-17": {
+      "primary": "melinda-french-gates",
+      "secondary": [
+        "coco-chanel"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-18": {
+      "primary": "coco-chanel",
+      "secondary": [
+        "melinda-french-gates"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-19": {
+      "primary": "coco-chanel",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "08-20": {
+      "primary": "coco-chanel",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-21": {
+      "primary": "coco-chanel",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-22": {
+      "primary": "coco-chanel",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-23": {
+      "primary": "mother-teresa",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-24": {
+      "primary": "mother-teresa",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-25": {
+      "primary": "sheryl-sandberg",
+      "secondary": [
+        "mother-teresa"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-26": {
+      "primary": "mother-teresa",
+      "secondary": [
+        "sheryl-sandberg"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "08-27": {
+      "primary": "sheryl-sandberg",
+      "secondary": [
+        "mother-teresa"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-28": {
+      "primary": "sheryl-sandberg",
+      "secondary": [
+        "mother-teresa"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "08-29": {
+      "primary": "mother-teresa",
+      "secondary": [
+        "sheryl-sandberg"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-30": {
+      "primary": "sheryl-sandberg",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "08-31": {
+      "primary": "sheryl-sandberg",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-01": {
+      "primary": "beyonce",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-02": {
+      "primary": "beyonce",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-03": {
+      "primary": "beyonce",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-04": {
+      "primary": "beyonce",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "09-05": {
+      "primary": "beyonce",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-06": {
+      "primary": "beyonce",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-07": {
+      "primary": "beyonce",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-08": {
+      "primary": "lin-huiyin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-09": {
+      "primary": "coco-chanel",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-10": {
+      "primary": "greta-thunberg",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-11": {
+      "primary": "hedy-lamarr",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-12": {
+      "primary": "indira-gandhi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-13": {
+      "primary": "kamala-harris",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-14": {
+      "primary": "margaret-thatcher",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-15": {
+      "primary": "melinda-french-gates",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-16": {
+      "primary": "mother-teresa",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-17": {
+      "primary": "simone-de-beauvoir",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-18": {
+      "primary": "sanmao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-19": {
+      "primary": "bing-xin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-20": {
+      "primary": "lv-zhi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-21": {
+      "primary": "xiaozhuang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-22": {
+      "primary": "yang-jiang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "09-23": {
+      "primary": "serena-williams",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-24": {
+      "primary": "serena-williams",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-25": {
+      "primary": "serena-williams",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-26": {
+      "primary": "serena-williams",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "09-27": {
+      "primary": "eileen-chang",
+      "secondary": [
+        "serena-williams"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-28": {
+      "primary": "serena-williams",
+      "secondary": [
+        "eileen-chang"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-29": {
+      "primary": "eileen-chang",
+      "secondary": [
+        "serena-williams"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "09-30": {
+      "primary": "eileen-chang",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "10-01": {
+      "primary": "eileen-chang",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-02": {
+      "primary": "bing-xin",
+      "secondary": [
+        "eileen-chang"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-03": {
+      "primary": "eileen-chang",
+      "secondary": [
+        "bing-xin"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-04": {
+      "primary": "bing-xin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-05": {
+      "primary": "bing-xin",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "10-06": {
+      "primary": "bing-xin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-07": {
+      "primary": "bing-xin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-08": {
+      "primary": "bing-xin",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-09": {
+      "primary": "ding-ling",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-10": {
+      "primary": "margaret-thatcher",
+      "secondary": [
+        "ding-ling"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-11": {
+      "primary": "ding-ling",
+      "secondary": [
+        "margaret-thatcher"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-12": {
+      "primary": "ding-ling",
+      "secondary": [
+        "margaret-thatcher"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "10-13": {
+      "primary": "margaret-thatcher",
+      "secondary": [
+        "ding-ling"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "10-14": {
+      "primary": "ding-ling",
+      "secondary": [
+        "margaret-thatcher"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-15": {
+      "primary": "margaret-thatcher",
+      "secondary": [
+        "ding-ling"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-16": {
+      "primary": "margaret-thatcher",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-17": {
+      "primary": "kamala-harris",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-18": {
+      "primary": "kamala-harris",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-19": {
+      "primary": "kamala-harris",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-20": {
+      "primary": "kamala-harris",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "10-21": {
+      "primary": "kamala-harris",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-22": {
+      "primary": "kamala-harris",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-23": {
+      "primary": "kamala-harris",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "10-24": {
+      "primary": "rosalind-franklin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "10-25": {
+      "primary": "rbg",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "10-26": {
+      "primary": "serena-williams",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "10-27": {
+      "primary": "simone-biles",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "10-28": {
+      "primary": "taylor-swift",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "10-29": {
+      "primary": "virginia-woolf",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "10-30": {
+      "primary": "soong-ching-ling",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "10-31": {
+      "primary": "eileen-chang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-01": {
+      "primary": "cixi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-02": {
+      "primary": "li-qingzhao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-03": {
+      "primary": "lin-huiyin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-04": {
+      "primary": "marie-curie",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-05": {
+      "primary": "qiu-jin",
+      "secondary": [
+        "marie-curie"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-06": {
+      "primary": "marie-curie",
+      "secondary": [
+        "qiu-jin",
+        "hedy-lamarr"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-07": {
+      "primary": "marie-curie",
+      "secondary": [
+        "qiu-jin",
+        "hedy-lamarr"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "11-08": {
+      "primary": "qiu-jin",
+      "secondary": [
+        "marie-curie",
+        "hedy-lamarr"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "11-09": {
+      "primary": "hedy-lamarr",
+      "secondary": [
+        "qiu-jin",
+        "marie-curie"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "11-10": {
+      "primary": "qiu-jin",
+      "secondary": [
+        "hedy-lamarr",
+        "marie-curie"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-11": {
+      "primary": "hedy-lamarr",
+      "secondary": [
+        "qiu-jin"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-12": {
+      "primary": "hedy-lamarr",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-13": {
+      "primary": "sanmao",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-14": {
+      "primary": "bing-xin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-15": {
+      "primary": "lv-zhi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-16": {
+      "primary": "indira-gandhi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-17": {
+      "primary": "indira-gandhi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-18": {
+      "primary": "indira-gandhi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-19": {
+      "primary": "indira-gandhi",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "11-20": {
+      "primary": "indira-gandhi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-21": {
+      "primary": "indira-gandhi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-22": {
+      "primary": "indira-gandhi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-23": {
+      "primary": "aung-san-suu-kyi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-24": {
+      "primary": "sheryl-sandberg",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-25": {
+      "primary": "ding-ling",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "11-26": {
+      "primary": "cixi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-27": {
+      "primary": "cixi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-28": {
+      "primary": "cixi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "11-29": {
+      "primary": "cixi",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "11-30": {
+      "primary": "cixi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-01": {
+      "primary": "cixi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-02": {
+      "primary": "cixi",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-03": {
+      "primary": "marie-curie",
+      "secondary": [
+        "ada-lovelace",
+        "chien-shiung-wu",
+        "tu-youyou"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-04": {
+      "primary": "chien-shiung-wu",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "tu-youyou"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-05": {
+      "primary": "tu-youyou",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-06": {
+      "primary": "wu-zetian",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-07": {
+      "primary": "ada-lovelace",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-08": {
+      "primary": "ada-lovelace",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-09": {
+      "primary": "ada-lovelace",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-10": {
+      "primary": "ada-lovelace",
+      "secondary": [
+        "taylor-swift"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "12-11": {
+      "primary": "taylor-swift",
+      "secondary": [
+        "ada-lovelace"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-12": {
+      "primary": "ada-lovelace",
+      "secondary": [
+        "taylor-swift"
+      ],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-13": {
+      "primary": "taylor-swift",
+      "secondary": [
+        "ada-lovelace"
+      ],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "12-14": {
+      "primary": "taylor-swift",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-15": {
+      "primary": "taylor-swift",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-16": {
+      "primary": "taylor-swift",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-17": {
+      "primary": "princess-diana",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-18": {
+      "primary": "queen-elizabeth-ii",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-19": {
+      "primary": "rosalind-franklin",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-20": {
+      "primary": "rbg",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-21": {
+      "primary": "serena-williams",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-22": {
+      "primary": "simone-biles",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-23": {
+      "primary": "virginia-woolf",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-24": {
+      "primary": "soong-ching-ling",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-25": {
+      "primary": "eileen-chang",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-26": {
+      "primary": "cixi",
+      "secondary": [
+        "ada-lovelace",
+        "marie-curie",
+        "chien-shiung-wu"
+      ],
+      "label": "Featured from history",
+      "fallback_level": 2,
+      "selection_reason": "editorial_featured_fallback"
+    },
+    "12-27": {
+      "primary": "tu-youyou",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-28": {
+      "primary": "tu-youyou",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-29": {
+      "primary": "tu-youyou",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    },
+    "12-30": {
+      "primary": "tu-youyou",
+      "secondary": [],
+      "label": "Born on this day",
+      "fallback_level": 0,
+      "selection_reason": "exact_birth_match"
+    },
+    "12-31": {
+      "primary": "tu-youyou",
+      "secondary": [],
+      "label": "Around this date",
+      "fallback_level": 1,
+      "selection_reason": "nearby_birth_match"
+    }
+  }
+}
