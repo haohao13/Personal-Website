@@ -1,25 +1,5 @@
 import { NextResponse } from "next/server";
-import { WOMEN_DATA, WomanEntry } from "@/data/women-data";
-import dailyIndex from "@/data/daily-index.json";
-
-type DailyEntry = {
-  primary: string;
-  secondary: string[];
-  label: string;
-  fallback_level: number;
-};
-
-// Strip trailing "-month-day" to get base id, e.g. "virginia-woolf-1-25" → "virginia-woolf"
-function getBaseId(id: string): string {
-  return id.replace(/-\d+-\d+$/, "");
-}
-
-// Map: base-id → first WOMEN_DATA entry with that base
-const BASE_MAP = new Map<string, WomanEntry>();
-for (const e of WOMEN_DATA) {
-  const base = getBaseId(e.id);
-  if (!BASE_MAP.has(base)) BASE_MAP.set(base, e);
-}
+import { WOMEN_DATA } from "@/data/women-data";
 
 function dayDiff(m1: number, d1: number, m2: number, d2: number): number {
   const a = new Date(2000, m1 - 1, d1).getTime();
@@ -42,8 +22,9 @@ export async function GET(req: Request) {
     return NextResponse.json({ entries: exact, matchLabel: "Born on this day", matchLevel: 0 });
   }
 
-  // ── Level 1: nearest entry within ±3 days ──
+  // ── Level 1: nearest entry within ±3 days (only entries with known month/day) ──
   const nearby = WOMEN_DATA
+    .filter(e => e.day > 0)
     .map(e => ({ e, diff: dayDiff(e.month, e.day, month, day) }))
     .filter(({ diff }) => diff > 0 && diff <= 3)
     .sort((a, b) => a.diff - b.diff);
@@ -60,23 +41,24 @@ export async function GET(req: Request) {
     return NextResponse.json({ entries: [nearby[0].e], matchLabel: "Born around this time", matchLevel: 1 });
   }
 
-  // ── Level 2: daily-index guided featured pick ──
-  const mm = String(month).padStart(2, "0");
-  const dd = String(day).padStart(2, "0");
-  const key = `${mm}-${dd}`;
-  const idx = (dailyIndex.daily_index as Record<string, DailyEntry>)[key];
+  // ── Level 2: figures with no specific birth month/day ──
+  // Pool: entries where day === 0 (birth date approximate or unknown)
+  const noDatePool = WOMEN_DATA.filter(e => e.day === 0);
 
-  if (idx) {
-    const candidates = [idx.primary, ...idx.secondary];
-    for (const personId of candidates) {
-      const entry = BASE_MAP.get(personId);
-      if (entry) {
-        return NextResponse.json({ entries: [entry], matchLabel: "Featured from history", matchLevel: 2 });
-      }
-    }
+  if (noDatePool.length > 0) {
+    // Priority: same birth month if the entry's birthDate mentions it
+    const MONTH_NAMES = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December",
+    ];
+    const currentMonthName = MONTH_NAMES[month - 1];
+    const sameMonthPool = noDatePool.filter(e => e.birthDate.includes(currentMonthName));
+    const pool = sameMonthPool.length > 0 ? sameMonthPool : noDatePool;
+    const seed = (month * 31 + day) % pool.length;
+    return NextResponse.json({ entries: [pool[seed]], matchLabel: "Featured from history", matchLevel: 2 });
   }
 
-  // Last resort: deterministic pick from full dataset
-  const seed = (month * 31 + day) % WOMEN_DATA.length;
-  return NextResponse.json({ entries: [WOMEN_DATA[seed]], matchLabel: "Featured from history", matchLevel: 2 });
+  // Absolute fallback (should not be reached in practice)
+  const fallbackSeed = (month * 31 + day) % WOMEN_DATA.length;
+  return NextResponse.json({ entries: [WOMEN_DATA[fallbackSeed]], matchLabel: "Featured from history", matchLevel: 2 });
 }
