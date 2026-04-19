@@ -306,21 +306,22 @@ export default function WomenPage(){
                       onClick={async ()=>{
                         if(!cardRef.current||!selectedEntry) return;
                         try{
-                          const clone = cardRef.current.cloneNode(true) as HTMLDivElement;
-                          const wrapper = document.createElement("div");
-                          Object.assign(wrapper.style, {
-                            position:"fixed", top:"-9999px", left:"-9999px",
-                            borderRadius:"16px",
-                            border:"1px solid rgba(255,255,255,0.10)",
-                            background:"linear-gradient(to bottom,#1a1333,#0b0616)",
-                            padding:"24px",
-                            color:"white",
-                            width: cardRef.current.offsetWidth+"px",
-                          });
-                          wrapper.appendChild(clone);
-                          document.body.appendChild(wrapper);
-                          const dataUrl = await toPng(wrapper, {cacheBust:true, backgroundColor:'#0b0616'});
-                          document.body.removeChild(wrapper);
+                          const el = cardRef.current;
+                          const prev = {
+                            background: el.style.background,
+                            border: el.style.border,
+                            borderRadius: el.style.borderRadius,
+                            padding: el.style.padding,
+                          };
+                          el.style.background = "linear-gradient(to bottom,#1a1333,#0b0616)";
+                          el.style.border = "1px solid rgba(255,255,255,0.10)";
+                          el.style.borderRadius = "16px";
+                          el.style.padding = "24px";
+                          const dataUrl = await toPng(el, {cacheBust:true});
+                          el.style.background = prev.background;
+                          el.style.border = prev.border;
+                          el.style.borderRadius = prev.borderRadius;
+                          el.style.padding = prev.padding;
                           const link = document.createElement("a");
                           link.download = `${selectedEntry.name}.png`;
                           link.href = dataUrl;
