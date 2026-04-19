@@ -248,11 +248,7 @@ export default function WomenPage(){
                 </p>
               </div>
             ) : selectedEntry ? (
-              <div
-                ref={cardRef}
-                style={{borderRadius:'16px',border:'1px solid rgba(255,255,255,0.10)',background:'linear-gradient(to bottom,#1a1333,#0b0616)',padding:'24px'}}
-              >
-              <div className="space-y-4">
+              <div className="space-y-4" ref={cardRef}>
                 <div className="relative h-64 rounded-xl overflow-hidden">
                   <PortraitImage src={selectedEntry.image} alt={selectedEntry.imageAlt}/>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"/>
@@ -310,7 +306,21 @@ export default function WomenPage(){
                       onClick={async ()=>{
                         if(!cardRef.current||!selectedEntry) return;
                         try{
-                          const dataUrl = await toPng(cardRef.current, {cacheBust:true, backgroundColor:'#0b0616'});
+                          const clone = cardRef.current.cloneNode(true) as HTMLDivElement;
+                          const wrapper = document.createElement("div");
+                          Object.assign(wrapper.style, {
+                            position:"fixed", top:"-9999px", left:"-9999px",
+                            borderRadius:"16px",
+                            border:"1px solid rgba(255,255,255,0.10)",
+                            background:"linear-gradient(to bottom,#1a1333,#0b0616)",
+                            padding:"24px",
+                            color:"white",
+                            width: cardRef.current.offsetWidth+"px",
+                          });
+                          wrapper.appendChild(clone);
+                          document.body.appendChild(wrapper);
+                          const dataUrl = await toPng(wrapper, {cacheBust:true, backgroundColor:'#0b0616'});
+                          document.body.removeChild(wrapper);
                           const link = document.createElement("a");
                           link.download = `${selectedEntry.name}.png`;
                           link.href = dataUrl;
@@ -331,7 +341,6 @@ export default function WomenPage(){
                       Wikipedia
                     </a>
                   </div>
-              </div>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
