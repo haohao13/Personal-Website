@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { toPng } from "html-to-image";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -133,6 +134,7 @@ async function fetchWomenFromAPI(month:number,day:number):Promise<{entries:Woman
 
 export default function WomenPage(){
   const today=new Date();
+  const cardRef=useRef<HTMLDivElement>(null);
   const [displayYear,setDisplayYear]=useState(today.getFullYear());
   const [displayMonth,setDisplayMonth]=useState(today.getMonth());
   const [selectedDay,setSelectedDay]=useState(today.getDate());
@@ -240,7 +242,7 @@ export default function WomenPage(){
                 </p>
               </div>
             ) : selectedEntry ? (
-              <div className="space-y-4">
+              <div className="space-y-4" ref={cardRef}>
                 <div className="relative h-64 rounded-xl overflow-hidden">
                   <PortraitImage src={selectedEntry.image} alt={selectedEntry.imageAlt}/>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"/>
@@ -261,7 +263,9 @@ export default function WomenPage(){
                             : "bg-white/10 border-white/15 text-white/60"
                         )}>{matchLabel}</span>
                       ) : null}
-                      {selectedEntry.field ? <Pill>{selectedEntry.field}</Pill> : null}
+                      {selectedEntry.field
+                        ? selectedEntry.field.split(" / ").map(f => <Pill key={f}>{f}</Pill>)
+                        : null}
                     </div>
                     {apiEntries.length>1 && (
                       <button
@@ -293,59 +297,15 @@ export default function WomenPage(){
                     </button>
 
                     <button
-                      onClick={()=>{
-                        if(!selectedEntry) return;
-
-                        const canvas = document.createElement("canvas");
-                        const width = 800;
-                        const height = 1000;
-                        canvas.width = width;
-                        canvas.height = height;
-                        const ctx = canvas.getContext("2d");
-                        if(!ctx) return;
-
-                        const grad = ctx.createLinearGradient(0,0,0,height);
-                        grad.addColorStop(0,"#1a1333");
-                        grad.addColorStop(1,"#0b0616");
-                        ctx.fillStyle = grad;
-                        ctx.fillRect(0,0,width,height);
-
-                        ctx.fillStyle = "#ffffff";
-                        ctx.font = "bold 48px sans-serif";
-                        ctx.fillText(selectedEntry.name, 60, 120);
-
-                        ctx.fillStyle = "#c4b5fd";
-                        ctx.font = "24px sans-serif";
-                        ctx.fillText(dateLabel, 60, 170);
-
-                        ctx.fillStyle = "#ddd6fe";
-                        ctx.font = "22px sans-serif";
-
-                        const words = selectedEntry.bio.split(" ");
-                        let line = "";
-                        let y = 240;
-
-                        for(const w of words){
-                          const test = line + w + " ";
-                          const m = ctx.measureText(test);
-                          if(m.width > 680){
-                            ctx.fillText(line,60,y);
-                            line = w + " ";
-                            y += 32;
-                          } else {
-                            line = test;
-                          }
-                        }
-                        ctx.fillText(line,60,y);
-
-                        ctx.fillStyle = "#a78bfa";
-                        ctx.font = "20px sans-serif";
-                        ctx.fillText("haoabouts.com/women", 60, height - 80);
-
-                        const link = document.createElement("a");
-                        link.download = `${selectedEntry.name}.png`;
-                        link.href = canvas.toDataURL();
-                        link.click();
+                      onClick={async ()=>{
+                        if(!cardRef.current||!selectedEntry) return;
+                        try{
+                          const dataUrl = await toPng(cardRef.current, {cacheBust:true});
+                          const link = document.createElement("a");
+                          link.download = `${selectedEntry.name}.png`;
+                          link.href = dataUrl;
+                          link.click();
+                        }catch{}
                       }}
                       className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10"
                     >
