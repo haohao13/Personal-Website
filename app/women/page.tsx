@@ -132,9 +132,16 @@ async function fetchWomenFromAPI(month:number,day:number):Promise<{entries:Woman
   };
 }
 
+function getWikiUrl(name: string): string {
+  const parenMatch = name.match(/\(([^)]+)\)/);
+  const englishName = parenMatch ? parenMatch[1] : name;
+  return `https://en.wikipedia.org/wiki/${englishName.replace(/ /g, '_')}`;
+}
+
 export default function WomenPage(){
   const today=new Date();
   const cardRef=useRef<HTMLDivElement>(null);
+  const saveCardRef=useRef<HTMLDivElement>(null);
   const [displayYear,setDisplayYear]=useState(today.getFullYear());
   const [displayMonth,setDisplayMonth]=useState(today.getMonth());
   const [selectedDay,setSelectedDay]=useState(today.getDate());
@@ -282,7 +289,7 @@ export default function WomenPage(){
 
                 <p className="text-violet-300 leading-relaxed">{selectedEntry.bio}</p>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap">
                     <button
                       onClick={async ()=>{
                         try{
@@ -300,7 +307,7 @@ export default function WomenPage(){
                       onClick={async ()=>{
                         if(!cardRef.current||!selectedEntry) return;
                         try{
-                          const dataUrl = await toPng(cardRef.current, {cacheBust:true});
+                          const dataUrl = await toPng(cardRef.current, {cacheBust:true, backgroundColor:'#0b0616'});
                           const link = document.createElement("a");
                           link.download = `${selectedEntry.name}.png`;
                           link.href = dataUrl;
@@ -311,6 +318,49 @@ export default function WomenPage(){
                     >
                       Download
                     </button>
+
+                    <button
+                      onClick={async ()=>{
+                        if(!saveCardRef.current||!selectedEntry) return;
+                        try{
+                          const dataUrl = await toPng(saveCardRef.current, {cacheBust:true, width:1080, height:1920});
+                          const link = document.createElement("a");
+                          link.download = `${selectedEntry.name}_story.png`;
+                          link.href = dataUrl;
+                          link.click();
+                        }catch{}
+                      }}
+                      className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10"
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      onClick={async ()=>{
+                        if(!selectedEntry) return;
+                        const url = "https://haoabouts.com/women";
+                        const text = `${selectedEntry.name}\n${selectedEntry.birthDate}\n${selectedEntry.bio.slice(0,120)}...`;
+                        if(navigator.share){
+                          try{ await navigator.share({title:selectedEntry.name, text, url}); }catch{}
+                        } else {
+                          await navigator.clipboard.writeText(`${text}\n${url}`);
+                          setCopied(true);
+                          setTimeout(()=>setCopied(false),1500);
+                        }
+                      }}
+                      className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10"
+                    >
+                      Share
+                    </button>
+
+                    <a
+                      href={getWikiUrl(selectedEntry.name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10 inline-flex items-center"
+                    >
+                      Wikipedia
+                    </a>
                   </div>
               </div>
             ) : (
@@ -362,6 +412,62 @@ export default function WomenPage(){
 
         </div>
       </div>
+
+      {/* Hidden 9:16 save card for Instagram stories / mobile */}
+      {selectedEntry && (
+        <div
+          ref={saveCardRef}
+          style={{
+            position:"fixed", top:"-9999px", left:"-9999px",
+            width:"1080px", height:"1920px",
+            background:"linear-gradient(to bottom, #1a1333 0%, #0b0616 100%)",
+            display:"flex", flexDirection:"column",
+            padding:"80px", boxSizing:"border-box",
+            fontFamily:"system-ui, sans-serif",
+          }}
+        >
+          <div style={{fontSize:"28px",color:"#a78bfa",marginBottom:"48px",letterSpacing:"0.05em"}}>
+            hao about women · {dateLabel}
+          </div>
+
+          <div style={{flex:"0 0 780px",borderRadius:"24px",overflow:"hidden",background:"#0d0a1a",marginBottom:"56px",position:"relative"}}>
+            <img
+              src={selectedEntry.image}
+              alt={selectedEntry.imageAlt}
+              style={{width:"100%",height:"100%",objectFit:"contain",display:"block"}}
+            />
+          </div>
+
+          <div style={{fontSize:"72px",fontWeight:700,color:"#ffffff",marginBottom:"24px",lineHeight:1.1}}>
+            {selectedEntry.name}
+          </div>
+
+          <div style={{fontSize:"36px",color:"#c4b5fd",marginBottom:"36px"}}>
+            {formatDateRange(selectedEntry)}
+          </div>
+
+          {selectedEntry.field && (
+            <div style={{display:"flex",gap:"16px",flexWrap:"wrap",marginBottom:"48px"}}>
+              {selectedEntry.field.split(" / ").map(f=>(
+                <span key={f} style={{
+                  background:"rgba(255,255,255,0.10)",
+                  border:"1px solid rgba(255,255,255,0.15)",
+                  borderRadius:"999px",padding:"10px 28px",
+                  fontSize:"28px",color:"#ddd6fe",
+                }}>{f}</span>
+              ))}
+            </div>
+          )}
+
+          <div style={{fontSize:"34px",color:"#c4b5fd",lineHeight:1.65,flex:1,overflow:"hidden"}}>
+            {selectedEntry.bio}
+          </div>
+
+          <div style={{fontSize:"28px",color:"#7c3aed",marginTop:"48px",letterSpacing:"0.02em"}}>
+            haoabouts.com/women
+          </div>
+        </div>
+      )}
     </main>
   );
 }
