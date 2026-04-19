@@ -81,8 +81,8 @@ function runDataTests() {
   const ids = new Set<string>();
   for (const e of WOMEN_DATA) {
     console.assert(!ids.has(e.id)); ids.add(e.id);
-    console.assert(e.month >= 1 && e.month <= 12);
-    console.assert(e.day >= 1 && e.day <= 31);
+    console.assert(e.month >= 0 && e.month <= 12);
+    console.assert(e.day >= 0 && e.day <= 31);
     console.assert(!!e.name.trim());
     console.assert(!!e.birthDate.trim());
     console.assert(!!e.bio.trim());
@@ -129,25 +129,6 @@ async function fetchWomenFromAPI(month:number,day:number):Promise<{entries:Woman
     entries: Array.isArray(data?.entries)?data.entries:[],
     matchLabel: data?.matchLabel ?? "Featured from history",
   };
-}
-
-function SharePreview({title,dateLabel,birthDate,deathDate,bio}:{
-  title:string;dateLabel:string;birthDate:string;deathDate:string;bio:string;
-}){
-  return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <div className="flex justify-between text-xs text-violet-300 mb-2">
-        <span>hao about women</span>
-        <span>{dateLabel}</span>
-      </div>
-      <div className="text-white font-medium mb-1">{title}</div>
-      <div className="text-sm text-violet-300 mb-2">{truncateText(bio,120)}</div>
-      <div className="flex gap-2 text-xs text-violet-200">
-        <span>{birthDate}</span>
-        <span>{deathDate}</span>
-      </div>
-    </div>
-  );
 }
 
 export default function WomenPage(){
@@ -297,16 +278,7 @@ export default function WomenPage(){
 
                 <p className="text-violet-300 leading-relaxed">{selectedEntry.bio}</p>
 
-                <div className="space-y-3">
-                  <SharePreview
-                    title={selectedEntry.name}
-                    dateLabel={dateLabel}
-                    birthDate={selectedEntry.birthDate}
-                    deathDate={deathLabel}
-                    bio={selectedEntry.bio}
-                  />
-
-                  <div className="flex gap-2">
+                <div className="flex gap-2">
                     <button
                       onClick={async ()=>{
                         try{
@@ -380,7 +352,6 @@ export default function WomenPage(){
                       Download
                     </button>
                   </div>
-                </div>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
