@@ -65,13 +65,15 @@ const MONTH_NUMS: Record<string,number> = {
 function formatDateRange(entry: WomanEntry): string {
   const bm = entry.birthDate.match(/\d{3,4}/);
   const birthYear = bm ? bm[0] : "?";
-  const birth = `${birthYear}.${entry.month}.${entry.day}`;
+  const mo = entry.month > 0 ? String(entry.month) : "?";
+  const dy = entry.day > 0 ? String(entry.day) : "?";
+  const birth = mo === "?" && dy === "?" ? birthYear : `${birthYear}.${mo}.${dy}`;
   if (!entry.deathDate) return birth;
   // Try "Month D, YYYY"
   const full = entry.deathDate.match(/^([A-Za-z]+)\s+(\d+),\s*(\d{4})$/);
   if (full) {
-    const mo = MONTH_NUMS[full[1].toLowerCase()];
-    if (mo) return `${birth} – ${full[3]}.${mo}.${full[2]}`;
+    const mn = MONTH_NUMS[full[1].toLowerCase()];
+    if (mn) return `${birth} – ${full[3]}.${mn}.${full[2]}`;
   }
   // Fall back: extract year
   const dm = entry.deathDate.match(/\d{3,4}/);
@@ -189,9 +191,7 @@ export default function WomenPage(){
 
   function shuffleEntry(){
     if(apiEntries.length<=1)return;
-    let next:number;
-    do{next=Math.floor(Math.random()*apiEntries.length);}while(next===poolIndex);
-    setPoolIndex(next);
+    setPoolIndex(i=>(i+1)%apiEntries.length);
   }
 
   const dateLabel=formatSelectedLabel(displayMonth,selectedDay);
