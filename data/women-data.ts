@@ -1807,7 +1807,7 @@ export const WOMEN_DATA: WomanEntry[] = [
     month: 5, day: 21,
     birthDate: "May 21, 1991",
     bio: "Chinese film director and screenwriter whose B for Busy and Her Story marked her as one of the sharpest new voices in contemporary Chinese cinema. Her work is especially noted for its wit, urban specificity, and unusually textured portrayals of women, intimacy, and modern metropolitan life.",
-    image: "http://img2.chinadaily.com.cn/images/202412/20/6764a0e9a310f1268d86f430.jpeg",
+    image: "https://bkimg.cdn.bcebos.com/pic/7dd98d1001e93901213f1acfbab543e736d12e2e38b2",
     imageAlt: "邵艺辉 (Shao Yihui)",
     nationality: "Chinese", field: "Cinema / Screenwriting",
   },

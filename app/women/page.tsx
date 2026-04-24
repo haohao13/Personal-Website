@@ -1,34 +1,15 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { toPng } from "html-to-image";
-import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowLeft,
-  CalendarDays,
   ChevronLeft,
   ChevronRight,
-  Copy,
-  Share2,
-  Sparkles,
   Venus,
 } from "lucide-react";
-
-type WomanEntry = {
-  id: string;
-  name: string;
-  month: number;
-  day: number;
-  birthDate: string;
-  deathDate?: string;
-  bio: string;
-  image: string;
-  imageAlt: string;
-  nationality?: string;
-  field?: string;
-};
-
-const WOMEN_DATA: WomanEntry[] = [];
+import { WOMEN_DATA, type WomanEntry } from "@/data/women-data";
 
 const MONTHS = [
   "January","February","March","April","May","June",
@@ -121,7 +102,17 @@ function PortraitImage({src,alt}:{src:string;alt:string}){
       </div>
     );
   }
-  return <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-contain" style={{background:"#0d0a1a"}} onError={()=>setImgError(true)}/>;
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      unoptimized
+      className="object-contain"
+      style={{background:"#0d0a1a"}}
+      onError={()=>setImgError(true)}
+    />
+  );
 }
 
 async function fetchWomenFromAPI(month:number,day:number):Promise<{entries:WomanEntry[];matchLabel:string}> {
@@ -146,6 +137,7 @@ export default function WomenPage(){
   const [displayYear,setDisplayYear]=useState(today.getFullYear());
   const [displayMonth,setDisplayMonth]=useState(today.getMonth());
   const [selectedDay,setSelectedDay]=useState(today.getDate());
+  const [showUndatedList,setShowUndatedList]=useState(false);
   const [apiEntries,setApiEntries]=useState<WomanEntry[]>([]);
   const [poolIndex,setPoolIndex]=useState(0);
   const [matchLabel,setMatchLabel]=useState<string>("");
@@ -167,7 +159,7 @@ export default function WomenPage(){
       try{
         const {entries:e, matchLabel:ml}=await fetchWomenFromAPI(displayMonth+1,selectedDay);
         if(!cancelled){ setApiEntries(e); setMatchLabel(ml); setPoolIndex(0); }
-      }catch(err){
+      }catch{
         if(!cancelled){setApiEntries([]);setLoadError("load error");}
       }finally{if(!cancelled) setIsLoading(false);} 
     })();
@@ -177,7 +169,7 @@ export default function WomenPage(){
   const monthDays=useMemo(()=>{
     const total=daysInMonth(displayYear,displayMonth);
     const start=getFirstDayOfMonth(displayYear,displayMonth);
-    const cells:any[]=[];
+    const cells: Array<{type:"empty"} | {type:"day"; value:number}> = [];
     for(let i=0;i<start;i++)cells.push({type:"empty"});
     for(let d=1;d<=total;d++)cells.push({type:"day",value:d});
     while(cells.length%7!==0)cells.push({type:"empty"});
@@ -188,6 +180,11 @@ export default function WomenPage(){
     if(apiEntries.length>0)return apiEntries[poolIndex]??apiEntries[0];
     return getFeaturedEntry(displayMonth+1,selectedDay);
   },[apiEntries,displayMonth,selectedDay,poolIndex]);
+
+  const undatedEntries = useMemo(
+    () => WOMEN_DATA.filter((entry) => entry.day === 0).sort((a, b) => a.name.localeCompare(b.name)),
+    []
+  );
 
   function shuffleEntry(){
     if(apiEntries.length<=1)return;
@@ -215,153 +212,202 @@ export default function WomenPage(){
                 Every day, thousands of women are born. A few of them reshape history — quietly or loudly. This page is a small attempt to notice them.
               </p>
             </div>
-            <a href="/" className="shrink-0 text-sm text-violet-300 mt-1">Back</a>
+            <Link href="/" className="shrink-0 text-sm text-violet-300 mt-1">Back</Link>
           </div>
         </GlassCard>
 
         <div className="grid xl:grid-cols-[1.2fr_0.8fr] gap-6">
+          <div className="space-y-6">
+            <GlassCard className="p-6">
+              <div className="mb-2 text-violet-400 text-xs uppercase tracking-widest">Selected date</div>
+              <div className="mb-4 text-violet-200 text-sm">{dateLabel}</div>
+              <p className="text-violet-400 text-sm mb-6 max-w-md">
+                Someone born on this day once lived a life worth remembering.
+              </p>
 
-          <GlassCard className="p-6">
-            <div className="mb-2 text-violet-400 text-xs uppercase tracking-widest">Selected date</div>
-            <div className="mb-4 text-violet-200 text-sm">{dateLabel}</div>
-            <p className="text-violet-400 text-sm mb-6 max-w-md">
-              Someone born on this day once lived a life worth remembering.
-            </p>
-
-            {isLoading ? (
-              <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
-                <div className="text-violet-400 text-sm">Loading</div>
-                <div className="text-xl text-white font-medium">Looking for a woman born on this day</div>
-                <p className="text-violet-300 max-w-md text-sm leading-relaxed">
-                  Pulling candidates from Wikipedia and asking the model to keep only the most notable women.
-                </p>
-              </div>
-            ) : loadError ? (
-              <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
-                <div className="text-violet-400 text-sm">API error</div>
-                <div className="text-xl text-white font-medium">No story found for this day</div>
-                <p className="text-violet-300 max-w-md text-sm leading-relaxed">
-                  Not every day in history has been surfaced yet. But somewhere, someone was born who quietly changed the world.
-                </p>
-                <p className="text-violet-400 text-xs">
-                  Try another date, or come back later.
-                </p>
-              </div>
-            ) : selectedEntry ? (
-              <div className="space-y-4" ref={cardRef}>
-                <div className="relative h-64 rounded-xl overflow-hidden">
-                  <PortraitImage src={selectedEntry.image} alt={selectedEntry.imageAlt}/>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"/>
+              {isLoading ? (
+                <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
+                  <div className="text-violet-400 text-sm">Loading</div>
+                  <div className="text-xl text-white font-medium">Looking for a woman born on this day</div>
+                  <p className="text-violet-300 max-w-md text-sm leading-relaxed">
+                    Pulling candidates from Wikipedia and asking the model to keep only the most notable women.
+                  </p>
                 </div>
-
-                <h2 className="text-2xl font-semibold">{selectedEntry.name}</h2>
-
-                <div className="space-y-1.5">
-                  <div className="flex gap-2 flex-wrap items-center justify-between">
-                    <div className="flex gap-2 flex-wrap items-center">
-                      {matchLabel ? (
-                        <span className={cn(
-                          "rounded-full px-3 py-0.5 text-[11px] font-medium border",
-                          matchLabel==="Born on this day"
-                            ? "bg-violet-500/20 border-violet-500/30 text-violet-300"
-                            : matchLabel==="Born around this time"
-                            ? "bg-blue-500/20 border-blue-500/30 text-blue-300"
-                            : "bg-white/10 border-white/15 text-white/60"
-                        )}>{matchLabel}</span>
-                      ) : null}
-                      {selectedEntry.field
-                        ? selectedEntry.field.split(" / ").map(f => <Pill key={f}>{f}</Pill>)
-                        : null}
-                    </div>
-                    {apiEntries.length>1 && (
-                      <button
-                        onClick={shuffleEntry}
-                        title={`Shuffle (${poolIndex+1}/${apiEntries.length})`}
-                        className="text-sm border border-white/10 rounded-full px-2.5 py-0.5 hover:bg-white/10 text-violet-300 hover:text-white transition-colors"
-                      >
-                        🎲 {poolIndex+1}/{apiEntries.length}
-                      </button>
-                    )}
+              ) : loadError ? (
+                <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
+                  <div className="text-violet-400 text-sm">API error</div>
+                  <div className="text-xl text-white font-medium">No story found for this day</div>
+                  <p className="text-violet-300 max-w-md text-sm leading-relaxed">
+                    Not every day in history has been surfaced yet. But somewhere, someone was born who quietly changed the world.
+                  </p>
+                  <p className="text-violet-400 text-xs">
+                    Try another date, or come back later.
+                  </p>
+                </div>
+              ) : selectedEntry ? (
+                <div className="space-y-4" ref={cardRef}>
+                  <div className="relative h-64 rounded-xl overflow-hidden">
+                    <PortraitImage src={selectedEntry.image} alt={selectedEntry.imageAlt}/>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"/>
                   </div>
-                  <p className="text-sm text-violet-300">{formatDateRange(selectedEntry)}</p>
+
+                  <h2 className="text-2xl font-semibold">{selectedEntry.name}</h2>
+
+                  <div className="space-y-1.5">
+                    <div className="flex gap-2 flex-wrap items-center justify-between">
+                      <div className="flex gap-2 flex-wrap items-center">
+                        {matchLabel ? (
+                          <span className={cn(
+                            "rounded-full px-3 py-0.5 text-[11px] font-medium border",
+                            matchLabel==="Born on this day"
+                              ? "bg-violet-500/20 border-violet-500/30 text-violet-300"
+                              : matchLabel==="Born around this time"
+                              ? "bg-blue-500/20 border-blue-500/30 text-blue-300"
+                              : "bg-white/10 border-white/15 text-white/60"
+                          )}>{matchLabel}</span>
+                        ) : null}
+                        {selectedEntry.field
+                          ? selectedEntry.field.split(" / ").map(f => <Pill key={f}>{f}</Pill>)
+                          : null}
+                      </div>
+                      {apiEntries.length>1 && (
+                        <button
+                          onClick={shuffleEntry}
+                          title={`Shuffle (${poolIndex+1}/${apiEntries.length})`}
+                          className="text-sm border border-white/10 rounded-full px-2.5 py-0.5 hover:bg-white/10 text-violet-300 hover:text-white transition-colors"
+                        >
+                          🎲 {poolIndex+1}/{apiEntries.length}
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-sm text-violet-300">{formatDateRange(selectedEntry)}</p>
+                  </div>
+
+                  <p className="text-violet-300 leading-relaxed">{selectedEntry.bio}</p>
+
+                  <div className="flex gap-2 flex-wrap">
+                      <button
+                        onClick={async ()=>{
+                          try{
+                            await navigator.clipboard.writeText(shareText);
+                            setCopied(true);
+                            setTimeout(()=>setCopied(false),1500);
+                          }catch{}
+                        }}
+                        className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10"
+                      >
+                        {copied?"Copied":"Copy"}
+                      </button>
+
+                      <button
+                        onClick={async ()=>{
+                          if(!cardRef.current||!selectedEntry) return;
+                          try{
+                            const el = cardRef.current;
+                            const prev = {
+                              background: el.style.background,
+                              border: el.style.border,
+                              borderRadius: el.style.borderRadius,
+                              padding: el.style.padding,
+                            };
+                            el.style.background = "linear-gradient(to bottom,#1a1333,#0b0616)";
+                            el.style.border = "1px solid rgba(255,255,255,0.10)";
+                            el.style.borderRadius = "16px";
+                            el.style.padding = "24px";
+                            const dataUrl = await toPng(el, {cacheBust:true});
+                            el.style.background = prev.background;
+                            el.style.border = prev.border;
+                            el.style.borderRadius = prev.borderRadius;
+                            el.style.padding = prev.padding;
+                            const link = document.createElement("a");
+                            link.download = `${selectedEntry.name}.png`;
+                            link.href = dataUrl;
+                            link.click();
+                          }catch{}
+                        }}
+                        className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10"
+                      >
+                        Download
+                      </button>
+
+                      <a
+                        href={getWikiUrl(selectedEntry.name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10 inline-flex items-center"
+                      >
+                        Wikipedia
+                      </a>
+                    </div>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
+                  <div className="text-violet-400 text-sm">No result</div>
+                  <div className="text-xl text-white font-medium">No story found for this day</div>
+                  <p className="text-violet-300 max-w-md text-sm leading-relaxed">
+                    Not every day in history has been surfaced yet. But somewhere, someone was born who quietly changed the world.
+                  </p>
+                  <p className="text-violet-400 text-xs">
+                    Try another date, or come back later.
+                  </p>
+                </div>
+              )}
+            </GlassCard>
+
+            {showUndatedList && (
+              <GlassCard className="p-6">
+                <div className="flex items-center justify-between gap-4 mb-4">
+                  <div>
+                    <div className="text-violet-400 text-xs uppercase tracking-widest">Featured from history</div>
+                    <h2 className="mt-2 text-xl font-semibold text-white">Women Without An Exact Birth Date</h2>
+                    <p className="mt-2 text-sm text-violet-300">
+                      These figures are in the archive, but their publicly documented birthday is incomplete or approximate.
+                    </p>
+                  </div>
+                  <div className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-violet-200">
+                    {undatedEntries.length} total
+                  </div>
                 </div>
 
-                <p className="text-violet-300 leading-relaxed">{selectedEntry.bio}</p>
-
-                <div className="flex gap-2 flex-wrap">
-                    <button
-                      onClick={async ()=>{
-                        try{
-                          await navigator.clipboard.writeText(shareText);
-                          setCopied(true);
-                          setTimeout(()=>setCopied(false),1500);
-                        }catch{}
-                      }}
-                      className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10"
-                    >
-                      {copied?"Copied":"Copy"}
-                    </button>
-
-                    <button
-                      onClick={async ()=>{
-                        if(!cardRef.current||!selectedEntry) return;
-                        try{
-                          const el = cardRef.current;
-                          const prev = {
-                            background: el.style.background,
-                            border: el.style.border,
-                            borderRadius: el.style.borderRadius,
-                            padding: el.style.padding,
-                          };
-                          el.style.background = "linear-gradient(to bottom,#1a1333,#0b0616)";
-                          el.style.border = "1px solid rgba(255,255,255,0.10)";
-                          el.style.borderRadius = "16px";
-                          el.style.padding = "24px";
-                          const dataUrl = await toPng(el, {cacheBust:true});
-                          el.style.background = prev.background;
-                          el.style.border = prev.border;
-                          el.style.borderRadius = prev.borderRadius;
-                          el.style.padding = prev.padding;
-                          const link = document.createElement("a");
-                          link.download = `${selectedEntry.name}.png`;
-                          link.href = dataUrl;
-                          link.click();
-                        }catch{}
-                      }}
-                      className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10"
-                    >
-                      Download
-                    </button>
-
+                <div className="grid gap-3 md:grid-cols-2">
+                  {undatedEntries.map((entry) => (
                     <a
-                      href={getWikiUrl(selectedEntry.name)}
+                      key={entry.id}
+                      href={getWikiUrl(entry.name)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-violet-300 border border-white/10 rounded px-3 py-1 hover:bg-white/10 inline-flex items-center"
+                      className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:bg-white/[0.06]"
                     >
-                      Wikipedia
+                      <div className="text-sm font-medium text-white">{entry.name}</div>
+                      <div className="mt-1 text-xs text-violet-300">{entry.birthDate}</div>
+                      {entry.field ? (
+                        <div className="mt-2 text-xs text-violet-400">{entry.field}</div>
+                      ) : null}
                     </a>
-                  </div>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
-                <div className="text-violet-400 text-sm">No result</div>
-                <div className="text-xl text-white font-medium">No story found for this day</div>
-                <p className="text-violet-300 max-w-md text-sm leading-relaxed">
-                  Not every day in history has been surfaced yet. But somewhere, someone was born who quietly changed the world.
-                </p>
-                <p className="text-violet-400 text-xs">
-                  Try another date, or come back later.
-                </p>
-              </div>
+                  ))}
+                </div>
+              </GlassCard>
             )}
-          </GlassCard>
+          </div>
 
           <GlassCard className="p-6">
             <div className="text-center text-violet-400 text-lg font-semibold mb-1">{displayYear}</div>
             <div className="flex justify-between items-center mb-4">
               <button onClick={()=>{setDisplayMonth(m=> m===0?11:m-1); if(displayMonth===0) setDisplayYear(y=>y-1);}}><ChevronLeft/></button>
-              <div className="text-white font-medium">{MONTHS[displayMonth]}</div>
+              <div className="flex items-center gap-3">
+                <div className="text-white font-medium">{MONTHS[displayMonth]}</div>
+                <select
+                  value={displayMonth}
+                  onChange={(e)=>setDisplayMonth(Number(e.target.value))}
+                  className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-sm text-violet-100 outline-none"
+                >
+                  {MONTHS.map((month, index)=>(
+                    <option key={month} value={index} className="bg-[#160d2a] text-white">
+                      {month}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <button onClick={()=>{setDisplayMonth(m=> m===11?0:m+1); if(displayMonth===11) setDisplayYear(y=>y+1);}}><ChevronRight/></button>
             </div>
 
@@ -388,6 +434,13 @@ export default function WomenPage(){
                 );
               })}
             </div>
+
+            <button
+              onClick={()=>setShowUndatedList(v=>!v)}
+              className="mt-6 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-violet-200 transition hover:bg-white/10"
+            >
+              {showUndatedList ? "Hide women without exact birth dates" : "Show women without exact birth dates"}
+            </button>
           </GlassCard>
 
         </div>
