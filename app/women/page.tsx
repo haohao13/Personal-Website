@@ -198,10 +198,10 @@ export default function WomenPage(){
   const dateLabel=formatSelectedLabel(displayMonth,selectedDay);
   const deathLabel=selectedEntry?.deathDate??"Still living";
   const activePoolSize = showUndatedList ? undatedEntries.length : apiEntries.length;
-  const cardEyebrow = showUndatedList ? "Unfixed birthdays" : "Selected date";
+  const cardEyebrow = showUndatedList ? "Unknown birthdays" : "Selected date";
   const cardTitle = showUndatedList ? "Dates lost to history, lives impossible to ignore" : dateLabel;
   const cardDescription = showUndatedList
-    ? "Some women arrive in the archive without a full birthday attached to them. The calendar let them slip; history did not."
+    ? "Some women reach the archive with a missing birthday, but never with a missing life. The calendar blurred them; history kept their light."
     : "Someone born on this day once lived a life worth remembering.";
 
   const shareText=useMemo(()=>{
@@ -231,7 +231,7 @@ export default function WomenPage(){
             <GlassCard className="p-6">
               <div className="mb-2 text-violet-400 text-xs uppercase tracking-widest">{cardEyebrow}</div>
               <div className="mb-4 text-violet-200 text-sm">{cardTitle}</div>
-              <p className="text-violet-400 text-sm mb-6 max-w-md">
+              <p className="text-violet-400 text-sm mb-6 max-w-2xl">
                 {cardDescription}
               </p>
 
@@ -266,7 +266,7 @@ export default function WomenPage(){
                   <div className="space-y-1.5">
                     <div className="flex gap-2 flex-wrap items-center justify-between">
                       <div className="flex gap-2 flex-wrap items-center">
-                        {matchLabel ? (
+                        {showUndatedList || matchLabel ? (
                           <span className={cn(
                             "rounded-full px-3 py-0.5 text-[11px] font-medium border",
                             showUndatedList

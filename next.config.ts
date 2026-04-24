@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "img2.chinadaily.com.cn",
       },
+      {
+        protocol: "https",
+        hostname: "img2.chinadaily.com.cn",
+      },
+      {
+        protocol: "https",
+        hostname: "chinesewomenfilmmakers.wordpress.com",
+      },
     ],
   },
 };
