@@ -11,7 +11,7 @@ export interface GeoLocation {
   region?: string;
 }
 
-export interface City extends GeoLocation {}
+export type City = GeoLocation;
 
 export interface Region extends GeoLocation {
   cities?: City[];
@@ -25,23 +25,41 @@ export interface Continent extends GeoLocation {
   countries: Country[];
 }
 
+export function withHierarchy(
+  location: GeoLocation,
+  level: HierarchyLevel,
+  parents: { continent?: string; country?: string; region?: string } = {}
+): GeoLocation {
+  return {
+    ...location,
+    level,
+    continent: level === 'continent' ? location.name : parents.continent,
+    country: level === 'country' ? location.name : parents.country,
+    region: level === 'region' ? location.name : parents.region,
+  };
+}
+
 // Helper function to flatten geo data into a searchable array
 export function flattenGeoData(geoData: Continent[]): GeoLocation[] {
   const result: GeoLocation[] = [];
 
   for (const continent of geoData) {
-    result.push({ ...continent, level: 'continent' });
+    result.push(withHierarchy(continent, 'continent'));
 
     for (const country of continent.countries) {
-      result.push({ ...country, level: 'country', continent: continent.name });
+      result.push(withHierarchy(country, 'country', { continent: continent.name }));
 
       if (country.regions) {
         for (const region of country.regions) {
-          result.push({ ...region, level: 'region', continent: continent.name, country: country.name });
+          result.push(withHierarchy(region, 'region', { continent: continent.name, country: country.name }));
 
           if (region.cities) {
             for (const city of region.cities) {
-              result.push({ ...city, level: 'city', continent: continent.name, country: country.name, region: region.name });
+              result.push(withHierarchy(city, 'city', {
+                continent: continent.name,
+                country: country.name,
+                region: region.name,
+              }));
             }
           }
         }
@@ -70,28 +88,32 @@ export function getFilteredOptions(
   const regionSel = selections.region ?? [];
 
   // All continents always available
-  result.continent = geoData.map((c) => ({ ...c, level: 'continent' as const }));
+  result.continent = geoData.map((continent) => withHierarchy(continent, 'continent'));
 
   for (const continent of geoData) {
     const contMatch = continentSel.length === 0 || continentSel.includes(continent.name);
     if (!contMatch) continue;
 
     for (const country of continent.countries) {
-      result.country.push({ ...country, level: 'country' as const, continent: continent.name });
+      result.country.push(withHierarchy(country, 'country', { continent: continent.name }));
 
       const countryMatch = countrySel.length === 0 || countrySel.includes(country.name);
       if (!countryMatch) continue;
 
       if (country.regions) {
         for (const region of country.regions) {
-          result.region.push({ ...region, level: 'region' as const, continent: continent.name, country: country.name });
+          result.region.push(withHierarchy(region, 'region', { continent: continent.name, country: country.name }));
 
           const regionMatch = regionSel.length === 0 || regionSel.includes(region.name);
           if (!regionMatch) continue;
 
           if (region.cities) {
             for (const city of region.cities) {
-              result.city.push({ ...city, level: 'city' as const, continent: continent.name, country: country.name, region: region.name });
+              result.city.push(withHierarchy(city, 'city', {
+                continent: continent.name,
+                country: country.name,
+                region: region.name,
+              }));
             }
           }
         }

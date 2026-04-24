@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { GEO_DATA, getFilteredOptions, getRandomLocation, type GeoLocation, type HierarchyLevel } from '@/data/geo-data';
+import { GEO_DATA, getFilteredOptions, getRandomLocation, withHierarchy, type GeoLocation, type HierarchyLevel } from '@/data/geo-data';
 import { Sparkles, Home, MapPin, ChevronRight } from 'lucide-react';
 
 const MapComponent = dynamic(() => import('@/components/map-component'), {
@@ -58,16 +58,20 @@ export default function TravelPage() {
         if (levelIndex === 0) {
           // target = continent — already pushed below, skip duplicates
         } else if (levelIndex === 1) {
-          result.push({ ...coun, level: 'country', continent: cont.name });
+          result.push(withHierarchy(coun, 'country', { continent: cont.name }));
         } else if (coun.regions) {
           for (const reg of coun.regions) {
             if (regSel.length > 0 && !regSel.includes(reg.name)) continue;
 
             if (levelIndex === 2) {
-              result.push({ ...reg, level: 'region', continent: cont.name, country: coun.name });
+              result.push(withHierarchy(reg, 'region', { continent: cont.name, country: coun.name }));
             } else if (reg.cities && levelIndex === 3) {
               for (const cit of reg.cities) {
-                result.push({ ...cit, level: 'city', continent: cont.name, country: coun.name, region: reg.name });
+                result.push(withHierarchy(cit, 'city', {
+                  continent: cont.name,
+                  country: coun.name,
+                  region: reg.name,
+                }));
               }
             }
           }
@@ -76,7 +80,7 @@ export default function TravelPage() {
 
       // continent-level target
       if (levelIndex === 0) {
-        result.push({ ...cont, level: 'continent' });
+        result.push(withHierarchy(cont, 'continent'));
       }
     }
 
