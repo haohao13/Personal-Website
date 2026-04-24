@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -15,6 +16,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { SOMEHAO_TASKS, type SomehaoMode } from "@/data/somehao-prompts";
 
 const TEXT = {
   en: {
@@ -67,46 +69,15 @@ const TEXT = {
   },
 };
 
-const TASKS = {
-  mild: [
-    {
-      en: "Walk into a store you would normally never enter and stay for 5 minutes.",
-      zh: "去一家你平时不会进去的店里待 5 分钟。",
-      tag: "explore",
-    },
-    {
-      en: "Take a route you've never taken and walk for 10 minutes.",
-      zh: "走一条你从没走过的路 10 分钟。",
-      tag: "city",
-    },
-  ],
-  medium: [
-    {
-      en: "Go to a random neighborhood and enter the first place that feels right.",
-      zh: "去一个陌生街区，走进第一家顺眼的地方。",
-      tag: "explore",
-    },
-    {
-      en: "Text someone you haven't talked to in a while.",
-      zh: "给一个很久没联系的人发条消息。",
-      tag: "connection",
-    },
-  ],
-  wild: [
-    {
-      en: "Start a 30-second conversation with a stranger.",
-      zh: "和一个陌生人聊 30 秒。",
-      tag: "social",
-    },
-    {
-      en: "Do something that feels 'not like you.'",
-      zh: "做一件'有点不像你'的事。",
-      tag: "identity",
-    },
-  ],
-};
+const TASKS = SOMEHAO_TASKS;
 
-function getRandomTask(mode: keyof typeof TASKS) {
+const SOMEHAO_MODES = Object.keys(TASKS) as SomehaoMode[];
+
+for (const mode of SOMEHAO_MODES) {
+  console.assert(TASKS[mode].length === 100, `${mode} should have exactly 100 prompts.`);
+}
+
+function getRandomTask(mode: SomehaoMode) {
   const list = TASKS[mode];
   return list[Math.floor(Math.random() * list.length)];
 }
@@ -147,17 +118,11 @@ function SomehaoEntryCard({ href = "/somehao", lang = "en" }: { href?: string; l
 export { SomehaoEntryCard };
 
 export default function SomehaoPage() {
-  const [mode, setMode] = useState<keyof typeof TASKS>("medium");
+  const [mode, setMode] = useState<SomehaoMode>("medium");
   const [lang, setLang] = useState<"en" | "zh">("en");
-  const [task, setTask] = useState(() => TASKS.medium[0]);
+  const [task, setTask] = useState(() => getRandomTask("medium"));
   const [done, setDone] = useState(false);
   const [count, setCount] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    setTask(getRandomTask(mode));
-  }, [mode]);
 
   const t = TEXT[lang];
   const currentMode = useMemo(() => t.modes[mode], [t, mode]);
@@ -173,7 +138,7 @@ export default function SomehaoPage() {
     setDone(false);
   };
 
-  const changeMode = (nextMode: keyof typeof TASKS) => {
+  const changeMode = (nextMode: SomehaoMode) => {
     setMode(nextMode);
     setTask(getRandomTask(nextMode));
     setDone(false);
@@ -240,14 +205,14 @@ export default function SomehaoPage() {
               </div>
 
               <div className="mt-5 grid grid-cols-3 gap-2">
-                {Object.keys(TASKS).map((m) => {
+                {SOMEHAO_MODES.map((m) => {
                   const key = m as keyof typeof modeIcons;
                   const Icon = modeIcons[key];
                   const active = mode === m;
                   return (
                     <button
                       key={m}
-                      onClick={() => changeMode(m as keyof typeof TASKS)}
+                      onClick={() => changeMode(m)}
                       className={`rounded-2xl border px-3 py-3 text-left transition ${
                         active
                           ? "border-zinc-900 bg-zinc-900 text-white shadow-sm"
@@ -317,13 +282,13 @@ export default function SomehaoPage() {
 
         </div>
 
-        <a
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-zinc-600 transition pb-2"
         >
           <Home className="h-4 w-4" />
           {lang === "en" ? "Back Home" : "回到主页"}
-        </a>
+        </Link>
       </div>
     </div>
   );
