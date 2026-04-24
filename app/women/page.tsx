@@ -138,6 +138,7 @@ export default function WomenPage(){
   const [displayMonth,setDisplayMonth]=useState(today.getMonth());
   const [selectedDay,setSelectedDay]=useState(today.getDate());
   const [showUndatedList,setShowUndatedList]=useState(false);
+  const [showMonthMenu,setShowMonthMenu]=useState(false);
   const [apiEntries,setApiEntries]=useState<WomanEntry[]>([]);
   const [poolIndex,setPoolIndex]=useState(0);
   const [matchLabel,setMatchLabel]=useState<string>("");
@@ -153,6 +154,7 @@ export default function WomenPage(){
   },[displayYear,displayMonth,selectedDay]);
 
   useEffect(()=>{
+    if (showUndatedList) return;
     let cancelled=false;
     (async()=>{
       setIsLoading(true); setLoadError(null);
@@ -164,7 +166,7 @@ export default function WomenPage(){
       }finally{if(!cancelled) setIsLoading(false);} 
     })();
     return ()=>{cancelled=true};
-  },[displayMonth,selectedDay]);
+  },[displayMonth,selectedDay,showUndatedList]);
 
   const monthDays=useMemo(()=>{
     const total=daysInMonth(displayYear,displayMonth);
@@ -176,23 +178,31 @@ export default function WomenPage(){
     return cells;
   },[displayYear,displayMonth]);
 
-  const selectedEntry=useMemo(()=>{
-    if(apiEntries.length>0)return apiEntries[poolIndex]??apiEntries[0];
-    return getFeaturedEntry(displayMonth+1,selectedDay);
-  },[apiEntries,displayMonth,selectedDay,poolIndex]);
-
   const undatedEntries = useMemo(
     () => WOMEN_DATA.filter((entry) => entry.day === 0).sort((a, b) => a.name.localeCompare(b.name)),
     []
   );
 
+  const selectedEntry=useMemo(()=>{
+    if(showUndatedList) return undatedEntries[poolIndex]??undatedEntries[0]??null;
+    if(apiEntries.length>0)return apiEntries[poolIndex]??apiEntries[0];
+    return getFeaturedEntry(displayMonth+1,selectedDay);
+  },[apiEntries,displayMonth,selectedDay,poolIndex,showUndatedList,undatedEntries]);
+
   function shuffleEntry(){
-    if(apiEntries.length<=1)return;
-    setPoolIndex(i=>(i+1)%apiEntries.length);
+    const pool = showUndatedList ? undatedEntries : apiEntries;
+    if(pool.length<=1)return;
+    setPoolIndex(i=>(i+1)%pool.length);
   }
 
   const dateLabel=formatSelectedLabel(displayMonth,selectedDay);
   const deathLabel=selectedEntry?.deathDate??"Still living";
+  const activePoolSize = showUndatedList ? undatedEntries.length : apiEntries.length;
+  const cardEyebrow = showUndatedList ? "Unfixed birthdays" : "Selected date";
+  const cardTitle = showUndatedList ? "Dates lost to history, lives impossible to ignore" : dateLabel;
+  const cardDescription = showUndatedList
+    ? "Some women arrive in the archive without a full birthday attached to them. The calendar let them slip; history did not."
+    : "Someone born on this day once lived a life worth remembering.";
 
   const shareText=useMemo(()=>{
     if(!selectedEntry)return "";
@@ -219,13 +229,13 @@ export default function WomenPage(){
         <div className="grid xl:grid-cols-[1.2fr_0.8fr] gap-6">
           <div className="space-y-6">
             <GlassCard className="p-6">
-              <div className="mb-2 text-violet-400 text-xs uppercase tracking-widest">Selected date</div>
-              <div className="mb-4 text-violet-200 text-sm">{dateLabel}</div>
+              <div className="mb-2 text-violet-400 text-xs uppercase tracking-widest">{cardEyebrow}</div>
+              <div className="mb-4 text-violet-200 text-sm">{cardTitle}</div>
               <p className="text-violet-400 text-sm mb-6 max-w-md">
-                Someone born on this day once lived a life worth remembering.
+                {cardDescription}
               </p>
 
-              {isLoading ? (
+              {!showUndatedList && isLoading ? (
                 <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
                   <div className="text-violet-400 text-sm">Loading</div>
                   <div className="text-xl text-white font-medium">Looking for a woman born on this day</div>
@@ -233,7 +243,7 @@ export default function WomenPage(){
                     Pulling candidates from Wikipedia and asking the model to keep only the most notable women.
                   </p>
                 </div>
-              ) : loadError ? (
+              ) : !showUndatedList && loadError ? (
                 <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
                   <div className="text-violet-400 text-sm">API error</div>
                   <div className="text-xl text-white font-medium">No story found for this day</div>
@@ -259,24 +269,27 @@ export default function WomenPage(){
                         {matchLabel ? (
                           <span className={cn(
                             "rounded-full px-3 py-0.5 text-[11px] font-medium border",
+                            showUndatedList
+                              ? "bg-white/10 border-white/15 text-white/70"
+                              :
                             matchLabel==="Born on this day"
                               ? "bg-violet-500/20 border-violet-500/30 text-violet-300"
                               : matchLabel==="Born around this time"
                               ? "bg-blue-500/20 border-blue-500/30 text-blue-300"
                               : "bg-white/10 border-white/15 text-white/60"
-                          )}>{matchLabel}</span>
+                          )}>{showUndatedList ? "Date unrecorded" : matchLabel}</span>
                         ) : null}
                         {selectedEntry.field
                           ? selectedEntry.field.split(" / ").map(f => <Pill key={f}>{f}</Pill>)
                           : null}
                       </div>
-                      {apiEntries.length>1 && (
+                      {activePoolSize>1 && (
                         <button
                           onClick={shuffleEntry}
-                          title={`Shuffle (${poolIndex+1}/${apiEntries.length})`}
+                          title={`Shuffle (${poolIndex+1}/${activePoolSize})`}
                           className="text-sm border border-white/10 rounded-full px-2.5 py-0.5 hover:bg-white/10 text-violet-300 hover:text-white transition-colors"
                         >
-                          🎲 {poolIndex+1}/{apiEntries.length}
+                          🎲 {poolIndex+1}/{activePoolSize}
                         </button>
                       )}
                     </div>
@@ -354,59 +367,38 @@ export default function WomenPage(){
               )}
             </GlassCard>
 
-            {showUndatedList && (
-              <GlassCard className="p-6">
-                <div className="flex items-center justify-between gap-4 mb-4">
-                  <div>
-                    <div className="text-violet-400 text-xs uppercase tracking-widest">Featured from history</div>
-                    <h2 className="mt-2 text-xl font-semibold text-white">Women Without An Exact Birth Date</h2>
-                    <p className="mt-2 text-sm text-violet-300">
-                      These figures are in the archive, but their publicly documented birthday is incomplete or approximate.
-                    </p>
-                  </div>
-                  <div className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-violet-200">
-                    {undatedEntries.length} total
-                  </div>
-                </div>
-
-                <div className="grid gap-3 md:grid-cols-2">
-                  {undatedEntries.map((entry) => (
-                    <a
-                      key={entry.id}
-                      href={getWikiUrl(entry.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:bg-white/[0.06]"
-                    >
-                      <div className="text-sm font-medium text-white">{entry.name}</div>
-                      <div className="mt-1 text-xs text-violet-300">{entry.birthDate}</div>
-                      {entry.field ? (
-                        <div className="mt-2 text-xs text-violet-400">{entry.field}</div>
-                      ) : null}
-                    </a>
-                  ))}
-                </div>
-              </GlassCard>
-            )}
           </div>
 
           <GlassCard className="p-6">
             <div className="text-center text-violet-400 text-lg font-semibold mb-1">{displayYear}</div>
             <div className="flex justify-between items-center mb-4">
               <button onClick={()=>{setDisplayMonth(m=> m===0?11:m-1); if(displayMonth===0) setDisplayYear(y=>y-1);}}><ChevronLeft/></button>
-              <div className="flex items-center gap-3">
-                <div className="text-white font-medium">{MONTHS[displayMonth]}</div>
-                <select
-                  value={displayMonth}
-                  onChange={(e)=>setDisplayMonth(Number(e.target.value))}
-                  className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-sm text-violet-100 outline-none"
+              <div className="relative">
+                <button
+                  onClick={()=>setShowMonthMenu(v=>!v)}
+                  className="text-white font-medium"
                 >
-                  {MONTHS.map((month, index)=>(
-                    <option key={month} value={index} className="bg-[#160d2a] text-white">
-                      {month}
-                    </option>
-                  ))}
-                </select>
+                  {MONTHS[displayMonth]}
+                </button>
+                {showMonthMenu && (
+                  <div className="absolute left-1/2 top-9 z-10 w-40 -translate-x-1/2 rounded-xl border border-white/10 bg-[#160d2a] p-2 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+                    {MONTHS.map((month, index)=>(
+                      <button
+                        key={month}
+                        onClick={()=>{
+                          setDisplayMonth(index);
+                          setShowMonthMenu(false);
+                        }}
+                        className={cn(
+                          "w-full rounded-lg px-3 py-2 text-left text-sm transition",
+                          index===displayMonth ? "bg-white/10 text-white" : "text-violet-200 hover:bg-white/10"
+                        )}
+                      >
+                        {month}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <button onClick={()=>{setDisplayMonth(m=> m===11?0:m+1); if(displayMonth===11) setDisplayYear(y=>y+1);}}><ChevronRight/></button>
             </div>
@@ -436,7 +428,10 @@ export default function WomenPage(){
             </div>
 
             <button
-              onClick={()=>setShowUndatedList(v=>!v)}
+              onClick={()=>{
+                setShowUndatedList(v=>!v);
+                setPoolIndex(0);
+              }}
               className="mt-6 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-violet-200 transition hover:bg-white/10"
             >
               {showUndatedList ? "Hide women without exact birth dates" : "Show women without exact birth dates"}
