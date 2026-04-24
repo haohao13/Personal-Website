@@ -1,9 +1,16 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useDeferredValue, useEffect, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { GEO_DATA, getFilteredOptions, getRandomLocation, withHierarchy, type GeoLocation, type HierarchyLevel } from '@/data/geo-data';
+import {
+  createEmptyGeoOptions,
+  createEmptyTravelSelections,
+  type GeoLocation,
+  type GeoOptions,
+  type HierarchyLevel,
+  type TravelSelections,
+} from '@/data/geo-data';
 import { Sparkles, Home, MapPin, ChevronRight } from 'lucide-react';
 
 const MapComponent = dynamic(() => import('@/components/map-component'), {
@@ -20,77 +27,122 @@ const LEVEL_LABELS: Record<HierarchyLevel, string> = {
   city: 'City',
 };
 
+function buildTravelQuery(targetLevel: HierarchyLevel, selections: TravelSelections, mode: 'options' | 'random') {
+  const params = new URLSearchParams({
+    mode,
+    targetLevel,
+  });
+
+  for (const level of LEVELS) {
+    for (const value of selections[level]) {
+      params.append(level, value);
+    }
+  }
+
+  return params.toString();
+}
+
+function getEmptyMessage(level: HierarchyLevel, isLoading: boolean, selections: TravelSelections) {
+  if (level === 'country' && selections.continent.length === 0) {
+    return 'Select a continent to load countries';
+  }
+
+  if (level === 'region' && selections.country.length === 0) {
+    return 'Select a country to load provinces / states';
+  }
+
+  if (level === 'city' && selections.region.length === 0) {
+    return 'Select a province / state to load cities';
+  }
+
+  if (isLoading) {
+    return 'Loading options...';
+  }
+
+  return 'No options available';
+}
+
+function hasParentSelection(level: HierarchyLevel, selections: TravelSelections) {
+  if (level === 'continent') return true;
+  if (level === 'country') return selections.continent.length > 0;
+  if (level === 'region') return selections.country.length > 0;
+  return selections.region.length > 0;
+}
+
+function createEmptySearchTerms(): Record<HierarchyLevel, string> {
+  return {
+    continent: '',
+    country: '',
+    region: '',
+    city: '',
+  };
+}
+
 export default function TravelPage() {
   const [targetLevel, setTargetLevel] = useState<HierarchyLevel>('country');
-  const [selectedFilters, setSelectedFilters] = useState<Record<HierarchyLevel, string[]>>({
-    continent: [],
-    country: [],
-    region: [],
-    city: [],
-  });
+  const [selectedFilters, setSelectedFilters] = useState<TravelSelections>(createEmptyTravelSelections);
+  const [availableOptions, setAvailableOptions] = useState<GeoOptions>(createEmptyGeoOptions);
+  const [searchTerms, setSearchTerms] = useState<Record<HierarchyLevel, string>>(createEmptySearchTerms);
   const [randomDestination, setRandomDestination] = useState<GeoLocation | null>(null);
+  const [isLoadingOptions, setIsLoadingOptions] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const deferredSearchTerms = useDeferredValue(searchTerms);
 
   const levelIndex = LEVELS.indexOf(targetLevel);
   const relevantLevels = LEVELS.slice(0, levelIndex + 1);
 
-  // Narrowed-down options for each filter column
-  const availableOptions = useMemo(
-    () =>
-      getFilteredOptions(GEO_DATA, targetLevel, {
-        continent: selectedFilters.continent,
-        country: selectedFilters.country,
-        region: selectedFilters.region,
-      }),
-    [targetLevel, selectedFilters]
-  );
+  useEffect(() => {
+    const controller = new AbortController();
 
-  // Collect locations matching the current filter state at the target level
-  const getAvailableLocations = (): GeoLocation[] => {
-    const result: GeoLocation[] = [];
-    const { continent: contSel, country: countSel, region: regSel } = selectedFilters;
+    async function loadOptions() {
+      setIsLoadingOptions(true);
 
-    for (const cont of GEO_DATA) {
-      if (contSel.length > 0 && !contSel.includes(cont.name)) continue;
+      try {
+        const response = await fetch(`/api/travel?${buildTravelQuery(targetLevel, selectedFilters, 'options')}`, {
+          signal: controller.signal,
+        });
 
-      for (const coun of cont.countries) {
-        if (countSel.length > 0 && !countSel.includes(coun.name)) continue;
-
-        if (levelIndex === 0) {
-          // target = continent — already pushed below, skip duplicates
-        } else if (levelIndex === 1) {
-          result.push(withHierarchy(coun, 'country', { continent: cont.name }));
-        } else if (coun.regions) {
-          for (const reg of coun.regions) {
-            if (regSel.length > 0 && !regSel.includes(reg.name)) continue;
-
-            if (levelIndex === 2) {
-              result.push(withHierarchy(reg, 'region', { continent: cont.name, country: coun.name }));
-            } else if (reg.cities && levelIndex === 3) {
-              for (const cit of reg.cities) {
-                result.push(withHierarchy(cit, 'city', {
-                  continent: cont.name,
-                  country: coun.name,
-                  region: reg.name,
-                }));
-              }
-            }
-          }
+        if (!response.ok) {
+          throw new Error('Failed to load travel options');
         }
-      }
 
-      // continent-level target
-      if (levelIndex === 0) {
-        result.push(withHierarchy(cont, 'continent'));
+        const data = (await response.json()) as { options: GeoOptions };
+        setAvailableOptions(data.options);
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') {
+          console.error(error);
+          setAvailableOptions(createEmptyGeoOptions());
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsLoadingOptions(false);
+        }
       }
     }
 
-    return result;
-  };
+    void loadOptions();
 
-  const handleGenerateRandom = () => {
-    const available = getAvailableLocations();
-    const random = getRandomLocation(available);
-    if (random) setRandomDestination(random);
+    return () => controller.abort();
+  }, [selectedFilters, targetLevel]);
+
+  const handleGenerateRandom = async () => {
+    setIsGenerating(true);
+
+    try {
+      const response = await fetch(`/api/travel?${buildTravelQuery(targetLevel, selectedFilters, 'random')}`);
+
+      if (!response.ok) {
+        throw new Error('Failed to generate destination');
+      }
+
+      const data = (await response.json()) as { destination: GeoLocation | null };
+      setRandomDestination(data.destination);
+    } catch (error) {
+      console.error(error);
+      setRandomDestination(null);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const handleFilterToggle = (level: HierarchyLevel, value: string) => {
@@ -102,7 +154,6 @@ export default function TravelPage() {
 
       const newFilters = { ...prev, [level]: updated };
 
-      // Reset downstream filters
       if (level === 'continent') {
         newFilters.country = [];
         newFilters.region = [];
@@ -116,13 +167,39 @@ export default function TravelPage() {
 
       return newFilters;
     });
+
+    setSearchTerms((prev) => {
+      const next = { ...prev };
+
+      if (level === 'continent') {
+        next.country = '';
+        next.region = '';
+        next.city = '';
+      } else if (level === 'country') {
+        next.region = '';
+        next.city = '';
+      } else if (level === 'region') {
+        next.city = '';
+      }
+
+      return next;
+    });
+
     setRandomDestination(null);
   };
 
   const handleTargetLevelChange = (level: HierarchyLevel) => {
     setTargetLevel(level);
-    setSelectedFilters({ continent: [], country: [], region: [], city: [] });
+    setSelectedFilters(createEmptyTravelSelections());
+    setSearchTerms(createEmptySearchTerms());
     setRandomDestination(null);
+  };
+
+  const handleSearchChange = (level: HierarchyLevel, value: string) => {
+    setSearchTerms((prev) => ({
+      ...prev,
+      [level]: value,
+    }));
   };
 
   const breadcrumb = randomDestination
@@ -136,7 +213,6 @@ export default function TravelPage() {
 
   return (
     <div className="min-h-screen bg-[#f4f1ea]">
-      {/* Header */}
       <div className="bg-white/80 backdrop-blur-md border-b border-neutral-200/70 sticky top-0 z-10">
         <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
           <h1 className="text-xl font-semibold tracking-tight text-neutral-800">
@@ -153,8 +229,6 @@ export default function TravelPage() {
       </div>
 
       <div className="mx-auto max-w-5xl px-6 py-10 space-y-8">
-
-        {/* Target level selector */}
         <div>
           <p className="text-sm font-medium text-neutral-500 mb-3 uppercase tracking-wider">
             I want to discover a random
@@ -176,7 +250,6 @@ export default function TravelPage() {
           </div>
         </div>
 
-        {/* Filters */}
         <div>
           <p className="text-sm font-medium text-neutral-500 mb-3 uppercase tracking-wider">
             Narrow it down (leave empty to include all)
@@ -184,8 +257,13 @@ export default function TravelPage() {
           <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${relevantLevels.length}, minmax(0, 1fr))` }}>
             {relevantLevels.map((level, i) => {
               const options = availableOptions[level];
+              const searchTerm = deferredSearchTerms[level].trim().toLowerCase();
+              const filteredOptions = searchTerm
+                ? options.filter((option) => option.name.toLowerCase().includes(searchTerm))
+                : options;
               const selected = selectedFilters[level];
-              const isDisabled = i > 0 && availableOptions[LEVELS[i - 1]].length === 0;
+              const isParentReady = hasParentSelection(level, selectedFilters);
+              const isDisabled = i > 0 && !isParentReady;
 
               return (
                 <div key={level} className="bg-white rounded-2xl border border-neutral-200 overflow-hidden">
@@ -199,16 +277,33 @@ export default function TravelPage() {
                       </span>
                     )}
                   </div>
+                  <div className="px-3 py-2 border-b border-neutral-100">
+                    <input
+                      type="text"
+                      value={searchTerms[level]}
+                      onChange={(event) => handleSearchChange(level, event.target.value)}
+                      placeholder={`Type to find a ${LEVEL_LABELS[level].toLowerCase()}`}
+                      disabled={!isParentReady || isLoadingOptions}
+                      className="w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-700 placeholder:text-neutral-400 outline-none transition focus:border-neutral-400 focus:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                  </div>
                   <div className="max-h-44 overflow-y-auto p-2">
                     {options.length === 0 ? (
-                      <p className="text-xs text-neutral-400 px-3 py-2">No options available</p>
+                      <p className="text-xs text-neutral-400 px-3 py-2">
+                        {getEmptyMessage(level, isLoadingOptions, selectedFilters)}
+                      </p>
+                    ) : filteredOptions.length === 0 ? (
+                      <p className="text-xs text-neutral-400 px-3 py-2">
+                        No matches for &quot;{searchTerms[level].trim()}&quot;
+                      </p>
                     ) : (
-                      options.map((option) => {
-                        const isSelected = selected.includes(option.name);
+                      filteredOptions.map((option) => {
+                        const isSelected = selected.includes(option.id);
+
                         return (
                           <button
-                            key={option.name}
-                            onClick={() => !isDisabled && handleFilterToggle(level, option.name)}
+                            key={option.id}
+                            onClick={() => !isDisabled && handleFilterToggle(level, option.id)}
                             className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-colors flex items-center gap-2 ${
                               isSelected
                                 ? 'bg-neutral-900 text-white'
@@ -236,22 +331,20 @@ export default function TravelPage() {
           </div>
         </div>
 
-        {/* Generate button */}
         <div className="flex justify-center pt-2">
           <button
             onClick={handleGenerateRandom}
-            className="group flex items-center gap-3 px-8 py-4 bg-neutral-900 hover:bg-neutral-800 active:scale-95 text-white font-semibold rounded-2xl transition-all shadow-lg hover:shadow-xl"
+            disabled={isGenerating}
+            className="group flex items-center gap-3 px-8 py-4 bg-neutral-900 hover:bg-neutral-800 active:scale-95 disabled:opacity-60 disabled:cursor-wait text-white font-semibold rounded-2xl transition-all shadow-lg hover:shadow-xl"
           >
             <Sparkles className="h-5 w-5 group-hover:rotate-12 transition-transform" />
-            Generate Random Destination
+            {isGenerating ? 'Generating...' : 'Generate Random Destination'}
           </button>
         </div>
 
-        {/* Result */}
         {randomDestination && (
           <div className="bg-white rounded-3xl border border-neutral-200 overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
             <div className="px-8 py-7 border-b border-neutral-100">
-              {/* Breadcrumb path */}
               {breadcrumb.length > 0 && (
                 <div className="flex items-center gap-1.5 text-xs text-neutral-400 mb-3 flex-wrap">
                   {breadcrumb.map((part, i) => (
