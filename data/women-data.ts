@@ -1802,10 +1802,10 @@ export const WOMEN_DATA: WomanEntry[] = [
     nationality: "French", field: "Microbiology / Biochemistry",
   },
   {
-    id: "shao-yihui-0-0",
+    id: "shao-yihui-5-21",
     name: "邵艺辉 (Shao Yihui)",
-    month: 0, day: 0,
-    birthDate: "1991",
+    month: 5, day: 21,
+    birthDate: "May 21, 1991",
     bio: "Chinese film director and screenwriter whose B for Busy and Her Story marked her as one of the sharpest new voices in contemporary Chinese cinema. Her work is especially noted for its wit, urban specificity, and unusually textured portrayals of women, intimacy, and modern metropolitan life.",
     image: "http://img2.chinadaily.com.cn/images/202412/20/6764a0e9a310f1268d86f430.jpeg",
     imageAlt: "邵艺辉 (Shao Yihui)",
