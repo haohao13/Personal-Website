@@ -264,9 +264,6 @@ export function getRandomTravelLocation(targetLevel: HierarchyLevel, selections:
         )
       );
     case 'country':
-      if (!hasRequiredParentSelection('country', selections)) {
-        return null;
-      }
       return getRandomLocation(
         countryRecords.filter((country) => {
           return (
@@ -276,9 +273,6 @@ export function getRandomTravelLocation(targetLevel: HierarchyLevel, selections:
         })
       );
     case 'region':
-      if (!hasRequiredParentSelection('region', selections)) {
-        return null;
-      }
       return getRandomLocation(
         regionRecords.filter((region) => {
           return (
@@ -289,9 +283,6 @@ export function getRandomTravelLocation(targetLevel: HierarchyLevel, selections:
         })
       );
     case 'city':
-      if (!hasRequiredParentSelection('city', selections)) {
-        return null;
-      }
       return getRandomLocation(
         cityRecords.filter((city) => {
           return (
