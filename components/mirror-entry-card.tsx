@@ -32,7 +32,7 @@ function MirrorEntryCard({ href = "/mirror", lang = "en" }) {
       </div>
 
       <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-zinc-900">
-        {isEn ? "Go to Mirror" : "前往镜子"}
+        {isEn ? "Start one" : "来聊天"}
         <ChevronRight className="h-4 w-4 transition duration-300 group-hover:translate-x-1" />
       </div>
     </a>
