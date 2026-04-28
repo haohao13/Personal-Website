@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronRight, Crown, Sparkles } from "lucide-react";
+import { ChevronRight, Crown } from "lucide-react";
 
 function WomenEntryCard({ href = "/women", lang = "en" }) {
   const isEn = lang === "en";
@@ -27,7 +27,7 @@ function WomenEntryCard({ href = "/women", lang = "en" }) {
         </div>
 
         <div className="shrink-0 rounded-2xl border border-violet-200 bg-violet-50 p-3 text-violet-600 transition duration-300 group-hover:scale-105 group-hover:rotate-3">
-          <Sparkles className="h-5 w-5" />
+          <Crown className="h-5 w-5" />
         </div>
       </div>
 
