@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronRight, Sparkles } from "lucide-react";
+import { ChevronRight, Crown, Sparkles } from "lucide-react";
 
 function WomenEntryCard({ href = "/women", lang = "en" }) {
   const isEn = lang === "en";
@@ -17,7 +17,7 @@ function WomenEntryCard({ href = "/women", lang = "en" }) {
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-xs text-violet-500">
-            <Sparkles className="h-3.5 w-3.5" />
+            <Crown className="h-3.5 w-3.5" />
             Women
           </div>
           <h3 className="mt-4 text-2xl font-semibold tracking-tight text-zinc-950">
