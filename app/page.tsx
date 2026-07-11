@@ -5,6 +5,7 @@ import { SomehaoEntryCard } from '@/components/somehao-entry-card';
 import { TravelEntryCard } from '@/components/travel-entry-card';
 import { MirrorEntryCard } from '@/components/mirror-entry-card';
 import { WomenEntryCard } from '@/components/women-entry-card';
+import { LocalFlowEntryCard } from '@/components/localflow-entry-card';
 
 type CursorPoint = {
   x: number;
@@ -234,6 +235,7 @@ export default function PersonalWebsiteStarter() {
           <div className="grid gap-6">
             <SomehaoEntryCard lang="en" />
             <TravelEntryCard lang="en" />
+            <LocalFlowEntryCard lang="en" />
             <MirrorEntryCard lang="en" />
             <WomenEntryCard lang="en" />
           </div>
